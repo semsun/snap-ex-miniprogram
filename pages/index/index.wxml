@@ -7,10 +7,7 @@
       <text class="userinfo-nickname">{{userInfo.nickName}}</text>
     </block>
   </view>
-  <view class="usermotto">
-    <text class="user-motto">{{motto}}</text>
-  </view>
-  <view class="testPad">
-    <button>Test</button>
-  </view>
+  <button style="width:100%;" bindtap="toTestPage">Add Claim Form</button>
+  <button style="width:100%;" bindtap="toInvoice">Invoices</button>
+
 </view>

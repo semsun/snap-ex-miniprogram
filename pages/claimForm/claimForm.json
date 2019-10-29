@@ -1,0 +1,9 @@
+{
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "Add Claim Form",
+    "navigationBarTextStyle": "black"
+  },
+  "usingComponents": {}
+}

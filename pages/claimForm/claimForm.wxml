@@ -1,0 +1,51 @@
+<!--pages/testPage/testPage.wxml-->
+<view class="container">
+  <view class="top-view, buttom_line" style="padding-bottom:10px;">
+    <view class="flex_row_space_between">
+      <label class="left_item">Form Name:</label>
+      <input class="right_item, buttom_line" placeholder="Input Form Name"/>
+    </view>
+    <view class="flex_row_space_between">
+      <label class="left_item">Staff ID:</label>
+      <input class="right_item, buttom_line" placeholder="Input Staff ID"/>
+    </view>
+    <view class="flex_row_space_between">
+      <label class="left_item">TR Number:</label>
+      <input class="right_item, buttom_line" placeholder="Input TR Numbper"/>
+    </view>
+    <view class="flex_row_space_between">
+      <label class="left_item">Total Amount:</label>
+      <input class="right_item" placeholder="Automatically"/>
+    </view>
+  </view>
+  <view style="padding-top:20px;">
+    <view wx:for="{{array}}" wx:key="unique" wx:for-item="purpose">
+      <view class="purpose_item">
+        <view class="flex_row_space_between">
+          <view>
+            <label class="item_lable">Purpose</label>
+            <input disabled="disabled" class="item_value" value="{{purpose.purpose}}" placeholder="Team Building"/>
+          </view>
+          <view>
+            <label class="item_lable">Date</label>
+            <input class="item_value" value="{{purpose.date}}" placeholder="Date"/>
+          </view>
+        </view>
+        <view class="flex_row_space_between">
+          <view>
+            <label class="item_lable">Currency</label>
+            <input class="item_value" value="{{purpose.currency}}" placeholder="Currency"/>
+          </view>
+          <view>
+            <label class="item_lable">Amount</label>
+            <input class="item_value" value="{{purpose.amount}}" placeholder="Amount"/>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+  <view class="bottom-view, flex_row_space_between">
+    <button bindtap="addInvoice" class="left_item">Add Invoice</button>
+    <button bindtap="summitClick" class="right_item">Summit</button>
+  </view>
+</view>

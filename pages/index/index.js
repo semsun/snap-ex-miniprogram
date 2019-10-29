@@ -5,12 +5,14 @@ const app = getApp()
 Page({
   data: {
     motto: 'Hello World',
+    test: {a: "aa", b: "bb"},
+    sr: "Test",
     userInfo: {},
     hasUserInfo: false,
     canIUse: wx.canIUse('button.open-type.getUserInfo')
   },
   //事件处理函数
-  bindViewTap: function() {
+  bindViewTap: function(scanResult) {
     wx.navigateTo({
       url: '../logs/logs'
     })
@@ -49,6 +51,32 @@ Page({
     this.setData({
       userInfo: e.detail.userInfo,
       hasUserInfo: true
+    })
+  },
+  testBtn: function(e) {
+    wx.scanCode({
+      onlyFromCamera:true,
+      success (res) {
+        console.log(res)
+        wx.showModal({
+          title: 'Scan Result',
+          content: res.result,
+          showCancel: false
+        })
+      }
+    })
+  },
+  toTestPage:function(e) {
+    wx.navigateTo({
+      url: '/pages/claimForm/claimForm',
+    })
+  },
+  toInvoice: function(e) {
+    // wx.setStorageSync("tmpData", "DataFromIndex");
+    var tmpData = JSON.stringify({ "code": "044001600111", "number": "37669836", "date": "20170902", "amount": 12.74 })
+    console.log("toJson:" + tmpData)
+    wx.navigateTo({
+      url: '/pages/Invoice/InvoicePage?json=' + tmpData,
     })
   }
 })

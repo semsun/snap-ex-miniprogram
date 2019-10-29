@@ -1,0 +1,15 @@
+/* pages/testPage/testPage.wxss */
+.test-view {
+  width: 50%;
+  background-color: #00ff00;
+}
+
+.flex-wrp{
+  display:flex;
+}
+
+.purpose_item {
+  margin-top: 5px;
+  padding-bottom: 5px;
+  border-top: 2px solid #e3e3e3;
+}
