@@ -3,12 +3,14 @@
     "pages/index/index",
     "pages/logs/logs",
     "pages/claimForm/claimForm",
-    "pages/Invoice/InvoicePage"
+    "pages/Invoice/InvoicePage",
+    "pages/popButton/popButton",
+    "pages/home/home"
   ],
   "window": {
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#fff",
-    "navigationBarTitleText": "WeChat",
+    "navigationBarTitleText": "Claim Tool",
     "navigationBarTextStyle": "black"
   },
   "sitemapLocation": "sitemap.json"

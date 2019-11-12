@@ -1,0 +1,21 @@
+/* pages/popButton/popButton.wxss */
+.img-plus-style {
+  height: 150 rpx;
+  width: 150 rpx;
+  position: absolute;
+  bottom: 250 rpx;
+  right: 100 rpx;
+  z-index: 100;
+}
+.img-style {
+  height: 150 rpx;
+  width: 150 rpx;
+  position: absolute;
+  bottom: 250 rpx;
+  right: 100 rpx;
+  opacity: 0;
+}
+.tmp_bgcolor {
+  height: 100%;
+  background-color: #e3e3e3;
+}

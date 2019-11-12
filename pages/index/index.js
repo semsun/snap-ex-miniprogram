@@ -78,5 +78,15 @@ Page({
     wx.navigateTo({
       url: '/pages/Invoice/InvoicePage?json=' + tmpData,
     })
+  },
+  popButton: function(e) {
+    wx.navigateTo({
+      url: '/pages/popButton/popButton',
+    })
+  },
+  toHome: function (e) {
+    wx.navigateTo({
+      url: '/pages/home/home',
+    })
   }
 })

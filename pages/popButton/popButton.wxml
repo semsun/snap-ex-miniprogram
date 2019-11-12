@@ -1,0 +1,16 @@
+<!--pages/popButton/popButton.wxml-->
+<view class="tmp_bgcolor">
+  <label>Test</label>
+  <label>Test</label>
+  <label>Test</label>
+  <label>Test</label>
+  <label>Test</label>
+  <label>Test</label>
+  <label>Test</label>
+  <label>Test</label>
+  <label>Test</label>
+  <button class="img-style" animation="{{animCollection}}" bindTap="collect">A</button>
+  <button class="img-style" animation="{{animTranspond}}" bindTap="collect">B</button>
+  <button class="img-style" animation="{{animInput}}" bindTap="collect">C</button>
+  <button class="img-plus-style" animation="{{animPlus}}" bindTap="collect">+</button>
+</view>

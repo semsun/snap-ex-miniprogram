@@ -1,0 +1,114 @@
+<!--pages/home/home.wxml-->
+<view class="container">
+  <!-- Claim from -->
+  <view class="homeTitle, claimTitle, flex_row_space_between">
+    <view class="item_content">
+      <label>Claim Forms</label>
+    </view>
+    <view class="flex_row_space_between">
+    <label class="more_style">more</label>
+      <view class="icon">
+        <image class="moreImage" src="/images/more.png"/>
+      </view>
+    </view>
+  </view>
+  <view class="homeContent, container">
+    <view class="flex_row_space_between, item">
+      <view class="item_content">
+        <label>Claim Request 001</label>
+      </view>
+      <view class="icon">
+        <image class="arrowImage" src="/images/arrow.png"/>
+      </view>
+    </view>
+    <view class="item_split_line"/>
+    <view class="flex_row_space_between, item">
+      <view class="item_content">
+        <label>Claim Request 002</label>
+      </view>
+      <view class="icon">
+        <image class="arrowImage" src="/images/arrow.png"/>
+      </view>
+    </view>
+    <view class="item_split_line"/>
+  </view>
+  <view class="homeTitle, optBg, flex_row_space_between">
+    <view class="optIcon">
+      <label>+</label>
+    </view>
+  </view>
+  <!-- Invoice -->
+  <view class="homeTitle, invoiceTitle, flex_row_space_between">
+    <view class="item_content">
+      <label>Invoices</label>
+    </view>
+    <view class="flex_row_space_between">
+    <label class="more_style">more</label>
+      <view class="icon">
+        <image class="moreImage" src="/images/more.png"/>
+      </view>
+    </view>
+  </view>
+  <view class="homeContent, container">
+    <view class="flex_row_space_between, item">
+      <view class="item_content">
+        <label>Invoice 001</label>
+      </view>
+      <view class="icon">
+        <image class="arrowImage" src="/images/arrow.png"/>
+      </view>
+    </view>
+    <view class="item_split_line"/>
+    <view class="flex_row_space_between, item">
+      <view class="item_content">
+        <label>Invoice 002</label>
+      </view>
+      <view class="icon">
+        <image class="arrowImage" src="/images/arrow.png"/>
+      </view>
+    </view>
+    <view class="item_split_line"/>
+  </view>
+  <view class="homeTitle, optBg, flex_row_space_between">
+    <view class="optIcon">
+      <label>+</label>
+    </view>
+  </view>
+  <!-- Approval -->
+  <view class="homeTitle, approvalTitle, flex_row_space_between">
+    <view class="item_content">
+      <label>Approvals</label>
+    </view>
+    <view class="flex_row_space_between">
+    <label class="more_style">more</label>
+      <view class="icon">
+        <image class="moreImage" src="/images/more.png"/>
+      </view>
+    </view>
+  </view>
+  <view class="homeContent, container">
+    <view class="flex_row_space_between, item">
+      <view class="item_content">
+        <label>Tom's Claim Request 001</label>
+      </view>
+      <view class="icon">
+        <image class="doneImage" src="/images/done.png"/>
+      </view>
+    </view>
+    <view class="item_split_line"/>
+    <view class="flex_row_space_between, item">
+      <view class="item_content">
+        <label>Peter's Claim Request 002</label>
+      </view>
+      <view class="icon">
+        <image class="unDoneImage" src="/images/done.png"/>
+      </view>
+    </view>
+    <view class="item_split_line"/>
+  </view>
+  <view class="homeTitle, optBg, flex_row_space_between">
+    <label class="opt_style">Reject</label>
+    <view class="item_vsplit_line"/>
+    <label class="opt_style, ok_bt_style">Approval</label>
+  </view>
+</view>

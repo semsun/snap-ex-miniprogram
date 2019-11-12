@@ -1,0 +1,130 @@
+/* pages/home/home.wxss */
+.homeTitle {
+  border-radius: 8px;
+  height: 62px;
+  width: 95%;
+  opacity: 0.5;
+  margin-top: 5px;
+  z-index: 100;
+  align-items: center;
+}
+
+.optBg {
+  background: #FFFFFF;
+  margin-top: -8px;
+  opacity: 1;
+}
+
+.item_vsplit_line {
+  height: 40px;
+  width: 1px;
+  background: #e3e3e3;
+  margin-top: 8px;
+}
+
+.optIcon {
+  width: 100%;
+  font-size: 50px;
+  text-align: center;
+  color: #E02020;
+}
+
+.claimTitle {
+  background: #6DD400;
+}
+
+.invoiceTitle {
+  background: #0091FF;
+}
+
+.approvalTitle {
+  background: #FA6400;
+}
+
+.homeContent {
+  background: #FFFFFF;
+  width: 95%;
+  margin-top: -8px;
+  z-index: 200;
+}
+
+.arrowImage {
+  -webkit-filter:drop-shadow(32px 0 #aeaeae);
+  filter:drop-shadow(32px 0 #aeaeae);
+  left: -32px;
+  overflow:hidden;
+  display: inline-block;
+  position: relative;
+  width: 12px;
+  height: 24px;
+}
+
+.doneImage {
+  -webkit-filter:drop-shadow(32px 0 #6DD400);
+  filter:drop-shadow(32px 0 #6DD400);
+  left: -32px;
+  overflow:hidden;
+  display: inline-block;
+  position: relative;
+  width: 24px;
+  height: 24px;
+}
+
+.unDoneImage {
+  -webkit-filter:drop-shadow(32px 0 #e3e3e3);
+  filter:drop-shadow(32px 0 #e3e3e3);
+  left: -32px;
+  overflow:hidden;
+  display: inline-block;
+  position: relative;
+  width: 24px;
+  height: 24px;
+}
+
+.moreImage {
+  -webkit-filter:drop-shadow(32px 0 #FFFFFF);
+  filter:drop-shadow(32px 0 #FFFFFF);
+  left: -32px;
+  overflow:hidden;
+  display: inline-block;
+  position: relative;
+  width: 24px;
+  height: 24px;
+}
+
+.icon{
+  overflow:hidden;
+  display: inline-block;
+  position: relative;
+  height:30px;
+  width: 30px;
+  margin-right: 10px;
+  opacity: 1;
+}
+
+.item {
+  height: 60px;
+  width: 100%;
+  align-items: center;
+}
+
+.item_content {
+  margin-left: 10px;
+  opacity: 1;
+}
+
+.more_style {
+  /* color: #576B95; */
+  color: #FFFFFF;
+  margin-right: 3px;
+  opacity: 1;
+}
+
+.opt_style {
+  text-align: center;
+  width: 100%;
+}
+
+.ok_bt_style {
+  color: #576B95;
+}
