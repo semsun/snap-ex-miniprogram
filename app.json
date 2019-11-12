@@ -13,5 +13,38 @@
     "navigationBarTitleText": "Claim Tool",
     "navigationBarTextStyle": "black"
   },
+  "tabBar": {
+    "borderStyle": "black",
+    "position": "bottom",
+    "backgroundColor": "#FFFFFF",
+    "color": "gray",
+    "selectedColor": "#DF5054",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "首页",
+        "iconPath": "/images/more.png",
+        "selectedIconPath": "/images/more.png"
+      },
+      {
+        "pagePath": "pages/home/home",
+        "text": "Home",
+        "iconPath": "/images/more.png",
+        "selectedIconPath": "/images/more.png"
+      },
+      {
+        "pagePath": "pages/claimForm/claimForm",
+        "text": "购物车",
+        "iconPath": "/images/more.png",
+        "selectedIconPath": "/images/more.png"
+      },
+      {
+        "pagePath": "pages/claimForm/claimForm",
+        "text": "我的",
+        "iconPath": "/images/more.png",
+        "selectedIconPath": "/images/more.png"
+      }
+    ]
+  },
   "sitemapLocation": "sitemap.json"
 }
