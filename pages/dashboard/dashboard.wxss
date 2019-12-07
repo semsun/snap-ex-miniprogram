@@ -16,3 +16,22 @@
   color: #aaa;
 }
 
+/* // page设置当前窗口背景色 */
+page{
+  background-color: #F5F5F5
+}
+
+/* // 定义.listview设置容器样式 */
+.listview{
+  padding: 10px 20px;
+  align-content: center;
+  width: 100%
+}
+
+/* // 定义.text-content设置文本样式 */
+.text-content{
+  padding: 10px;
+  align-content: center;
+  border-bottom: 1rpx solid #F5F5F5;
+  background-color: #FFFFFF
+}

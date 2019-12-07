@@ -9,4 +9,13 @@
   </view>
 
 
+  <view class='listview'>
+    <block wx:for="{{listdata}}" wx:key="index">
+      <view class='text-content'>
+        <view>{{item.title}}</view>
+        <view>{{item.date}}</view>
+        <view>{{item.status}}</view>
+      </view>
+    </block>
+  </view>
 </view>
