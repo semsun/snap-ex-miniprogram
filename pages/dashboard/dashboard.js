@@ -16,27 +16,33 @@ Page({
     listdata: [{
       title: 'Angel Fund 5W 报销',
       date: '2019-12-07',
-      status: '草稿'
+      status: '草稿',
+      icon: '../../images/done.png'
     }, {
       title: 'Angel Fund 5K round2',
       date: '2019-11-07',
-      status: '草稿'
+      status: '草稿',
+      icon: '../../images/done.png'
     }, {
       title: 'Angel Fund 1K round1',
       date: '2019-10-07',
-      status: '已提交'
+      status: '已提交',
+      icon: '../../images/done.png'
     }, {
       title: '西安trip',
       date: '2019-10-01',
-      status: '已提交'
+      status: '已提交',
+      icon: '../../images/done.png'
     }, {
       title: 'HK trip',
       date: '2019-9-07',
-      status: '已提交'
+      status: '已提交',
+      icon: '../../images/done.png'
     }, {
       title: 'HK trip',
       date: '2019-8-07',
-      status: '已提交'
+      status: '已提交',
+      icon: '../../images/done.png'
     }]
 
   },

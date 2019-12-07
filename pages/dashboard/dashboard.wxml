@@ -11,11 +11,15 @@
 
   <view class='listview'>
     <block wx:for="{{listdata}}" wx:key="index">
-      <view class='text-content'>
-        <view>{{item.title}}</view>
-        <view>{{item.date}}</view>
-        <view>{{item.status}}</view>
-      </view>
+      <navigator url="" class="weui-media-box weui-media-box_appmsg text-content" hover-class="weui-cell_active">
+        <view class="weui-media-box__hd weui-media-box__hd_in-appmsg">
+          <image class="weui-media-box__thumb" src="{{item.icon}}" />
+        </view>
+        <view class="weui-media-box__bd weui-media-box__bd_in-appmsg">
+          <view class="weui-media-box__title">{{item.title}}</view>
+          <view class="weui-media-box__desc">{{item.date}}</view>
+        </view>
+      </navigator>
     </block>
   </view>
 </view>
