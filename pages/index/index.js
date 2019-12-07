@@ -5,7 +5,10 @@ const app = getApp()
 Page({
   data: {
     motto: 'Hello World',
-    test: {a: "aa", b: "bb"},
+    test: {
+      a: "aa",
+      b: "bb"
+    },
     sr: "Test",
     userInfo: {},
     hasUserInfo: false,
@@ -17,13 +20,13 @@ Page({
       url: '../logs/logs'
     })
   },
-  onLoad: function () {
+  onLoad: function() {
     if (app.globalData.userInfo) {
       this.setData({
         userInfo: app.globalData.userInfo,
         hasUserInfo: true
       })
-    } else if (this.data.canIUse){
+    } else if (this.data.canIUse) {
       // 由于 getUserInfo 是网络请求，可能会在 Page.onLoad 之后才返回
       // 所以此处加入 callback 以防止这种情况
       app.userInfoReadyCallback = res => {
@@ -55,8 +58,8 @@ Page({
   },
   testBtn: function(e) {
     wx.scanCode({
-      onlyFromCamera:true,
-      success (res) {
+      onlyFromCamera: true,
+      success(res) {
         console.log(res)
         wx.showModal({
           title: 'Scan Result',
@@ -66,14 +69,19 @@ Page({
       }
     })
   },
-  toTestPage:function(e) {
+  toTestPage: function(e) {
     wx.navigateTo({
       url: '/pages/claimForm/claimForm',
     })
   },
   toInvoice: function(e) {
     // wx.setStorageSync("tmpData", "DataFromIndex");
-    var tmpData = JSON.stringify({ "code": "044001600111", "number": "37669836", "date": "20170902", "amount": 12.74 })
+    var tmpData = JSON.stringify({
+      "code": "044001600111",
+      "number": "37669836",
+      "date": "20170902",
+      "amount": 12.74
+    })
     console.log("toJson:" + tmpData)
     wx.navigateTo({
       url: '/pages/Invoice/InvoicePage?json=' + tmpData,
@@ -84,9 +92,14 @@ Page({
       url: '/pages/popButton/popButton',
     })
   },
-  toHome: function (e) {
+  toHome: function(e) {
     wx.navigateTo({
       url: '/pages/home/home',
+    })
+  },
+  toDashboard: function(e) {
+    wx.navigateTo({
+      url: '/pages/dashboard/dashboard',
     })
   }
 })

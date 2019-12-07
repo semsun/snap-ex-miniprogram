@@ -1,4 +1,4 @@
-<!--index.wxml-->
+<!--dashboard.wxml-->
 <view class="container">
   <view class="userinfo">
     <button wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 获取头像昵称 </button>
@@ -7,10 +7,6 @@
       <text class="userinfo-nickname">{{userInfo.nickName}}</text>
     </block>
   </view>
-  <button style="width:100%;" bindtap="toTestPage">Add Claim Form</button>
-  <button style="width:100%;" bindtap="toInvoice">Invoices</button>
-  <button style="width:100%;" bindtap="popButton">Pop Button</button>
-  <button style="width:100%;" bindtap="toHome">Home</button>
-  <button style="width:100%;" bindtap="toDashboard">Dashboard</button>
+
 
 </view>
