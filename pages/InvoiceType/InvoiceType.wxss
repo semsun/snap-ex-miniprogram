@@ -1,0 +1,26 @@
+/* pages/InvoiceType/InvoiceType.wxss */
+.view_item {
+  background: #ffffff;
+  margin-top: 10px;
+  padding: 5px;
+  border-radius: 5px;
+}
+
+.select_box {
+  display: flex;
+  flex-direction:column;
+  width: 100px;
+  height: 100px;
+  align-items: center;
+  justify-content: center;
+}
+
+.icon_size {
+  width: 40px;
+  height: 40px;
+}
+
+.text_color {
+  color: #a7a7a7;
+  margin-top: 5px;
+}

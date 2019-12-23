@@ -9,7 +9,7 @@ Page({
       code: "12345",
       number: "98765",
       purpose: "Training",
-      companyName: "HSBC",
+      companyName: "Test Company",
       date: "20191017",
       currency: "CNY",
       amount: 100.12,
