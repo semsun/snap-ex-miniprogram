@@ -17,7 +17,7 @@
 
 .item_vsplit_line {
   height: 40px;
-  width: 1px;
+  width: 2px;
   background: #e3e3e3;
   margin-top: 8px;
 }

@@ -1,0 +1,32 @@
+<view style="margin-top:10px">
+  <label class="item_lable">Select Invoice Type</label>
+</view>
+<view class="flex_row_space_between, view_item">
+  <view class="select_box">
+    <image class="icon_size" src="/images/icons/teambuild_selected.png" />
+    <label class="text_color">Team Build</label>
+  </view>
+  <view class="select_box">
+    <image class="icon_size" src="/images/icons/bus_normal.png" />
+    <label class="text_color">Taffic</label>
+  </view>
+  <view class="select_box">
+    <image class="icon_size" src="/images/icons/house_normal.png" />
+    <label class="text_color">Room</label>
+  </view>
+</view>
+<view class="flex_row_space_between, view_item">
+  <view class="select_box">
+    <image class="icon_size" src="/images/icons/meat_normal.png" />
+    <label class="text_color">Food</label>
+  </view>
+  <view class="select_box">
+    <image class="icon_size" src="/images/icons/training_normal.png" />
+    <label class="text_color">Training</label>
+  </view>
+  <view class="select_box">
+    <image class="icon_size" src="/images/icons/travel_normal.png" />
+    <label class="text_color">Travel</label>
+  </view>
+</view>
+<button class="bottom-view, bottom_button">NEXT</button>

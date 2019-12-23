@@ -11,7 +11,7 @@
   "window": {
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#fff",
-    "navigationBarTitleText": "Claim Tool",
+    "navigationBarTitleText": "Snap-eX",
     "navigationBarTextStyle": "black"
   },
   "tabBar": {

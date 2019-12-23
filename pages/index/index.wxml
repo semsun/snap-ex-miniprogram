@@ -9,6 +9,7 @@
   </view>
   <button style="width:100%;" bindtap="toTestPage">Add Claim Form</button>
   <button style="width:100%;" bindtap="toInvoice">Invoices</button>
+  <button style="width:100%;" bindtap="toInvoiceType">InvoiceType</button>
   <button style="width:100%;" bindtap="popButton">Pop Button</button>
   <button style="width:100%;" bindtap="toHome">Home</button>
   <button style="width:100%;" bindtap="toDashboard">Dashboard</button>

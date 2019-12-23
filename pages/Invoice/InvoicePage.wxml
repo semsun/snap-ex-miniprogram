@@ -1,25 +1,55 @@
 <!--pages/Invoice/InvoicePage.wxml-->
 <view class="top_view">
   <label class="item_lable">Invoice Code</label>
-  <input class="item_value" value="{{invoice.code}}"/>
+  <view class="view_item">
+    <input class="item_value" value="{{invoice.code}}"/>
+  </view>
   <label class="item_lable">Invoice Number</label>
-  <input class="item_value" value="{{invoice.number}}"/>
-  <label class="item_lable">Company Name</label>
-  <input class="item_value" value="{{invoice.companyName}}"/>
+  <view class="view_item">
+    <input class="item_value" value="{{invoice.number}}"/>
+  </view>
+  <view class="flex_row_space_between, view_item">
+    <view class="left_item, item_lable">Company Name</view>
+    <input class="right_item, item_value" value="{{invoice.companyName}}"/>
+  </view>
+
   <label class="item_lable">Date</label>
-  <input class="item_value" value="{{invoice.date}}"/>
+  <view class="view_item">
+    <input class="item_value" value="{{invoice.date}}"/>
+  </view>
   <label class="item_lable">Amount (CNY)</label>
-  <input class="item_value" value="{{invoice.amount}}"/>
+  <view class="view_item">
+    <input class="item_value" value="{{invoice.amount}}"/>
+  </view>
   <label class="item_lable">Purpose</label>
-  <view class="item_lable">
+  <view class="view_item">
     <picker name="picker_purpose" class="cybm_pic_1" value="{{purpose_array[purpose_index].purpose}}" data-selecthx="{{purpose_array[purpose_index].purpose}}" range="{{purpose_array}}" range-key="{{'purpose'}}"  bindchange="bindPickerChange_purpose"  >
-      <view class="picker" >
+      <view class="picker, item_value" >
       {{purpose_array[purpose_index].purpose}} 
       </view>
     </picker>
   </view>
   <label class="item_lable">Description</label>
-  <input class="item_value" value="{{invoice.description}}"/>
+  <view class="view_item">
+    <input class="item_value" value="{{invoice.description}}"/>
+  </view>
+</view>
+
+<view class="container">
+  <view class="page-body">
+    <form catchsubmit="formSubmit" catchreset="formReset">
+      <view class="page-section">
+        <view class="page-section-title">input</view>
+        <view class="weui-cells weui-cells_after-title">
+          <view class="weui-cell weui-cell_input">
+            <view class="weui-cell__bd">
+              <input class="weui-input" name="input" placeholder="这是一个输入框" />
+            </view>
+          </view>
+        </view>
+      </view>
+    </form>
+  </view>
 </view>
 
 <view class="bottom-view, flex_row_space_between">
