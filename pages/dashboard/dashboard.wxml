@@ -25,4 +25,7 @@
       </navigator>
     </block>
   </view>
+
+  <button type="primary" bindtap="addInvoice" style='position:fixed;bottom:0'>ADD</button>
+
 </view>
