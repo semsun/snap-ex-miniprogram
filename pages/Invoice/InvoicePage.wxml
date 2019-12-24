@@ -1,58 +1,98 @@
-<!--pages/Invoice/InvoicePage.wxml-->
-<view class="top_view">
-  <label class="item_lable">Invoice Code</label>
-  <view class="view_item">
-    <input class="item_value" value="{{invoice.code}}"/>
-  </view>
-  <label class="item_lable">Invoice Number</label>
-  <view class="view_item">
-    <input class="item_value" value="{{invoice.number}}"/>
-  </view>
-  <view class="flex_row_space_between, view_item">
-    <view class="left_item, item_lable">Company Name</view>
-    <input class="right_item, item_value" value="{{invoice.companyName}}"/>
-  </view>
-
-  <label class="item_lable">Date</label>
-  <view class="view_item">
-    <input class="item_value" value="{{invoice.date}}"/>
-  </view>
-  <label class="item_lable">Amount (CNY)</label>
-  <view class="view_item">
-    <input class="item_value" value="{{invoice.amount}}"/>
-  </view>
-  <label class="item_lable">Purpose</label>
-  <view class="view_item">
-    <picker name="picker_purpose" class="cybm_pic_1" value="{{purpose_array[purpose_index].purpose}}" data-selecthx="{{purpose_array[purpose_index].purpose}}" range="{{purpose_array}}" range-key="{{'purpose'}}"  bindchange="bindPickerChange_purpose"  >
-      <view class="picker, item_value" >
-      {{purpose_array[purpose_index].purpose}} 
-      </view>
-    </picker>
-  </view>
-  <label class="item_lable">Description</label>
-  <view class="view_item">
-    <input class="item_value" value="{{invoice.description}}"/>
-  </view>
-</view>
-
 <view class="container">
+
   <view class="page-body">
-    <form catchsubmit="formSubmit" catchreset="formReset">
+    
       <view class="page-section">
-        <view class="page-section-title">input</view>
+        <view class="page-section-title">Purpose</view>
+        <view class="weui-cells weui-cells_after-title">
+          <view class="weui-cell">
+            <view class="select_box align_col_center">
+              <image class="icon_size" src="/images/icons/teambuild_selected.png" />
+              <view class="weui-label align_col_center">Team Build</view>
+            </view>
+            <view class="select_box align_col_center">
+              <image class="icon_size" src="/images/icons/bus_normal.png" />
+              <view class="weui-label align_col_center">Taffic</view>
+            </view>
+            <view class="select_box align_col_center">
+              <image class="icon_size" src="/images/icons/house_normal.png" />
+              <view class="weui-label align_col_center">Room</view>
+            </view>
+          </view>
+          <view class="weui-cell">
+            <view class="select_box align_col_center">
+              <image class="icon_size" src="/images/icons/meat_normal.png" />
+              <view class="weui-label align_col_center">Food</view>
+            </view>
+            <view class="select_box align_col_center">
+              <image class="icon_size" src="/images/icons/training_normal.png" />
+              <view class="weui-label align_col_center">Training</view>
+            </view>
+            <view class="select_box align_col_center">
+              <image class="icon_size" src="/images/icons/travel_normal.png" />
+              <view class="weui-label align_col_center">Travel</view>
+            </view>
+          </view>
+        </view>
+        
+        <view class="page-section-title">Description</view>
         <view class="weui-cells weui-cells_after-title">
           <view class="weui-cell weui-cell_input">
+            <view class="textarea-wrp">
+        <textarea bindblur="bindTextAreaBlur" placeholder="Input Description" auto-height />
+      </view>
+          </view>
+        </view>
+        
+        <view class="page-section-title">Invoice Information</view>
+        <view class="weui-cells weui-cells_after-title">
+          <view class="weui-cell weui-cell_input">
+            <view class="weui-cell__hd">
+              <view class="weui-label">Invoice Code</view>
+            </view>
             <view class="weui-cell__bd">
-              <input class="weui-input" name="input" placeholder="这是一个输入框" />
+              <input class="weui-input input_width" name="input" placeholder="Input Invoice Code" value="{{code}}" />
+            </view>
+          </view>
+          <view class="weui-cell weui-cell_input">
+            <view class="weui-cell__hd">
+              <view class="weui-label">Invoice NUM</view>
+            </view>
+            <view class="weui-cell__bd">
+              <input class="weui-input input_width" name="input" placeholder="Input Invoice Number" value="{{number}}" />
+            </view>
+          </view>
+          <view class="weui-cell weui-cell_input">
+            <view class="weui-cell__hd">
+              <view class="weui-label">Company</view>
+            </view>
+            <view class="weui-cell__bd">
+              <input class="weui-input input_width" name="input" placeholder="Input Company Name" value="{{companyName}}" />
+            </view>
+          </view>
+          <view class="weui-cell weui-cell_input">
+            <view class="weui-cell__hd">
+              <view class="weui-label">Date</view>
+            </view>
+            <view class="weui-cell__bd">
+              <input class="weui-input input_width" name="input" placeholder="Input Invoice Date" value="{{date}}" />
+            </view>
+          </view>
+          <view class="weui-cell weui-cell_input">
+            <view class="weui-cell__hd">
+              <view class="weui-label">Amount(CNY)</view>
+            </view>
+            <view class="weui-cell__bd">
+              <input class="weui-input input_width" name="input" placeholder="Input Invoice Amount" value="{{amount}}" />
             </view>
           </view>
         </view>
       </view>
-    </form>
-  </view>
-</view>
 
-<view class="bottom-view, flex_row_space_between">
-  <button bindtap="saveInvoice">Save</button>
-  <button>Cancel</button>
+
+    <view class="btn-area" id="buttonContainer">
+      <button type="primary">Save</button>
+    </view>
+
+  </view>
 </view>

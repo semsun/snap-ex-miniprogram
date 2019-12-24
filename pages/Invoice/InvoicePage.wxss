@@ -1,21 +1,43 @@
-/* pages/Invoice/InvoicePage.wxss */
-.item_lable {
-  margin-left: 15px;
-  /* background: red; */
+/* pages/TestPage/TestPackage.wxss */
+@import '../components/weui-wxss/dist/style/weui.wxss';
+
+label {
+  display: inline-block;
+  min-width: 270rpx;
+  margin-right: 20rpx;
+}
+form{
+  width: 100%;
+}
+.picker-text {
+  margin-left: 20rpx;
+  position: relative;
 }
 
-.item_value {
-  margin-left: 15px;
-  height: 30px;
-  /* background: green; */
+textarea {
+    width: 700rpx;
+    padding: 25rpx 0;
+}
+.textarea-wrp {
+    padding: 0 25rpx;
+    background-color: #fff;
 }
 
-.view_item {
-  background: #ffffff;
-  margin-bottom: 10px;
-  margin-left: 5px;
-  margin-right: 5px;
-  /* margin-top: 10px;
-  padding: 5px;
-  border-radius: 5px; */
+.select_box {
+  width: 120px;
+}
+
+.icon_size {
+  width: 40px;
+  height: 40px;
+}
+
+.align_col_center {
+  display: flex;
+  flex-direction:column;
+  align-items: center;
+}
+
+.input_width {
+  margin-left: 1em;
 }
