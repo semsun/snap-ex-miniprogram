@@ -39,7 +39,7 @@
         <view class="weui-cells weui-cells_after-title">
           <view class="weui-cell weui-cell_input">
             <view class="textarea-wrp">
-        <textarea bindblur="bindTextAreaBlur" placeholder="Input Description" auto-height />
+        <textarea bindblur="bindTextAreaBlur" placeholder="Input Description" auto-height value="{{invoice.description}}" />
       </view>
           </view>
         </view>
@@ -51,7 +51,7 @@
               <view class="weui-label">Invoice Code</view>
             </view>
             <view class="weui-cell__bd">
-              <input class="weui-input input_width" name="input" placeholder="Input Invoice Code" value="{{code}}" />
+              <input class="weui-input input_width" name="input" placeholder="Input Invoice Code" value="{{invoice.code}}" />
             </view>
           </view>
           <view class="weui-cell weui-cell_input">
@@ -59,7 +59,7 @@
               <view class="weui-label">Invoice NUM</view>
             </view>
             <view class="weui-cell__bd">
-              <input class="weui-input input_width" name="input" placeholder="Input Invoice Number" value="{{number}}" />
+              <input class="weui-input input_width" name="input" placeholder="Input Invoice Number" value="{{invoice.number}}" />
             </view>
           </view>
           <view class="weui-cell weui-cell_input">
@@ -67,7 +67,7 @@
               <view class="weui-label">Company</view>
             </view>
             <view class="weui-cell__bd">
-              <input class="weui-input input_width" name="input" placeholder="Input Company Name" value="{{companyName}}" />
+              <input class="weui-input input_width" name="input" placeholder="Input Company Name" value="{{invoice.companyName}}" />
             </view>
           </view>
           <view class="weui-cell weui-cell_input">
@@ -75,15 +75,15 @@
               <view class="weui-label">Date</view>
             </view>
             <view class="weui-cell__bd">
-              <input class="weui-input input_width" name="input" placeholder="Input Invoice Date" value="{{date}}" />
+              <input class="weui-input input_width" name="input" placeholder="Input Invoice Date" value="{{invoice.date}}" />
             </view>
           </view>
           <view class="weui-cell weui-cell_input">
             <view class="weui-cell__hd">
-              <view class="weui-label">Amount(CNY)</view>
+              <view class="weui-label">AMT.(CNY)</view>
             </view>
             <view class="weui-cell__bd">
-              <input class="weui-input input_width" name="input" placeholder="Input Invoice Amount" value="{{amount}}" />
+              <input class="weui-input input_width" name="input" placeholder="Input Invoice Amount" value="{{invoice.amount}}" />
             </view>
           </view>
         </view>
