@@ -3,44 +3,40 @@
   <view class="page-body">
     
       <view class="page-section">
-        <view class="page-section-title">Purpose</view>
+        <view class="page-section-title">Category</view>
         <view class="weui-cells weui-cells_after-title">
           <view class="weui-cell">
-            <view class="select_box align_col_center">
-              <image class="icon_size" src="/images/icons/teambuild_selected.png" />
-              <view class="weui-label align_col_center">Team Build</view>
-            </view>
-            <view class="select_box align_col_center">
-              <image class="icon_size" src="/images/icons/bus_normal.png" />
-              <view class="weui-label align_col_center">Taffic</view>
-            </view>
-            <view class="select_box align_col_center">
-              <image class="icon_size" src="/images/icons/house_normal.png" />
-              <view class="weui-label align_col_center">Room</view>
-            </view>
+            <block wx:for="{{[0, 1, 2]}}" wx:key="unique" wx:for-item="i">
+              <view data-id="{{i}}" bindtap="changeCategory" class="select_box align_col_center">
+                <block wx:if="{{i === invoice.category}}">
+                  <image class="icon_size" src="{{categorys[i].icon_selected}}" />
+                </block>
+                <block wx:else>
+                  <image class="icon_size" src="{{categorys[i].icon_normal}}" />
+                </block>
+                <view class="weui-label align_col_center">{{categorys[i].name}}</view>
+              </view>
+            </block>
           </view>
           <view class="weui-cell">
-            <view class="select_box align_col_center">
-              <image class="icon_size" src="/images/icons/meat_normal.png" />
-              <view class="weui-label align_col_center">Food</view>
-            </view>
-            <view class="select_box align_col_center">
-              <image class="icon_size" src="/images/icons/training_normal.png" />
-              <view class="weui-label align_col_center">Training</view>
-            </view>
-            <view class="select_box align_col_center">
-              <image class="icon_size" src="/images/icons/travel_normal.png" />
-              <view class="weui-label align_col_center">Travel</view>
-            </view>
+            <block wx:for="{{[3, 4, 5]}}" wx:key="unique" wx:for-item="i">
+              <view data-id="{{i}}" bindtap="changeCategory" class="select_box align_col_center">
+                <block wx:if="{{i === invoice.category}}">
+                  <image class="icon_size" src="{{categorys[i].icon_selected}}" />
+                </block>
+                <block wx:else>
+                  <image class="icon_size" src="{{categorys[i].icon_normal}}" />
+                </block>
+                <view class="weui-label align_col_center">{{categorys[i].name}}</view>
+              </view>
+            </block>
           </view>
         </view>
         
         <view class="page-section-title">Description</view>
         <view class="weui-cells weui-cells_after-title">
-          <view class="weui-cell weui-cell_input">
-            <view class="textarea-wrp">
-        <textarea bindblur="bindTextAreaBlur" placeholder="Input Description" auto-height value="{{invoice.description}}" />
-      </view>
+          <view class="textarea-wrp">
+            <textarea bindblur="bindTextAreaBlur" placeholder="Input Description" auto-height value="{{invoice.description}}" />
           </view>
         </view>
         
@@ -48,7 +44,7 @@
         <view class="weui-cells weui-cells_after-title">
           <view class="weui-cell weui-cell_input">
             <view class="weui-cell__hd">
-              <view class="weui-label">Invoice Code</view>
+              <view class="weui-label">Code</view>
             </view>
             <view class="weui-cell__bd">
               <input class="weui-input input_width" name="input" placeholder="Input Invoice Code" value="{{invoice.code}}" />
@@ -56,7 +52,7 @@
           </view>
           <view class="weui-cell weui-cell_input">
             <view class="weui-cell__hd">
-              <view class="weui-label">Invoice NUM</view>
+              <view class="weui-label">Number</view>
             </view>
             <view class="weui-cell__bd">
               <input class="weui-input input_width" name="input" placeholder="Input Invoice Number" value="{{invoice.number}}" />

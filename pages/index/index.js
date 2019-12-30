@@ -80,6 +80,7 @@ Page({
       "code": "044001600111",
       "number": "37669836",
       "date": "20170902",
+      "category": 0,
       "amount": 12.74
     })
     console.log("toJson:" + tmpData)

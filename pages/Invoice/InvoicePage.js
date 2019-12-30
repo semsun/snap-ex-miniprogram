@@ -8,7 +8,7 @@ Page({
     invoice: {
       code: "12345",
       number: "98765",
-      purpose: "Training",
+      category: 0, /* 0: Team Build; 1: Taffic; 2: Room; 3: Food; 4:Training; 5: Travel */
       companyName: "Test Company",
       date: "20191017",
       currency: "CNY",
@@ -28,7 +28,40 @@ Page({
       { purpose: "IT Transformation" },
       { purpose: "Courier fee" },
       { purpose: "QCPG" },
-      { purpose: "Others" }],
+      { purpose: "Others" }
+    ],
+    categorys: [
+      { 
+        icon_normal: "/images/icons/teambuild_normal.png",
+        icon_selected: "/images/icons/teambuild_selected.png",
+        name: "Team Build"
+      },
+      {
+        icon_normal: "/images/icons/bus_normal.png",
+        icon_selected: "/images/icons/bus_selected.png",
+        name: "Traffic"
+      },
+      {
+        icon_normal: "/images/icons/house_normal.png",
+        icon_selected: "/images/icons/house_selected.png",
+        name: "Room"
+      },
+      {
+        icon_normal: "/images/icons/meat_normal.png",
+        icon_selected: "/images/icons/meat_selected.png",
+        name: "Food"
+      },
+      {
+        icon_normal: "/images/icons/training_normal.png",
+        icon_selected: "/images/icons/training_selected.png",
+        name: "Training"
+      },
+      {
+        icon_normal: "/images/icons/travel_normal.png",
+        icon_selected: "/images/icons/travel_selected.png",
+        name: "Travel"
+      }
+    ],
     purpose_index: 0
   },
   bindPickerChange_purpose: function (e) {
@@ -60,6 +93,7 @@ Page({
     this.setData({ ['invoice.number']: tmp.number })
     this.setData({ ['invoice.date']: tmp.date })
     this.setData({ ['invoice.amount']: tmp.amount })
+    this.setData({ ['invoice.category']: tmp.category })
 
       console.log("New:" + tmp.code)
     // }
@@ -114,6 +148,16 @@ Page({
    */
   onShareAppMessage: function () {
 
+  },
+  changeCategory: function(e) {
+    var $tmp = e.currentTarget.dataset.id;
+    // let query = wx.createSelectorQuery().in(this);
+    // query.select('.icon_size');
+    // query.exec(function(res){
+    //   console.log(res.dataset.id);
+    // })
+    console.log($tmp);
+    this.setData({ ['invoice.category']: $tmp })
   },
 
   saveInvoice: function() {
