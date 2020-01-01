@@ -86,7 +86,7 @@
           <view class="weui-cell" style="padding: 1px 1px">
             <view class="weui-cell__bd">
                 <view class="navigator-box navigator-box-show">
-                  <navigator url="pages/index/index" class="navigator">
+                  <navigator url="/pages/Invoice/invoiceDetail/invoiceDetail" class="navigator">
                     <view class="navigator-text">More</view>
                     <view class="navigator-arrow"></view>
                   </navigator>
