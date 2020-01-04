@@ -7,7 +7,8 @@
     "pages/popButton/popButton",
     "pages/home/home",
     "pages/dashboard/dashboard",
-    "pages/Invoice/invoiceDetail/invoiceDetail"
+    "pages/Invoice/invoiceDetail/invoiceDetail",
+    "pages/requestPage/requestPage"
   ],
   "window": {
     "backgroundTextStyle": "light",

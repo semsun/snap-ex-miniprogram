@@ -1,0 +1,6 @@
+/* pages/requestPage/requestPage.wxss */
+@import '../components/weui-wxss/dist/style/weui.wxss';
+
+.request-overview{
+  background-color: #576B95;
+}

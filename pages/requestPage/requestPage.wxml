@@ -1,0 +1,11 @@
+<!--pages/requestPage/requestPage.wxml-->
+<view class="container">
+  <view class="request-overview">
+    <view class="request-overview-text">西安 trip</view>
+    <view class="request-overview-text">RMB 3987.12</view>
+    <view class="request-overview-text">HKD 81.5</view>
+    <view class="request-overview-text">USD 98.3</view>
+
+  </view>
+
+</view>
