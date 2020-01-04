@@ -11,7 +11,7 @@
 
   <view class='listview'>
     <block wx:for="{{listdata}}" wx:key="index">
-      <navigator url="" class="weui-media-box weui-media-box_appmsg text-content" hover-class="weui-cell_active">
+      <navigator url="/pages/requestPage/requestPage" class="weui-media-box weui-media-box_appmsg text-content" hover-class="weui-cell_active">
         <view class="weui-media-box__hd weui-media-box__hd_in-appmsg">
           <view class="icon-small-wrp">
             <icon wx:if="{{item.status == '已提交'}}" class="icon-small" type="success" size="23"></icon>
@@ -25,7 +25,7 @@
       </navigator>
     </block>
   </view>
-
-  <button type="primary" bindtap="addInvoice" style='position:fixed;bottom:0'>ADD</button>
-
+  <navigator url="/pages/requestPage/requestPage">
+    <button type="primary" bindtap="addInvoice" style='position:fixed;bottom:0'>ADD</button>
+  </navigator>
 </view>
