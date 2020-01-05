@@ -8,4 +8,16 @@
 
   </view>
 
+  <!-- <navigator url="/pages/requestPage/requestPage"> -->
+  <!-- <button type="primary" bindtap="addInvoice" style='position:fixed;bottom:0'>ADD</button> -->
+
+
+  <!-- <view class="btn-area" id="buttonContainer" >
+      <button type="primary" bindtap="addInvoice" style='position:fixed;bottom:0'>Save</button>
+    </view> -->
+  <!-- </navigator> -->
+
+  <view class="btn-area">
+    <button type="primary" bindtap="addInvoice">Add</button>
+  </view>
 </view>

@@ -3,4 +3,9 @@
 
 .request-overview{
   background-color: #576B95;
+  padding: 10px 
+}
+
+.request-overview-text{
+  color: #FFFFFF
 }

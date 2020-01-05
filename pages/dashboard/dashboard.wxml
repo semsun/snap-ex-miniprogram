@@ -26,6 +26,6 @@
     </block>
   </view>
   <navigator url="/pages/requestPage/requestPage">
-    <button type="primary" bindtap="addInvoice" style='position:fixed;bottom:0'>ADD</button>
+    <button type="primary" bindtap="addInvoice" style='position:fixed;bottom:0;'>ADD</button>
   </navigator>
 </view>

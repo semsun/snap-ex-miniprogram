@@ -88,7 +88,7 @@ Page({
       url: '/pages/Invoice/InvoicePage?json=' + tmpData,
     })
   },
-  toInvoiceType: function (e) {
+  toInvoiceType: function(e) {
     // wx.setStorageSync("tmpData", "DataFromIndex");
     wx.navigateTo({
       url: '/pages/InvoiceType/InvoiceType',
@@ -107,6 +107,12 @@ Page({
   toDashboard: function(e) {
     wx.navigateTo({
       url: '/pages/dashboard/dashboard',
+    })
+  },
+
+  toRequestPage: function(e) {
+    wx.navigateTo({
+      url: '/pages/requestPage/requestPage',
     })
   }
 })
