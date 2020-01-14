@@ -91,7 +91,7 @@ Page({
   toInvoiceType: function(e) {
     // wx.setStorageSync("tmpData", "DataFromIndex");
     wx.navigateTo({
-      url: '/pages/InvoiceType/InvoiceType',
+      url: '/pages/Invoice/invoiceList/invoiceList',
     })
   },
   popButton: function(e) {
