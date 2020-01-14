@@ -9,3 +9,21 @@
 .request-overview-text{
   color: #FFFFFF
 }
+
+
+.fullpage {
+  align-items: center;
+}
+
+/* // 定义.listview设置容器样式 */
+
+.listview {
+  padding: 10px 0 20%;
+  align-content: center;
+  width: 100%;
+}
+
+.icon_size {
+  width: 40px;
+  height: 40px;
+}
