@@ -1,1 +1,264 @@
-<canvas style="width: 400px; height: 500px;" canvas-id="invoicePage"></canvas>
+<view class="container">
+  <view class="page-body">
+    <view class="page-section">
+      <view class="page-section-title">General Information</view>
+      <view class="weui-cells weui-cells_after-title">
+        <view class="weui-cell weui-cell_input">
+          <view class="weui-cell__hd">
+            <view class="weui-label">Code</view>
+          </view>
+          <view class="weui-cell__bd">
+            <input class="weui-input input_width" name="input" placeholder="Input Invoice Code" value="{{invoice.code}}" />
+          </view>
+        </view>
+        <view class="weui-cell weui-cell_input">
+          <view class="weui-cell__hd">
+            <view class="weui-label">Number</view>
+          </view>
+          <view class="weui-cell__bd">
+            <input class="weui-input input_width" name="input" placeholder="Input Invoice Number" value="{{invoice.number}}" />
+          </view>
+        </view>
+        <view class="weui-cell weui-cell_input">
+          <view class="weui-cell__hd">
+            <view class="weui-label">Date</view>
+          </view>
+          <view class="weui-cell__bd">
+            <input class="weui-input input_width" name="input" placeholder="Input Invoice Date" value="{{invoice.date}}" />
+          </view>
+        </view>
+        <view class="weui-cell weui-cell_input">
+          <view class="weui-cell__hd">
+            <view class="weui-label">Verify Code</view>
+          </view>
+          <view class="weui-cell__bd">
+            <input class="weui-input input_width" name="input" placeholder="Input Value" value="" />
+          </view>
+        </view>
+        <view class="weui-cell weui-cell_input">
+          <view class="weui-cell__hd">
+            <view class="weui-label">AMT.(CNY)</view>
+          </view>
+          <view class="weui-cell__bd">
+            <input class="weui-input input_width" name="input" placeholder="Input Invoice Amount" value="{{invoice.amount}}" />
+          </view>
+        </view>
+
+      </view>
+
+      <view class="page-section-title">Buyer Information</view>
+      <view class="weui-cells weui-cells_after-title">
+        <view class="weui-cell weui-cell_input">
+          <view class="weui-cell__hd">
+            <view class="weui-label">Name</view>
+          </view>
+          <view class="weui-cell__bd">
+            <input class="weui-input input_width" name="input" placeholder="Input Value" value="" />
+          </view>
+        </view>
+
+        <view class="weui-cell weui-cell_input">
+          <view class="weui-cell__hd">
+            <view class="weui-label">TIN</view>
+          </view>
+          <view class="weui-cell__bd">
+            <input class="weui-input input_width" name="input" placeholder="Input Value" value="" />
+          </view>
+        </view>
+
+        <view class="weui-cell weui-cell_input">
+          <view class="weui-cell__hd">
+            <view class="weui-label">ADR./PHN.</view>
+          </view>
+          <view class="weui-cell__bd">
+            <input class="weui-input input_width" name="input" placeholder="Input Value" value="" />
+          </view>
+        </view>
+
+        <view class="weui-cell weui-cell_input">
+          <view class="weui-cell__hd">
+            <view class="weui-label">Account</view>
+          </view>
+          <view class="weui-cell__bd">
+            <input class="weui-input input_width" name="input" placeholder="Input Value" value="" />
+          </view>
+        </view>
+
+      </view>
+      <view class="page-section-title">Seller Information</view>
+      <view class="weui-cells weui-cells_after-title">
+        <view class="weui-cell weui-cell_input">
+          <view class="weui-cell__hd">
+            <view class="weui-label">Name</view>
+          </view>
+          <view class="weui-cell__bd">
+            <input class="weui-input input_width" name="input" placeholder="Input Value" value="" />
+          </view>
+        </view>
+
+        <view class="weui-cell weui-cell_input">
+          <view class="weui-cell__hd">
+            <view class="weui-label">TIN</view>
+          </view>
+          <view class="weui-cell__bd">
+            <input class="weui-input input_width" name="input" placeholder="Input Value" value="" />
+          </view>
+        </view>
+
+        <view class="weui-cell weui-cell_input">
+          <view class="weui-cell__hd">
+            <view class="weui-label">ADR./PHN.</view>
+          </view>
+          <view class="weui-cell__bd">
+            <input class="weui-input input_width" name="input" placeholder="Input Value" value="" />
+          </view>
+        </view>
+
+        <view class="weui-cell weui-cell_input">
+          <view class="weui-cell__hd">
+            <view class="weui-label">Account</view>
+          </view>
+          <view class="weui-cell__bd">
+            <input class="weui-input input_width" name="input" placeholder="Input Value" value="" />
+          </view>
+        </view>
+
+      </view>
+
+      <view class="page-section-title">Detail</view>
+      <view class="weui-cells weui-cells_after-title">
+
+        <view class="weui-cell weui-cell_input">
+          <view class="weui-cell__hd">
+            <view class="weui-label">Item</view>
+          </view>
+          <view class="weui-cell__bd">
+            <input class="weui-input input_width" name="input" placeholder="Input Value" value="" />
+          </view>
+        </view>
+
+        <view class="weui-cell weui-cell_input">
+          <view class="weui-cell__hd">
+            <view class="weui-label">Model</view>
+          </view>
+          <view class="weui-cell__bd">
+            <input class="weui-input input_width" name="input" placeholder="Input Value" value="" />
+          </view>
+        </view>
+
+        <view class="weui-cell weui-cell_input">
+          <view class="weui-cell__hd">
+            <view class="weui-label">Unit</view>
+          </view>
+          <view class="weui-cell__bd">
+            <input class="weui-input input_width" name="input" placeholder="Input Value" value="" />
+          </view>
+        </view>
+
+        <view class="weui-cell weui-cell_input">
+          <view class="weui-cell__hd">
+            <view class="weui-label">Quanitity</view>
+          </view>
+          <view class="weui-cell__bd">
+            <input class="weui-input input_width" name="input" placeholder="Input Value" value="" />
+          </view>
+        </view>
+
+        <view class="weui-cell weui-cell_input">
+          <view class="weui-cell__hd">
+            <view class="weui-label">Price</view>
+          </view>
+          <view class="weui-cell__bd">
+            <input class="weui-input input_width" name="input" placeholder="Input Value" value="" />
+          </view>
+        </view>
+
+        <view class="weui-cell weui-cell_input">
+          <view class="weui-cell__hd">
+            <view class="weui-label">Amount</view>
+          </view>
+          <view class="weui-cell__bd">
+            <input class="weui-input input_width" name="input" placeholder="Input Value" value="" />
+          </view>
+        </view>
+
+        <view class="weui-cell weui-cell_input">
+          <view class="weui-cell__hd">
+            <view class="weui-label">Tax Rate</view>
+          </view>
+          <view class="weui-cell__bd">
+            <input class="weui-input input_width" name="input" placeholder="Input Value" value="" />
+          </view>
+        </view>
+
+        <view class="weui-cell weui-cell_input">
+          <view class="weui-cell__hd">
+            <view class="weui-label">Tax Amount</view>
+          </view>
+          <view class="weui-cell__bd">
+            <input class="weui-input input_width" name="input" placeholder="Input Value" value="" />
+          </view>
+        </view>
+
+      </view>
+
+      <view class="page-section-title">Total</view>
+      <view class="weui-cells weui-cells_after-title">
+        <view class="weui-cell weui-cell_input">
+          <view class="weui-cell__bd">
+            <input class="weui-input input_width" name="input" placeholder="Input Value" value="" />
+          </view>
+        </view>
+      </view>
+
+      <view class="page-section-title">Remark</view>
+      <view class="weui-cells weui-cells_after-title">
+        <view class="weui-cell weui-cell_input">
+          <view class="weui-cell__bd">
+            <input class="weui-input input_width" name="input" placeholder="Input Value" value="" />
+          </view>
+        </view>
+      </view>
+
+      <view class="page-section-title">Tail</view>
+      <view class="weui-cells weui-cells_after-title">
+        <view class="weui-cell weui-cell_input">
+          <view class="weui-cell__hd">
+            <view class="weui-label">Payee</view>
+          </view>
+          <view class="weui-cell__bd">
+            <input class="weui-input input_width" name="input" placeholder="Input Value" value="" />
+          </view>
+        </view>
+
+        <view class="weui-cell weui-cell_input">
+          <view class="weui-cell__hd">
+            <view class="weui-label">Review</view>
+          </view>
+          <view class="weui-cell__bd">
+            <input class="weui-input input_width" name="input" placeholder="Input Value" value="" />
+          </view>
+        </view>
+
+        <view class="weui-cell weui-cell_input">
+          <view class="weui-cell__hd">
+            <view class="weui-label">Biller</view>
+          </view>
+          <view class="weui-cell__bd">
+            <input class="weui-input input_width" name="input" placeholder="Input Value" value="" />
+          </view>
+        </view>
+
+        <view class="weui-cell weui-cell_input">
+          <view class="weui-cell__hd">
+            <view class="weui-label">Seller</view>
+          </view>
+          <view class="weui-cell__bd">
+            <input class="weui-input input_width" name="input" placeholder="Input Value" value="" />
+          </view>
+        </view>
+      </view>
+
+    </view>
+  </view>
+</view>

@@ -1,1 +1,2 @@
 /* pages/Invoice/invoiceDetail/invoiceDetail.wxss */
+@import '../../components/weui-wxss/dist/style/weui.wxss';

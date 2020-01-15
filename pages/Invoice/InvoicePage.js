@@ -44,7 +44,7 @@ Page({
       {
         icon_normal: "/images/icons/house_normal.png",
         icon_selected: "/images/icons/house_selected.png",
-        name: "Room"
+        name: "Hotel"
       },
       {
         icon_normal: "/images/icons/meat_normal.png",
