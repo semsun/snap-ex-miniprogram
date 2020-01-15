@@ -42,6 +42,14 @@ Page({
    * Page initial data
    */
   data: {
+    extClass:  '',
+    focus: false,
+    placeholder: 'Search',
+    value: '',
+    search: null,
+    throttle: 500,
+    cancelText: 'Cancel',
+    cancel: true,
     list: [
       {
         icon: "/images/icons/teambuild_normal.png",
