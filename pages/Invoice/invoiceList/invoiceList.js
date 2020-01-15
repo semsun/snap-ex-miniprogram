@@ -53,18 +53,18 @@ Page({
     list: [
       {
         icon: "/images/icons/teambuild_normal.png",
-        title: "test",
-        src: ""
+        title: "2019-10-15",
+        src: "Invoice/InvoicePage"
       },
       {
         icon: "/images/icons/teambuild_normal.png",
-        title: "test",
-        src: ""
+        title: "2020-01-15",
+        src: "Invoice/InvoicePage"
       },
       {
         icon: "/images/icons/teambuild_normal.png",
-        title: "test",
-        src: ""
+        title: "2020-01-16",
+        src: "Invoice/InvoicePage"
       }
     ],
     result: []
