@@ -160,6 +160,29 @@ Page({
     this.setData({ ['invoice.category']: $tmp })
   },
 
+  addInvoice: function (e) {
+    wx.scanCode({
+      success: (res) => {
+        var strArr = res.result.split(',');
+        console.log(strArr);
+        this.setData({
+          invoice: {
+            code: strArr[2],
+            number: strArr[3],
+            date: strArr[5],
+            amount: parseFloat(strArr[4])
+          }
+        })
+
+        var param = JSON.stringify(this.data.invoice);
+        console.log(param);
+        wx.redirectTo({
+          url: '/pages/Invoice/InvoicePage?json=' + param,
+        })
+      }
+    })
+  },
+
   saveInvoice: function() {
     wx.showLoading({
       title: 'Saving...',
@@ -168,49 +191,55 @@ Page({
       wx.hideLoading()
     }, 10000)
 
-    var item = { 
-      purpose: this.data.purpose_array[this.data.purpose_index].purpose, 
-      date: this.data.invoice.date, 
-      currency: this.data.invoice.currency, 
-      amount: this.data.invoice.amount }
+    wx.hideLoading()
 
-      wx.getStorage({
-        key: 'purposes',
-        success: function(res) {
-          res.data.push(item);
+    wx.redirectTo({
+      url: '/pages/dashboard/dashboard',
+    })
 
-          wx.setStorage({
-            key: 'purposes',
-            data: res.data,
-            success:function(res) {
-              wx.showToast({
-                icon: 'cancel',
-                title: 'Save Successful',
-              })
-              setTimeout(function(){
-                wx.navigateTo({
-                  url: '/pages/claimForm/claimForm',
-                })
-              }, 800)
-            },
-            fail: function (res) {
-              wx.hideLoading()
-              wx.showModal({
-                title: 'Save Failed!',
-                content: res.errMsg,
-                showCancel: false
-              })
-            }
-          })
-        },
-        fail: function (res) {
-          wx.hideLoading()
-          wx.showModal({
-            title: 'Save Failed!',
-            content: res.errMsg,
-            showCancel: false
-          })
-        }
-      })
+    // var item = { 
+    //   purpose: this.data.purpose_array[this.data.purpose_index].purpose, 
+    //   date: this.data.invoice.date, 
+    //   currency: this.data.invoice.currency, 
+    //   amount: this.data.invoice.amount }
+
+    //   wx.getStorage({
+    //     key: 'purposes',
+    //     success: function(res) {
+    //       res.data.push(item);
+
+    //       wx.setStorage({
+    //         key: 'purposes',
+    //         data: res.data,
+    //         success:function(res) {
+    //           wx.showToast({
+    //             icon: 'cancel',
+    //             title: 'Save Successful',
+    //           })
+    //           setTimeout(function(){
+    //             wx.navigateTo({
+    //               url: '/pages/claimForm/claimForm',
+    //             })
+    //           }, 800)
+    //         },
+    //         fail: function (res) {
+    //           wx.hideLoading()
+    //           wx.showModal({
+    //             title: 'Save Failed!',
+    //             content: res.errMsg,
+    //             showCancel: false
+    //           })
+    //         }
+    //       })
+    //     },
+    //     fail: function (res) {
+    //       wx.hideLoading()
+    //       wx.showModal({
+    //         title: 'Save Failed!',
+    //         content: res.errMsg,
+    //         showCancel: false
+    //       })
+    //     }
+    //   })
   }
 })

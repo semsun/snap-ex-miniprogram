@@ -96,11 +96,10 @@
 
         </view>
       </view>
+  </view>
 
-
-    <view class="btn-area" id="buttonContainer">
-      <button type="primary">Save</button>
-    </view>
-
+  <view class="btn-area" id="buttonContainer">
+    <button type="primary" bindtap="saveInvoice">Save</button>
+    <button type="primary" bindtap="addInvoice">Add New</button>
   </view>
 </view>
