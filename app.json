@@ -9,7 +9,8 @@
     "pages/dashboard/dashboard",
     "pages/Invoice/invoiceDetail/invoiceDetail",
     "pages/requestPage/requestPage",
-    "pages/Invoice/invoiceList/invoiceList"
+    "pages/Invoice/invoiceList/invoiceList",
+    "pages/Login/Login"
   ],
   "window": {
     "backgroundTextStyle": "light",
