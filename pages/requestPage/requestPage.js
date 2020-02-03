@@ -11,27 +11,27 @@ Page({
     // 数据源
     listdata: [{
       title: 'Team Build',
-      amount: '28.7',
+      amount: '--',
       icon: '/images/icons/teambuild_selected.png'
     }, {
       title: 'Traffic',
-      amount: '300',
+      amount: '--',
       icon: '/images/icons/bus_selected.png'
     }, {
       title: 'Room',
-      amount: '17',
+      amount: '--',
       icon: '/images/icons/house_selected.png'
     }, {
       title: 'Food',
-      amount: '180',
+      amount: '--',
       icon: '/images/icons/meat_selected.png'
     }, {
       title: 'Training',
-      amount: '300',
+      amount: '--',
       icon: '/images/icons/training_selected.png'
     }, {
       title: 'Travel',
-      amount: '907',
+      amount: '--',
       icon: '/images/icons/travel_selected.png'
     }]
   },
