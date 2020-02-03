@@ -1,10 +1,6 @@
 /* pages/dashboard/dashboard.wxss */
 @import '../components/weui-wxss/dist/style/weui.wxss';
 
-.fullpage {
-  align-items: center;
-}
-
 .userinfo {
   display: flex;
   flex-direction: column;

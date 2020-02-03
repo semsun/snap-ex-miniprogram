@@ -5,6 +5,9 @@ Page({
    * 页面的初始数据
    */
   data: {
+    isLocal: false,
+    isAdd: true,
+    expenseId: "",
     // 数据源
     listdata: [{
       title: 'Team Build',
@@ -37,7 +40,13 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
-
+    var param = JSON.parse(options.json)
+    console.log(param)
+    this.setData({
+      isAdd: typeof(param.isAdd) != undefined ? param.isAdd : true,
+      isLocal: typeof(param.isLocal) != undefined ? param.isLocal : true,
+      expenseId: param.expenseId
+    })
   },
 
   addInvoice: function(e) {

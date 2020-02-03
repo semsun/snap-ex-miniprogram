@@ -100,7 +100,8 @@ Page({
           listData.push({
             title: v.expenseId,
             date: util.formatDate(new Date(v.submittedDate)),
-            status: 'submmited'
+            status: 'submmited',
+            expenseId: v.expenseId
           })
         })
         that.setData({
@@ -110,6 +111,27 @@ Page({
       fail(res) {
         console.log(res)
       }
+    })
+  },
+
+  addInvoice() {
+    var param = {
+      isAdd: true
+    }
+    wx.navigateTo({
+      url: '/pages/requestPage/requestPage?json=' + JSON.stringify(param),
+    })
+  },
+
+  toInvoice(e) {
+    console.log(e)
+    var param = {
+      isAdd: false,
+      isLocal: e.mark.itemdata.status != 'submmited',
+      expenseId: e.mark.itemdata.expenseId
+    }
+    wx.navigateTo({
+      url: '/pages/requestPage/requestPage?json=' + JSON.stringify(param),
     })
   },
 
