@@ -87,10 +87,10 @@ Page({
 
   getExpenseList: function(that) {
     wx.request({
-      url: 'http://service.snapex.xyz:8090/snapex/expense/search',
+      url: app.globalData.host + ":" + app.globalData.port + "/snapex/expense/search",
       method: "POST",
       data: {
-        "staffId": "34052468"
+        "staffId": app.globalData.staffId
       },
       success(res) {
         console.log(res.data)
