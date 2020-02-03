@@ -1,5 +1,5 @@
 // pages/dashboard/dashboard.js
-
+const util = require('../../utils/util.js')
 const app = getApp()
 
 Page({
@@ -13,44 +13,39 @@ Page({
     canIUse: wx.canIUse('button.open-type.getUserInfo'),
 
     // 数据源
-    listdata: [{
-      title: 'Angel Fund 5W 报销',
-      date: '2019-12-07',
-      status: '草稿',
-      icon: '../../images/done.png'
-    }, {
-      title: 'Angel Fund 5K round2',
-      date: '2019-11-07',
-      status: '草稿',
-      icon: '../../images/done.png'
-    }, {
-      title: 'Angel Fund 1K round1',
-      date: '2019-10-07',
-      status: '已提交',
-      icon: '../../images/done.png'
-    }, {
-      title: '西安trip',
-      date: '2019-10-01',
-      status: '已提交',
-      icon: '../../images/done.png'
-    }, {
-      title: 'HK trip',
-      date: '2019-9-07',
-      status: '已提交',
-      icon: '../../images/done.png'
-    }, {
-      title: 'HK trip',
-      date: '2019-8-07',
-      status: '已提交',
-      icon: '../../images/done.png'
-    }]
-
+    // listdata: [{
+    //   title: 'Angel Fund 5W 报销',
+    //   date: '2019-12-07',
+    //   status: 'draft'
+    // }, {
+    //   title: 'Angel Fund 5K round2',
+    //   date: '2019-11-07',
+    //   status: 'draft'
+    // }, {
+    //   title: 'Angel Fund 1K round1',
+    //   date: '2019-10-07',
+    //   status: 'submmited'
+    // }, {
+    //   title: '西安trip',
+    //   date: '2019-10-01',
+    //   status: 'submmited'
+    // }, {
+    //   title: 'HK trip',
+    //   date: '2019-9-07',
+    //   status: 'submmited'
+    // }, {
+    //   title: 'HK trip',
+    //   date: '2019-8-07',
+    //   status: 'submmited'
+    // }]
+    listdata: []
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
+    var that = this
     if (app.globalData.userInfo) {
       this.setData({
         userInfo: app.globalData.userInfo,
@@ -77,6 +72,8 @@ Page({
         }
       })
     }
+
+    this.getExpenseList(that)
   },
 
   getUserInfo: function(e) {
@@ -85,6 +82,34 @@ Page({
     this.setData({
       userInfo: e.detail.userInfo,
       hasUserInfo: true
+    })
+  },
+
+  getExpenseList: function(that) {
+    wx.request({
+      url: 'http://service.snapex.xyz:8090/snapex/expense/search',
+      method: "POST",
+      data: {
+        "staffId": "34052468"
+      },
+      success(res) {
+        console.log(res.data)
+        var listData = []
+
+        res.data.items.forEach(v => {
+          listData.push({
+            title: v.expenseId,
+            date: util.formatDate(new Date(v.submittedDate)),
+            status: 'submmited'
+          })
+        })
+        that.setData({
+          listdata: listData
+        })
+      },
+      fail(res) {
+        console.log(res)
+      }
     })
   },
 
