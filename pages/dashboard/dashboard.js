@@ -98,7 +98,8 @@ Page({
 
         res.data.items.forEach(v => {
           listData.push({
-            title: v.expenseId,
+            // title: v.expenseId,
+            title:'西安 trip',
             date: util.formatDate(new Date(v.submittedDate)),
             status: 'submmited',
             expenseId: v.expenseId

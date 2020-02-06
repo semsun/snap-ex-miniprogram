@@ -27,6 +27,6 @@
     </block>
   </view>
   <view style="display: flex;align-items: center;justify-content: center;  width: 100%;height: 100%;">
-    <button class="addBtn" type="primary" bindtap="addInvoice">Add</button>
+    <button class="addBtn" type="primary" bindtap="addInvoice">{{btnContext}}</button>
   </view>
 </view>

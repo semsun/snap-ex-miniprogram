@@ -8,6 +8,7 @@ Page({
     isLocal: false,
     isAdd: true,
     expenseId: "",
+    btnContext: "Save",
     // 数据源
     listdata: [{
       title: 'Team Build',
@@ -44,6 +45,7 @@ Page({
     console.log(param)
     this.setData({
       isAdd: typeof(param.isAdd) != undefined ? param.isAdd : true,
+      btnContext: isAdd == true ? "Save" : "Add",
       isLocal: typeof(param.isLocal) != undefined ? param.isLocal : true,
       expenseId: param.expenseId
     })
