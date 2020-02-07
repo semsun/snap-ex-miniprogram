@@ -45,10 +45,11 @@ Page({
     console.log(param)
     this.setData({
       isAdd: typeof(param.isAdd) != undefined ? param.isAdd : true,
-      btnContext: isAdd == true ? "Save" : "Add",
       isLocal: typeof(param.isLocal) != undefined ? param.isLocal : true,
+      btnContext: (typeof(param.isAdd) != undefined ? param.isAdd : true) ? "Save" : "Add",
       expenseId: param.expenseId
     })
+
   },
 
   addInvoice: function(e) {
