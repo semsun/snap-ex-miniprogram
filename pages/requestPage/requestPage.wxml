@@ -1,31 +1,34 @@
 <!--pages/requestPage/requestPage.wxml-->
 <view class="container">
-  <view wx:if="{{!isAdd}}" class="request-overview">
-    <view class="request-overview-text">西安 trip</view>
-    <view class="request-overview-text">RMB 3987.12</view>
-    <view class="request-overview-text">HKD 81.5</view>
-    <view class="request-overview-text">USD 98.3</view>
+  <view wx:if="{{!isAdd}}">
+    <view class="request-overview">
+      <view class="request-overview-text">{{pageData.purposeDescription}}</view>
+      <view class="request-overview-text">CNY {{pageData.totalamount}}</view>
+    </view>
+
+    <view class='listview'>
+      <block wx:for="{{listdata}}" wx:key="index">
+        <navigator url="" class="weui-media-box weui-media-box_appmsg text-content" hover-class="weui-cell_active">
+          <view class="weui-media-box__hd weui-media-box__hd_in-appmsg">
+            <view class="icon-small-wrp">
+              <image class="icon_size" src="{{item.icon}}" />
+            </view>
+          </view>
+          <view class="weui-media-box__bd weui-media-box__bd_in-appmsg">
+            <view class="weui-media-box__title">{{item.title}}</view>
+            <!-- <view class="weui-media-box__desc">{{isAdd}}</view> -->
+          </view>
+          <view class="weui-media-box__desc">{{item.amount}}</view>
+        </navigator>
+      </block>
+    </view>
+
   </view>
   <view wx:else class="request-overview">
     <input class="request-overview-text" placeholder="Input Request Name" />
   </view>
 
-  <view class='listview'>
-    <block wx:for="{{listdata}}" wx:key="index">
-      <navigator url="" class="weui-media-box weui-media-box_appmsg text-content" hover-class="weui-cell_active">
-        <view class="weui-media-box__hd weui-media-box__hd_in-appmsg">
-          <view class="icon-small-wrp">
-            <image class="icon_size" src="{{item.icon}}" />
-          </view>
-        </view>
-        <view class="weui-media-box__bd weui-media-box__bd_in-appmsg">
-          <view class="weui-media-box__title">{{item.title}}</view>
-          <!-- <view class="weui-media-box__desc">{{isAdd}}</view> -->
-        </view>
-        <view class="weui-media-box__desc">{{item.amount}}</view>
-      </navigator>
-    </block>
-  </view>
+
   <view style="display: flex;align-items: center;justify-content: center;  width: 100%;height: 100%;">
     <button class="addBtn" type="primary" bindtap="addInvoice">{{btnContext}}</button>
   </view>

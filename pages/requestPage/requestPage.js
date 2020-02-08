@@ -1,4 +1,5 @@
 // pages/requestPage/requestPage.js
+const app = getApp()
 Page({
 
   /**
@@ -9,6 +10,11 @@ Page({
     isAdd: true,
     expenseId: "",
     btnContext: "Save",
+    pageData: {
+      purposeDescription: "",
+      totalAmount: "",
+      item: []
+    },
     // 数据源
     listdata: [{
       title: 'Team Build',
@@ -43,13 +49,17 @@ Page({
   onLoad: function(options) {
     var param = JSON.parse(options.json)
     console.log(param)
+    var isAdd_t = typeof(param.isAdd) != undefined ? param.isAdd : true
+    var isLocal_t = typeof(param.isLocal) != undefined ? param.isLocal : true
     this.setData({
-      isAdd: typeof(param.isAdd) != undefined ? param.isAdd : true,
-      isLocal: typeof(param.isLocal) != undefined ? param.isLocal : true,
-      btnContext: (typeof(param.isAdd) != undefined ? param.isAdd : true) ? "Save" : "Add",
+      isAdd: isAdd_t,
+      isLocal: isLocal_t,
+      btnContext: isAdd_t ? "Save" : "Add",
       expenseId: param.expenseId
     })
-
+    if (!isAdd_t && !isLocal_t) {
+      this.getPurposeData(this, param.expenseId)
+    }
   },
 
   addInvoice: function(e) {
@@ -73,6 +83,29 @@ Page({
         })
       }
     })
+  },
+
+  getPurposeData: function(that, expenseId) {
+    wx.request({
+      url: app.globalData.host + ":" + app.globalData.port + "/snapex/expense/" + expenseId + "/detail",
+      success(res) {
+        console.log(res.data)
+        var tempPageData = {
+          purposeDescription: "西安 trip",
+          totalAmount: "2000"
+        }
+        that.setData({
+          pageData: tempPageData
+        })
+      },
+      fail(res) {
+        console.log(res)
+      }
+    })
+  },
+
+  savePurposeData: function(that) {
+
   },
 
   /**
