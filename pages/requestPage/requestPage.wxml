@@ -30,6 +30,6 @@
 
 
   <view style="display: flex;align-items: center;justify-content: center;  width: 100%;height: 100%;">
-    <button class="addBtn" type="primary" bindtap="onBtnClick">{{btnContext}}</button>
+    <button class="addBtn" loading="{{btnIsLoading}}" type="primary" bindtap="onBtnClick">{{btnContext}}</button>
   </view>
 </view>

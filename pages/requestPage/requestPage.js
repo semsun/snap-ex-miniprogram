@@ -11,6 +11,7 @@ Page({
     expenseId: "",
     btnContext: "Save",
     inputRequestName: "",
+    btnIsLoading: false,
     pageData: {
       purposeDescription: "",
       totalAmount: "",
@@ -89,6 +90,9 @@ Page({
 
   onBtnClick: function(e) {
     if (this.data.isAdd) {
+      this.setData({
+        btnIsLoading: true
+      })
       wx.showLoading({
         title: 'Loading',
         mask: true
@@ -99,6 +103,7 @@ Page({
         isAdd: false,
         isLocal: false,
         btnContext: "Add",
+        btnIsLoading: false,
         pageData: {
           purposeDescription: this.data.inputRequestName,
           totalAmount: "0.00",
