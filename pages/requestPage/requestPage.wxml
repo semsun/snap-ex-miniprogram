@@ -3,7 +3,7 @@
   <view wx:if="{{!isAdd}}">
     <view class="request-overview">
       <view class="request-overview-text">{{pageData.purposeDescription}}</view>
-      <view class="request-overview-text">CNY {{pageData.totalamount}}</view>
+      <view class="request-overview-text">CNY {{pageData.totalAmount}}</view>
     </view>
 
     <view class='listview'>
@@ -25,11 +25,11 @@
 
   </view>
   <view wx:else class="request-overview">
-    <input class="request-overview-text" placeholder="Input Request Name" />
+    <input class="request-overview-text" bindinput="inputRequestName" auto-focus placeholder="Input Request Name" />
   </view>
 
 
   <view style="display: flex;align-items: center;justify-content: center;  width: 100%;height: 100%;">
-    <button class="addBtn" type="primary" bindtap="addInvoice">{{btnContext}}</button>
+    <button class="addBtn" type="primary" bindtap="onBtnClick">{{btnContext}}</button>
   </view>
 </view>

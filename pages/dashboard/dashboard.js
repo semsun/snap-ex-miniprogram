@@ -11,7 +11,7 @@ Page({
     userInfo: {},
     hasUserInfo: false,
     canIUse: wx.canIUse('button.open-type.getUserInfo'),
-
+   
     // 数据源
     // listdata: [{
     //   title: 'Angel Fund 5W 报销',
@@ -95,21 +95,25 @@ Page({
       success(res) {
         console.log(res.data)
         var listData = []
-
-        res.data.items.forEach(v => {
-          listData.push({
-            // title: v.expenseId,
-            title:'西安 trip',
-            date: util.formatDate(new Date(v.submittedDate)),
-            status: 'submmited',
-            expenseId: v.expenseId
+        if (typeof(res.data.items) == undefined) {
+          that.onNetworkFail()
+        } else {
+          res.data.items.forEach(v => {
+            listData.push({
+              // title: v.expenseId,
+              title: '西安 trip',
+              date: util.formatDate(new Date(v.submittedDate)),
+              status: 'submmited',
+              expenseId: v.expenseId
+            })
           })
-        })
-        that.setData({
-          listdata: listData
-        })
+          that.setData({
+            listdata: listData
+          })
+        }
       },
       fail(res) {
+        that.onNetworkFail()
         console.log(res)
       }
     })
@@ -139,9 +143,7 @@ Page({
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
-  onReady: function() {
-
-  },
+  onReady: function() {},
 
   /**
    * 生命周期函数--监听页面显示
@@ -182,6 +184,15 @@ Page({
    * 用户点击右上角分享
    */
   onShareAppMessage: function() {
+
+  },
+
+  onNetworkFail() {
+    wx.showToast({
+      title: 'Server error',
+      icon: 'none', //如果要纯文本，不要icon，将值设为'none'
+      duration: 2000
+    })
 
   }
 })
