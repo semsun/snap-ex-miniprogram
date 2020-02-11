@@ -1,5 +1,5 @@
 <!--dashboard.wxml-->
-<view class="container fullpage">
+<view class="container dashboard-page">
   <view class="userinfo">
     <button wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 获取头像昵称 </button>
     <block wx:else>
@@ -11,10 +11,10 @@
 
   <view class='listview'>
     <block wx:for="{{listdata}}" wx:key="index">
-      <navigator url="/pages/requestPage/requestPage" class="weui-media-box weui-media-box_appmsg text-content" hover-class="weui-cell_active">
+      <view bindtap="toInvoice" mark:itemdata="{{item}}" class="weui-media-box weui-media-box_appmsg text-content" hover-class="weui-cell_active">
         <view class="weui-media-box__hd weui-media-box__hd_in-appmsg">
           <view class="icon-small-wrp">
-            <icon wx:if="{{item.status == '已提交'}}" class="icon-small" type="success" size="23"></icon>
+            <icon wx:if="{{item.status == 'submmited'}}" class="icon-small" type="success" size="23"></icon>
             <icon wx:else class="icon-small" type="info_circle" size="23"></icon>
           </view>
         </view>
@@ -22,10 +22,9 @@
           <view class="weui-media-box__title">{{item.title}}</view>
           <view class="weui-media-box__desc">{{item.date}}</view>
         </view>
-      </navigator>
+      </view>
     </block>
   </view>
-  <navigator url="/pages/requestPage/requestPage">
-    <button type="primary" bindtap="addInvoice" style='position:fixed;bottom:0;'>ADD</button>
-  </navigator>
+
+  <button class="addBtn" type="primary" bindtap="addInvoice">ADD</button>
 </view>

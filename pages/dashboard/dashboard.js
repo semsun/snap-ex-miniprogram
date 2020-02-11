@@ -1,5 +1,5 @@
 // pages/dashboard/dashboard.js
-
+const util = require('../../utils/util.js')
 const app = getApp()
 
 Page({
@@ -11,46 +11,41 @@ Page({
     userInfo: {},
     hasUserInfo: false,
     canIUse: wx.canIUse('button.open-type.getUserInfo'),
-
+   
     // 数据源
-    listdata: [{
-      title: 'Angel Fund 5W 报销',
-      date: '2019-12-07',
-      status: '草稿',
-      icon: '../../images/done.png'
-    }, {
-      title: 'Angel Fund 5K round2',
-      date: '2019-11-07',
-      status: '草稿',
-      icon: '../../images/done.png'
-    }, {
-      title: 'Angel Fund 1K round1',
-      date: '2019-10-07',
-      status: '已提交',
-      icon: '../../images/done.png'
-    }, {
-      title: '西安trip',
-      date: '2019-10-01',
-      status: '已提交',
-      icon: '../../images/done.png'
-    }, {
-      title: 'HK trip',
-      date: '2019-9-07',
-      status: '已提交',
-      icon: '../../images/done.png'
-    }, {
-      title: 'HK trip',
-      date: '2019-8-07',
-      status: '已提交',
-      icon: '../../images/done.png'
-    }]
-
+    // listdata: [{
+    //   title: 'Angel Fund 5W 报销',
+    //   date: '2019-12-07',
+    //   status: 'draft'
+    // }, {
+    //   title: 'Angel Fund 5K round2',
+    //   date: '2019-11-07',
+    //   status: 'draft'
+    // }, {
+    //   title: 'Angel Fund 1K round1',
+    //   date: '2019-10-07',
+    //   status: 'submmited'
+    // }, {
+    //   title: '西安trip',
+    //   date: '2019-10-01',
+    //   status: 'submmited'
+    // }, {
+    //   title: 'HK trip',
+    //   date: '2019-9-07',
+    //   status: 'submmited'
+    // }, {
+    //   title: 'HK trip',
+    //   date: '2019-8-07',
+    //   status: 'submmited'
+    // }]
+    listdata: []
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
+    var that = this
     if (app.globalData.userInfo) {
       this.setData({
         userInfo: app.globalData.userInfo,
@@ -77,6 +72,8 @@ Page({
         }
       })
     }
+
+    this.getExpenseList(that)
   },
 
   getUserInfo: function(e) {
@@ -88,12 +85,65 @@ Page({
     })
   },
 
+  getExpenseList: function(that) {
+    wx.request({
+      url: app.globalData.host + ":" + app.globalData.port + "/snapex/expense/search",
+      method: "POST",
+      data: {
+        "staffId": app.globalData.staffId
+      },
+      success(res) {
+        console.log(res.data)
+        var listData = []
+        if (typeof(res.data.items) == undefined) {
+          that.onNetworkFail()
+        } else {
+          res.data.items.forEach(v => {
+            listData.push({
+              // title: v.expenseId,
+              title: '西安 trip',
+              date: util.formatDate(new Date(v.submittedDate)),
+              status: 'submmited',
+              expenseId: v.expenseId
+            })
+          })
+          that.setData({
+            listdata: listData
+          })
+        }
+      },
+      fail(res) {
+        that.onNetworkFail()
+        console.log(res)
+      }
+    })
+  },
+
+  addInvoice() {
+    var param = {
+      isAdd: true
+    }
+    wx.navigateTo({
+      url: '/pages/requestPage/requestPage?json=' + JSON.stringify(param),
+    })
+  },
+
+  toInvoice(e) {
+    console.log(e)
+    var param = {
+      isAdd: false,
+      isLocal: e.mark.itemdata.status != 'submmited',
+      expenseId: e.mark.itemdata.expenseId
+    }
+    wx.navigateTo({
+      url: '/pages/requestPage/requestPage?json=' + JSON.stringify(param),
+    })
+  },
+
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
-  onReady: function() {
-
-  },
+  onReady: function() {},
 
   /**
    * 生命周期函数--监听页面显示
@@ -134,6 +184,15 @@ Page({
    * 用户点击右上角分享
    */
   onShareAppMessage: function() {
+
+  },
+
+  onNetworkFail() {
+    wx.showToast({
+      title: 'Server error',
+      icon: 'none', //如果要纯文本，不要icon，将值设为'none'
+      duration: 2000
+    })
 
   }
 })
