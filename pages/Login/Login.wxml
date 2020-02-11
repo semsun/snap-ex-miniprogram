@@ -9,17 +9,24 @@
 
     <view class="weui-cells weui-cells_after-title">
       <view class="weui-cell weui-cell_input">
-        <view class="weui-cell__bd">
-          <input class="weui-input input_width" name="input" placeholder="Enter Staff ID" />
-        </view>
-        <view class="weui-cell__hd">
-          <button type="primary" plain="true" bindtap='login'>Scan QRCode</button>
-        </view>
+        <block wx:if="{{name}}">
+          <view class="weui-cell__bd">
+          Wellcom {{name}}! If it not you information, Please close this page. Thanks.
+          </view>
+        </block>
+        <block wx:else>
+          <view class="weui-cell__bd">
+            <input class="weui-input input_width" name="input" placeholder="Enter Staff ID" value="{{sid}}" />
+          </view>
+          <view class="weui-cell__hd">
+            <button type="primary" plain="true" bindtap='login'>Scan QRCode</button>
+          </view>
+        </block>
       </view>
     </view>
   </view>
 
   <view class="btn-area" id="buttonContainer">
-    <button type="primary" bindtap='login'>Login</button>
+    <button type="primary"  open-type="getPhoneNumber" bindgetphonenumber='login'>Login</button>
   </view>
 </view>

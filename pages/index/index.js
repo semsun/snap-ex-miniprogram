@@ -1,6 +1,7 @@
 //index.js
 //获取应用实例
 const app = getApp()
+var authRequest = require('../../utils/authRequest.js')
 
 Page({
   data: {
@@ -20,7 +21,10 @@ Page({
       url: '../logs/logs'
     })
   },
-  onLoad: function() {
+  onLoad: function () {
+    console.log(authRequest)
+    console.log(authRequest.test1({value:"indes"}))
+
     if (app.globalData.userInfo) {
       this.setData({
         userInfo: app.globalData.userInfo,
@@ -74,6 +78,13 @@ Page({
       url: '/pages/claimForm/claimForm',
     })
   },
+
+  toLogin: function (e) {
+    wx.navigateTo({
+      url: '/pages/Login/Login?mail=test@bank.com&sid=2345678',
+    })
+  },
+  
   toInvoice: function(e) {
     // wx.setStorageSync("tmpData", "DataFromIndex");
     var tmpData = JSON.stringify({
@@ -114,5 +125,55 @@ Page({
     wx.navigateTo({
       url: '/pages/requestPage/requestPage',
     })
+  },
+
+  toHuaTuo: function (e) {
+    // wx.navigateTo({
+    //   url: '/pages/HuaTuo/survey',
+    // })
+    // wx.request({
+    //   url: 'http://service.snapex.xyz:8090/snapex/expense/search', //仅为示例，并非真实的接口地址
+    //   method: 'POST',
+    //   data: {
+    //     "expenseId": "E0000001"
+    //   },
+    //   header: {
+    //     'content-type': 'application/json' // 默认值
+    //   },
+    //   success(res) {
+    //     console.log(res.data)
+    //   }
+    // })
+
+    wx.login({
+      success: function (res) {
+        console.log(res.code);
+        wx.request({
+          url: 'http://192.168.0.102:8080/mini_program', //仅为示例，并非真实的接口地址
+          method: 'POST',
+          data: {
+            "code": res.code
+          },
+          header: {
+            'content-type': 'application/json' // 默认值
+          },
+          success(res) {
+            console.log(res.data)
+
+            wx.getUserInfo({
+              withCredentials: true,
+              success: function (res) {
+                console.log(res)
+              },
+              fail: function (res) {
+                console.log(res)
+              }
+            })
+
+          }
+        })
+      }
+    })
+
   }
 })

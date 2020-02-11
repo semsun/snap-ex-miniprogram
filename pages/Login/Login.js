@@ -9,7 +9,12 @@ Page({
   data: {
     userInfo: {},
     hasUserInfo: false,
-    canIUse: wx.canIUse('button.open-type.getUserInfo')
+    canIUse: wx.canIUse('button.open-type.getUserInfo'),
+    security_key: '',
+    openId: '',
+    mail: '',
+    name: '',
+    sid: ''
   },
 
   /**
@@ -42,6 +47,44 @@ Page({
         }
       })
     }
+
+    if(options) {
+      var omail = options.mail
+      var osid = options.sid
+      if(osid) osid = osid.trim()
+
+      var oname = ''
+      if(omail && omail.length > 0) {
+        oname = omail.trim().split('@')[0]
+      }
+      this.setData({
+        mail:omail,
+        sid:osid,
+        name:oname
+      })
+    }
+    
+    // wx.login({
+    //   success: function (res) {
+    //     console.log(res.code);
+    //     wx.request({
+    //       url: 'http://39.108.227.233/user/register',
+    //       method: 'POST',
+    //       data: {
+    //         "code": res.code,
+    //         "username": "34052468",
+    //         "userId": "USER01"
+    //       },
+    //       header: {
+    //         'content-type': 'application/json' // 默认值
+    //       },
+    //       success(res) {
+    //         console.log(res.data)
+    //       }
+    //     })
+    //   }
+    // })
+
   },
   getUserInfo: function (e) {
     console.log(e)
@@ -101,7 +144,20 @@ Page({
 
   },
 
-  login: function() {
+  login: function(e) {
+    var that = this
+    var ency = e.detail.encryptedData;
+    var iv = e.detail.iv;
+    var errMsg = e.detail.errMsg
+    console.log(ency);
+    if (iv == null || ency == null) {
+      wx.showToast({
+        title: "授权失败,请重新授权！",
+        icon: 'none',
+      })
+      return false
+    }
+    
     wx.navigateTo({
       url: '/pages/dashboard/dashboard',
     })
