@@ -1,5 +1,5 @@
-<!--index.wxml-->
-<view class="container">
+<!--dashboard.wxml-->
+<view class="container dashboard-page">
   <view class="userinfo">
     <button wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 获取头像昵称 </button>
     <block wx:else>
@@ -7,13 +7,24 @@
       <text class="userinfo-nickname">{{userInfo.nickName}}</text>
     </block>
   </view>
-    <button style="width:100%;" bindtap="toDashboard">Dashboard</button>
-  
-  <view>---------- below is for dev, pls ignore --------</view>
-  <button style="width:100%;" bindtap="toTestPage">Add Claim Form</button>
-  <button style="width:100%;" bindtap="toLogin">Login</button>
-  <button style="width:100%;" bindtap="toInvoice">Invoices</button>
-  <button style="width:100%;" bindtap="toInvoiceType">InvoiceList</button>
-  <button style="width:100%;" bindtap="popButton">Pop Button</button>
-  <button style="width:100%;" bindtap="toHome">Home</button>
+
+
+  <view class='listview'>
+    <block wx:for="{{listdata}}" wx:key="index">
+      <view bindtap="toInvoice" mark:itemdata="{{item}}" class="weui-media-box weui-media-box_appmsg text-content" hover-class="weui-cell_active">
+        <view class="weui-media-box__hd weui-media-box__hd_in-appmsg">
+          <view class="icon-small-wrp">
+            <icon wx:if="{{item.status == 'submmited'}}" class="icon-small" type="success" size="23"></icon>
+            <icon wx:else class="icon-small" type="info_circle" size="23"></icon>
+          </view>
+        </view>
+        <view class="weui-media-box__bd weui-media-box__bd_in-appmsg">
+          <view class="weui-media-box__title">{{item.title}}</view>
+          <view class="weui-media-box__desc">{{item.date}}</view>
+        </view>
+      </view>
+    </block>
+  </view>
+
+  <button class="addBtn" type="primary" bindtap="addInvoice">ADD</button>
 </view>

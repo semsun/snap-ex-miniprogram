@@ -1,0 +1,19 @@
+<!--index.wxml-->
+<view class="container">
+  <view class="userinfo">
+    <button wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 获取头像昵称 </button>
+    <block wx:else>
+      <image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
+      <text class="userinfo-nickname">{{userInfo.nickName}}</text>
+    </block>
+  </view>
+    <button style="width:100%;" bindtap="toDashboard">Dashboard</button>
+  
+  <view>---------- below is for dev, pls ignore --------</view>
+  <button style="width:100%;" bindtap="toTestPage">Add Claim Form</button>
+  <button style="width:100%;" bindtap="toLogin">Login</button>
+  <button style="width:100%;" bindtap="toInvoice">Invoices</button>
+  <button style="width:100%;" bindtap="toInvoiceType">InvoiceList</button>
+  <button style="width:100%;" bindtap="popButton">Pop Button</button>
+  <button style="width:100%;" bindtap="toHome">Home</button>
+</view>

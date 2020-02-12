@@ -1,30 +1,51 @@
-//index.js
-//获取应用实例
+// pages/dashboard/dashboard.js
+const util = require('../../utils/util.js')
 const app = getApp()
-var authRequest = require('../../utils/authRequest.js')
 
 Page({
+
+  /**
+   * 页面的初始数据
+   */
   data: {
-    motto: 'Hello World',
-    test: {
-      a: "aa",
-      b: "bb"
-    },
-    sr: "Test",
     userInfo: {},
     hasUserInfo: false,
-    canIUse: wx.canIUse('button.open-type.getUserInfo')
+    canIUse: wx.canIUse('button.open-type.getUserInfo'),
+   
+    // 数据源
+    // listdata: [{
+    //   title: 'Angel Fund 5W 报销',
+    //   date: '2019-12-07',
+    //   status: 'draft'
+    // }, {
+    //   title: 'Angel Fund 5K round2',
+    //   date: '2019-11-07',
+    //   status: 'draft'
+    // }, {
+    //   title: 'Angel Fund 1K round1',
+    //   date: '2019-10-07',
+    //   status: 'submmited'
+    // }, {
+    //   title: '西安trip',
+    //   date: '2019-10-01',
+    //   status: 'submmited'
+    // }, {
+    //   title: 'HK trip',
+    //   date: '2019-9-07',
+    //   status: 'submmited'
+    // }, {
+    //   title: 'HK trip',
+    //   date: '2019-8-07',
+    //   status: 'submmited'
+    // }]
+    listdata: []
   },
-  //事件处理函数
-  bindViewTap: function(scanResult) {
-    wx.navigateTo({
-      url: '../logs/logs'
-    })
-  },
-  onLoad: function () {
-    console.log(authRequest)
-    console.log(authRequest.test1({value:"indes"}))
 
+  /**
+   * 生命周期函数--监听页面加载
+   */
+  onLoad: function(options) {
+    var that = this
     if (app.globalData.userInfo) {
       this.setData({
         userInfo: app.globalData.userInfo,
@@ -51,7 +72,10 @@ Page({
         }
       })
     }
+
+    this.getExpenseList(that)
   },
+
   getUserInfo: function(e) {
     console.log(e)
     app.globalData.userInfo = e.detail.userInfo
@@ -60,119 +84,114 @@ Page({
       hasUserInfo: true
     })
   },
-  testBtn: function(e) {
-    wx.scanCode({
-      onlyFromCamera: true,
+
+  getExpenseList: function(that) {
+    wx.request({
+      url: app.globalData.host + ":" + app.globalData.port + "/snapex/expense/search",
+      method: "POST",
+      data: {
+        "staffId": app.globalData.staffId
+      },
       success(res) {
-        console.log(res)
-        wx.showModal({
-          title: 'Scan Result',
-          content: res.result,
-          showCancel: false
-        })
-      }
-    })
-  },
-  toTestPage: function(e) {
-    wx.navigateTo({
-      url: '/pages/claimForm/claimForm',
-    })
-  },
-
-  toLogin: function (e) {
-    wx.navigateTo({
-      url: '/pages/Login/Login?mail=test@bank.com&sid=2345678',
-    })
-  },
-  
-  toInvoice: function(e) {
-    // wx.setStorageSync("tmpData", "DataFromIndex");
-    var tmpData = JSON.stringify({
-      "code": "044001600111",
-      "number": "37669836",
-      "date": "20170902",
-      "category": 0,
-      "amount": 12.74
-    })
-    console.log("toJson:" + tmpData)
-    wx.navigateTo({
-      url: '/pages/Invoice/InvoicePage?json=' + tmpData,
-    })
-  },
-  toInvoiceType: function(e) {
-    // wx.setStorageSync("tmpData", "DataFromIndex");
-    wx.navigateTo({
-      url: '/pages/Invoice/invoiceList/invoiceList',
-    })
-  },
-  popButton: function(e) {
-    wx.navigateTo({
-      url: '/pages/popButton/popButton',
-    })
-  },
-  toHome: function(e) {
-    wx.navigateTo({
-      url: '/pages/home/home',
-    })
-  },
-  toDashboard: function(e) {
-    wx.navigateTo({
-      url: '/pages/dashboard/dashboard',
-    })
-  },
-
-  toRequestPage: function(e) {
-    wx.navigateTo({
-      url: '/pages/requestPage/requestPage',
-    })
-  },
-
-  toHuaTuo: function (e) {
-    // wx.navigateTo({
-    //   url: '/pages/HuaTuo/survey',
-    // })
-    // wx.request({
-    //   url: 'http://service.snapex.xyz:8090/snapex/expense/search', //仅为示例，并非真实的接口地址
-    //   method: 'POST',
-    //   data: {
-    //     "expenseId": "E0000001"
-    //   },
-    //   header: {
-    //     'content-type': 'application/json' // 默认值
-    //   },
-    //   success(res) {
-    //     console.log(res.data)
-    //   }
-    // })
-
-    wx.login({
-      success: function (res) {
-        console.log(res.code);
-        wx.request({
-          url: 'http://192.168.0.102:8080/mini_program', //仅为示例，并非真实的接口地址
-          method: 'POST',
-          data: {
-            "code": res.code
-          },
-          header: {
-            'content-type': 'application/json' // 默认值
-          },
-          success(res) {
-            console.log(res.data)
-
-            wx.getUserInfo({
-              withCredentials: true,
-              success: function (res) {
-                console.log(res)
-              },
-              fail: function (res) {
-                console.log(res)
-              }
+        console.log(res.data)
+        var listData = []
+        if (typeof(res.data.items) == undefined) {
+          that.onNetworkFail()
+        } else {
+          res.data.items.forEach(v => {
+            listData.push({
+              // title: v.expenseId,
+              title: '西安 trip',
+              date: util.formatDate(new Date(v.submittedDate)),
+              status: 'submmited',
+              expenseId: v.expenseId
             })
-
-          }
-        })
+          })
+          that.setData({
+            listdata: listData
+          })
+        }
+      },
+      fail(res) {
+        that.onNetworkFail()
+        console.log(res)
       }
+    })
+  },
+
+  addInvoice() {
+    var param = {
+      isAdd: true
+    }
+    wx.navigateTo({
+      url: '/pages/requestPage/requestPage?json=' + JSON.stringify(param),
+    })
+  },
+
+  toInvoice(e) {
+    console.log(e)
+    var param = {
+      isAdd: false,
+      isLocal: e.mark.itemdata.status != 'submmited',
+      expenseId: e.mark.itemdata.expenseId
+    }
+    wx.navigateTo({
+      url: '/pages/requestPage/requestPage?json=' + JSON.stringify(param),
+    })
+  },
+
+  /**
+   * 生命周期函数--监听页面初次渲染完成
+   */
+  onReady: function() {},
+
+  /**
+   * 生命周期函数--监听页面显示
+   */
+  onShow: function() {
+
+  },
+
+  /**
+   * 生命周期函数--监听页面隐藏
+   */
+  onHide: function() {
+
+  },
+
+  /**
+   * 生命周期函数--监听页面卸载
+   */
+  onUnload: function() {
+
+  },
+
+  /**
+   * 页面相关事件处理函数--监听用户下拉动作
+   */
+  onPullDownRefresh: function() {
+
+  },
+
+  /**
+   * 页面上拉触底事件的处理函数
+   */
+  onReachBottom: function() {
+
+  },
+
+  /**
+   * 用户点击右上角分享
+   */
+  onShareAppMessage: function() {
+
+  },
+
+  onNetworkFail() {
+    wx.showToast({
+      title: 'Server error',
+      icon: 'none', //如果要纯文本，不要icon，将值设为'none'
+      duration: 2000
     })
 
   }

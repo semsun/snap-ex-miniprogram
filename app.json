@@ -6,7 +6,7 @@
     "pages/Invoice/InvoicePage",
     "pages/popButton/popButton",
     "pages/home/home",
-    "pages/dashboard/dashboard",
+    "pages/test/index",
     "pages/Invoice/invoiceDetail/invoiceDetail",
     "pages/requestPage/requestPage",
     "pages/Invoice/invoiceList/invoiceList",
