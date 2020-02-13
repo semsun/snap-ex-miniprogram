@@ -52,8 +52,8 @@ Page({
   onLoad: function(options) {
     var param = JSON.parse(options.json)
     console.log(param)
-    var isAdd_t = typeof(param.isAdd) != undefined ? param.isAdd : true
-    var isLocal_t = typeof(param.isLocal) != undefined ? param.isLocal : true
+    var isAdd_t = typeof(param.isAdd) != typeof(undefined) ? param.isAdd : true
+    var isLocal_t = typeof(param.isLocal) != typeof(undefined) ? param.isLocal : true
     this.setData({
       isAdd: isAdd_t,
       isLocal: isLocal_t,

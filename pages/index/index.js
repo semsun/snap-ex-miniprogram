@@ -11,7 +11,7 @@ Page({
     userInfo: {},
     hasUserInfo: false,
     canIUse: wx.canIUse('button.open-type.getUserInfo'),
-   
+
     // 数据源
     // listdata: [{
     //   title: 'Angel Fund 5W 报销',
@@ -95,7 +95,7 @@ Page({
       success(res) {
         console.log(res.data)
         var listData = []
-        if (typeof(res.data.items) == undefined) {
+        if (typeof(res.data.items) == typeof(undefined)) {
           that.onNetworkFail()
         } else {
           res.data.items.forEach(v => {
