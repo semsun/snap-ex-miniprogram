@@ -88,7 +88,7 @@ Page({
     //   },
     // })
     var tmp = JSON.parse(options.json)
-    // if( !tmp.code && typeof(tmp.code) != undefined && length(trim(tmp.code)) > 0 ) {
+    // if( !tmp.code && typeof(tmp.code) != typeof(undefined) && length(trim(tmp.code)) > 0 ) {
     this.setData({ ['invoice.code']: tmp.code })
     this.setData({ ['invoice.number']: tmp.number })
     this.setData({ ['invoice.date']: tmp.date })
