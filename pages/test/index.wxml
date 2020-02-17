@@ -16,4 +16,5 @@
   <button style="width:100%;" bindtap="toInvoiceType">InvoiceList</button>
   <button style="width:100%;" bindtap="popButton">Pop Button</button>
   <button style="width:100%;" bindtap="toHome">Home</button>
+  <button style="width:100%;" bindtap="bindTest">Bind Test</button>
 </view>

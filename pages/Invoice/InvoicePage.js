@@ -194,7 +194,7 @@ Page({
     wx.hideLoading()
 
     wx.redirectTo({
-      url: '/pages/dashboard/dashboard',
+      url: '/pages/incex/index',
     })
 
     // var item = { 

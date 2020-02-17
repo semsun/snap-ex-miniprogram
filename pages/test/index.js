@@ -81,7 +81,8 @@ Page({
 
   toLogin: function (e) {
     wx.navigateTo({
-      url: '/pages/Login/Login?mail=test@bank.com&sid=2345678',
+      // url: '/pages/Login/Login?mail=test@bank.com&sid=2345678',
+      url: '/pages/Login/Login',
     })
   },
   
@@ -127,7 +128,7 @@ Page({
     })
   },
 
-  toHuaTuo: function (e) {
+  bindTest: function (e) {
     // wx.navigateTo({
     //   url: '/pages/HuaTuo/survey',
     // })
@@ -145,35 +146,71 @@ Page({
     //   }
     // })
 
-    wx.login({
-      success: function (res) {
-        console.log(res.code);
-        wx.request({
-          url: 'http://192.168.0.102:8080/mini_program', //仅为示例，并非真实的接口地址
-          method: 'POST',
-          data: {
-            "code": res.code
-          },
-          header: {
-            'content-type': 'application/json' // 默认值
-          },
-          success(res) {
-            console.log(res.data)
+    // wx.login({
+    //   success: function (res) {
+    //     console.log(res.code);
+    //     wx.request({
+    //       // url: 'http://192.168.0.102:8080/mini_program', //仅为示例，并非真实的接口地址
+    //       url: 'http://www.snapex.xyz:8001/user/register', //仅为示例，并非真实的接口地址
+    //       method: 'POST',
+    //       data: {
+    //         "code": res.code,
+    //         "hashKey": "O92t5LBl6WzA9hVeUatESONOKZlts6"
+    //       },
+    //       header: {
+    //         'content-type': 'application/json' // 默认值
+    //       },
+    //       success(res) {
+    //         console.log(res.data)
 
-            wx.getUserInfo({
-              withCredentials: true,
-              success: function (res) {
-                console.log(res)
-              },
-              fail: function (res) {
-                console.log(res)
-              }
-            })
+    //         wx.getUserInfo({
+    //           withCredentials: true,
+    //           success: function (res) {
+    //             console.log(res)
+    //           },
+    //           fail: function (res) {
+    //             console.log(res)
+    //           }
+    //         })
 
-          }
-        })
+    //       }
+    //     })
+    //   }
+    // })
+
+    authRequest.request({
+    // wx.request({
+      url: 'http://www.snapex.xyz:8001/snapex/expense/E0000001/basic', //仅为示例，并非真实的接口地址
+      method: 'GET',
+      header: {
+        WechatAccessToken: null
+      },
+      success(res) {
+        console.log(res.data)
+
+        // wx.getUserInfo({
+        //   withCredentials: true,
+        //   success: function (res) {
+        //     console.log(res)
+        //   },
+        //   fail: function (res) {
+        //     console.log(res)
+        //   }
+        // })
+
       }
     })
+
+    // wx.getStorage({
+    //   key:"WechatAccessToken",
+    //   success: function(res) {
+    //     console.log(res)
+    //   },
+    //   fail: function(res) {
+    //     console.log("Get Storage Faile")
+    //     console.log(res)
+    //   }
+    // })
 
   }
 })

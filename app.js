@@ -36,9 +36,9 @@ App({
   globalData: {
     userInfo: null,
     staffId: "34052468",
-    // host: "http://service.snapex.xyz",
-    // port: "8090"
-    host: "http://39.108.227.233",
-    port: "80"
+    host: "http://www.snapex.xyz",
+    port: "8001"
+    // host: "http://39.108.227.233",
+    // port: "80"
   }
 })

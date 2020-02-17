@@ -1,12 +1,47 @@
-const SESSION_ID = "authorization"
+const app = getApp()
+
+const STATUS_EXPIRE = "401"
+const SESSION_ID = "WechatAccessToken"
+const RETRY_TIMES = 3
+const REG_URL = app.globalData.host + ":" + app.globalData.port + "/user/register"
 
 var auth = {
+  retry: 0,
   request: function (paramObj) {
+    // wx.removeStorageSync(SESSION_ID)
     // 获取授权码
     auth.getAuthCode({
       success: function (authCode) {
         // 添加授权码到 HEAD
-        paramObj.header.authorization = authCode
+        paramObj.header.WechatAccessToken = authCode
+        var tmpFunc = paramObj.success
+        paramObj.success = function(res) {
+          console.log(res)
+          if (res.data.status && res.data.status == STATUS_EXPIRE) {
+            // Token 失效处理
+            wx.removeStorage({
+              key: SESSION_ID,
+              success: function(res) {
+                auth.retry = auth.retry + 1;
+                console.log("Retry times: " + auth.retry)
+                if (auth.retry >= RETRY_TIMES ) {
+                  auth.retry = 0
+                  // 限制自动重试次数
+                  console.log("Full retry, return ERROR")
+                  typeof paramObj.fail == "function" && paramObj.fail(res)
+                } else {
+                  // 清除缓存，递归调用请求
+                  auth.request(paramObj)
+                  return
+                }
+              },
+            })
+          } else {
+            // 返回成功信息
+            console.log("Return to business page")
+            typeof tmpFunc == "function" && tmpFunc(res)
+          }
+        }
 
         wx.request(paramObj)
       },
@@ -14,11 +49,11 @@ var auth = {
     })
   },
   getAuthCode: function(paramObj) {
-    wx.getStorageInfo({
+    wx.getStorage({
       key: SESSION_ID,
       success: function(res) {
         // 成功在本地存储中找到 Session Key
-        typeof paramObj.success == "function" && paramObj.success(res)
+        typeof paramObj.success == "function" && paramObj.success(res.data)
       },
       fail: function(res) {
         // 本地存储中没有 Session Key, 重新登陆
@@ -42,7 +77,7 @@ var auth = {
       success: function (res) {
         console.log("Login Code:" + res.code);
         wx.request({
-          url: 'http://39.108.227.233:9000/user/register',
+          url: REG_URL,
           method: 'POST',
           data: {
             "code": res.code
@@ -51,7 +86,7 @@ var auth = {
             'content-type': 'application/json' // 默认值
           },
           success(res) {
-            typeof paramObj.success == "function" && paramObj.success(res)
+            typeof paramObj.success == "function" && paramObj.success(res.data.WechatAccessToken)
           },
           fail: paramObj.fail
         })
@@ -75,5 +110,6 @@ var auth = {
 }
 
 module.exports = {
-  test1: auth.test1
+  test1: auth.test1,
+  request: auth.request
 }
