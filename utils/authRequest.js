@@ -110,6 +110,8 @@ var auth = {
 }
 
 module.exports = {
+  SESSION_ID: SESSION_ID,
+  REG_URL: REG_URL,
   test1: auth.test1,
   request: auth.request
 }

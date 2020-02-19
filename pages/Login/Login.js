@@ -1,5 +1,6 @@
 // pages/Login/Login.js
 const app = getApp()
+const api = require('../../utils/authRequest.js')
 
 Page({
 
@@ -14,7 +15,8 @@ Page({
     openId: '',
     mail: '',
     name: '',
-    sid: ''
+    sid: '',
+    qrCodeResult: ''
   },
 
   /**
@@ -141,6 +143,51 @@ Page({
    * Called when user click on the top right corner to share
    */
   onShareAppMessage: function () {
+
+  },
+
+  scanQRCodeLogin: function() {
+    var _this = this
+
+    wx.scanCode({
+      success: function(res) {
+        console.log(res);
+        _this.setData({qrCodeResult:res.result})
+        wx.login({
+          success: function(res) {
+            wx.request({
+              url: api.REG_URL,
+              method: 'POST',
+              data: {
+                "code": res.code,
+                "hashKey": _this.data.qrCodeResult
+              },
+              header: {
+                'content-type': 'application/json' // 默认值
+              },
+              success: function (res) {
+                console.log(res)
+                wx.setStorage({
+                  key: api.SESSION_ID,
+                  data: res.data.WechatAccessToken,
+                  success: function (res) {
+                    wx.redirectTo({
+                      url: '/pages/index/index',
+                    })
+                  },
+                  fail: function(res) {
+                    console.log("Set storage failed!")
+                  }
+                })
+              },
+              fail: function (res) {
+                console.log("login failed!")
+              }
+            })
+          }
+        })
+      }
+    })
 
   },
 
