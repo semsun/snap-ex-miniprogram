@@ -1,6 +1,7 @@
 // pages/dashboard/dashboard.js
 const util = require('../../utils/util.js')
 const app = getApp()
+var api = require('../../utils/authRequest.js')
 
 Page({
 
@@ -11,33 +12,7 @@ Page({
     userInfo: {},
     hasUserInfo: false,
     canIUse: wx.canIUse('button.open-type.getUserInfo'),
-
     // 数据源
-    // listdata: [{
-    //   title: 'Angel Fund 5W 报销',
-    //   date: '2019-12-07',
-    //   status: 'draft'
-    // }, {
-    //   title: 'Angel Fund 5K round2',
-    //   date: '2019-11-07',
-    //   status: 'draft'
-    // }, {
-    //   title: 'Angel Fund 1K round1',
-    //   date: '2019-10-07',
-    //   status: 'submmited'
-    // }, {
-    //   title: '西安trip',
-    //   date: '2019-10-01',
-    //   status: 'submmited'
-    // }, {
-    //   title: 'HK trip',
-    //   date: '2019-9-07',
-    //   status: 'submmited'
-    // }, {
-    //   title: 'HK trip',
-    //   date: '2019-8-07',
-    //   status: 'submmited'
-    // }]
     listdata: []
   },
 
@@ -86,11 +61,14 @@ Page({
   },
 
   getExpenseList: function(that) {
-    wx.request({
+    api.request({
       url: app.globalData.host + ":" + app.globalData.port + "/snapex/expense/search",
       method: "POST",
       data: {
         "staffId": app.globalData.staffId
+      },
+      header: {
+        WechatAccessToken: null
       },
       success(res) {
         console.log(res.data)
