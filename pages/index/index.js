@@ -60,6 +60,12 @@ Page({
     })
   },
 
+  gotoLogin: function(e) {
+    wx.navigateTo({
+      url: '/pages/Login/Login',
+    })
+  },
+
   getExpenseList: function(that) {
     api.request({
       url: app.globalData.host + ":" + app.globalData.port + "/snapex/expense/search",
@@ -79,9 +85,9 @@ Page({
           res.data.items.forEach(v => {
             listData.push({
               // title: v.expenseId,
-              title: '西安 trip',
+              title: v.description,
               date: util.formatDate(new Date(v.submittedDate)),
-              status: 'submmited',
+              status: v.status,
               expenseId: v.expenseId
             })
           })
@@ -107,62 +113,14 @@ Page({
   },
 
   toInvoice(e) {
-    console.log(e)
     var param = {
       isAdd: false,
-      isLocal: e.mark.itemdata.status != 'submmited',
-      expenseId: e.mark.itemdata.expenseId
+      expenseId: e.mark.itemdata.expenseId,
+      purposeStatus: e.mark.itemdata.status
     }
     wx.navigateTo({
       url: '/pages/requestPage/requestPage?json=' + JSON.stringify(param),
     })
-  },
-
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function() {},
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function() {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function() {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function() {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function() {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function() {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function() {
-
   },
 
   onNetworkFail() {

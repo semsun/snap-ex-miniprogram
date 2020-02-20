@@ -27,9 +27,10 @@
   <view wx:else class="request-overview">
     <input class="request-overview-text" bindinput="inputRequestName" auto-focus placeholder="Input Request Name" />
   </view>
-
+  <button class="btn" type="primary" bindtap="submitPurpose" style="display:{{isShowSubmitBtn}}">Submit</button>
 
   <view style="display: flex;align-items: center;justify-content: center;  width: 100%;height: 100%;">
-    <button class="addBtn" loading="{{btnIsLoading}}" type="primary" bindtap="onBtnClick">{{btnContext}}</button>
+    <button class="btn addBtn" loading="{{btnIsLoading}}" type="primary" bindtap="onBtnClick">{{btnContext}}</button>
+
   </view>
 </view>

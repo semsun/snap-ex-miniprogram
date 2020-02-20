@@ -1,48 +1,25 @@
 // pages/requestPage/requestPage.js
 const app = getApp()
+var api = require('../../utils/authRequest.js')
+
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    isLocal: false,
     isAdd: true,
     expenseId: "",
     btnContext: "Save",
     inputRequestName: "",
     btnIsLoading: false,
+    isShowSubmitBtn: 'none',
     pageData: {
       purposeDescription: "",
       totalAmount: "",
       item: []
     },
     // 数据源
-    // listdata: [{
-    //   title: 'Team Build',
-    //   amount: '--',
-    //   icon: '/images/icons/teambuild_selected.png'
-    // }, {
-    //   title: 'Traffic',
-    //   amount: '--',
-    //   icon: '/images/icons/bus_selected.png'
-    // }, {
-    //   title: 'Room',
-    //   amount: '--',
-    //   icon: '/images/icons/house_selected.png'
-    // }, {
-    //   title: 'Food',
-    //   amount: '--',
-    //   icon: '/images/icons/meat_selected.png'
-    // }, {
-    //   title: 'Training',
-    //   amount: '--',
-    //   icon: '/images/icons/training_selected.png'
-    // }, {
-    //   title: 'Travel',
-    //   amount: '--',
-    //   icon: '/images/icons/travel_selected.png'
-    // }]
     listdata: []
   },
 
@@ -53,14 +30,14 @@ Page({
     var param = JSON.parse(options.json)
     console.log(param)
     var isAdd_t = typeof(param.isAdd) != typeof(undefined) ? param.isAdd : true
-    var isLocal_t = typeof(param.isLocal) != typeof(undefined) ? param.isLocal : true
+
     this.setData({
       isAdd: isAdd_t,
-      isLocal: isLocal_t,
       btnContext: isAdd_t ? "Save" : "Add",
-      expenseId: param.expenseId
+      expenseId: param.expenseId,
+      isShowSubmitBtn: (!isAdd_t && param.purposeStatus == 0) ? 'show' : 'none'
     })
-    if (!isAdd_t && !isLocal_t) {
+    if (!isAdd_t) {
       this.getPurposeData(this, param.expenseId)
     }
   },
@@ -89,6 +66,7 @@ Page({
   },
 
   onBtnClick: function(e) {
+    var that = this
     if (this.data.isAdd) {
       this.setData({
         btnIsLoading: true
@@ -99,18 +77,37 @@ Page({
       })
       //新增request name
       //call pao gor api,success then will change btn context to "Add"
-      this.setData({
-        isAdd: false,
-        isLocal: false,
-        btnContext: "Add",
-        btnIsLoading: false,
-        pageData: {
-          purposeDescription: this.data.inputRequestName,
-          totalAmount: "0.00",
-          item: []
+      api.request({
+        url: app.globalData.host + ":" + app.globalData.port + "/snapex/expense/savedraft",
+        method: "POST",
+        data: {
+          "staffId": app.globalData.staffId,
+          "description": that.data.inputRequestName,
+          "status": 0
         },
+        header: {
+          WechatAccessToken: null
+        },
+        success(res) {
+          console.log(res.data)
+          that.setData({
+            expenseId: res.data.message,
+            isAdd: false,
+            btnContext: "Add",
+            btnIsLoading: false,
+            pageData: {
+              purposeDescription: that.data.inputRequestName,
+              totalAmount: "0.00",
+              item: []
+            },
+          })
+          wx.hideLoading()
+        },
+        fail(res) {
+          that.onNetworkFail()
+          console.log(res)
+        }
       })
-      wx.hideLoading()
     } else {
       //新增invoice
       this.addInvoice(e)
@@ -118,13 +115,16 @@ Page({
   },
 
   getPurposeData: function(that, expenseId) {
-    wx.request({
+    api.request({
       url: app.globalData.host + ":" + app.globalData.port + "/snapex/expense/" + expenseId + "/detail",
+      header: {
+        WechatAccessToken: null
+      },
       success(res) {
         console.log(res.data)
         var tempPageData = {
-          purposeDescription: "西安 trip",
-          totalAmount: "2000"
+          purposeDescription: res.data.item.description,
+          totalAmount: res.data.item.totalAmount
         }
         that.setData({
           pageData: tempPageData
@@ -136,11 +136,20 @@ Page({
     })
   },
 
-  savePurposeData: function(that) {
+  submitPurpose: function(that) {
 
   },
 
   inputRequestName: function(e) {
     this.data.inputRequestName = e.detail.value
+  },
+
+  onNetworkFail() {
+    wx.showToast({
+      title: 'Server error',
+      icon: 'none', //如果要纯文本，不要icon，将值设为'none'
+      duration: 2000
+    })
+
   }
 })

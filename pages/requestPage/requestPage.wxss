@@ -33,5 +33,9 @@
 .addBtn{
   position:fixed;
   bottom:0;
+}
+
+
+.btn{
   width:100%;
 }
