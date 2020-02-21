@@ -47,8 +47,16 @@ Page({
         }
       })
     }
-
-    this.getExpenseList(that)
+    var that = this
+    wx.getStorage({
+      key: api.SESSION_ID,
+      success: function(res) {
+        that.getExpenseList(that)
+      },
+      fail: function(res) {
+       that.gotoLogin("")
+      }
+    })
   },
 
   getUserInfo: function(e) {
@@ -125,7 +133,7 @@ Page({
   onNetworkFail() {
     wx.showToast({
       title: 'Server error',
-      icon: 'none', 
+      icon: 'none',
       duration: 2000
     })
 
