@@ -22,7 +22,7 @@
 
 .listview {
   padding: 10px 0 20%;
-  align-content: center;
+  /* align-content: center; */
   width: 100%;
 }
 

@@ -14,14 +14,14 @@
 
 
 .fullpage {
-  align-items: center;
+  /* align-items: center; */
 }
 
 /* // 定义.listview设置容器样式 */
 
 .listview {
   padding: 10px 0 20%;
-  align-content: center;
+  /* align-content: center; */
   width: 100%;
 }
 
@@ -31,8 +31,8 @@
 }
 
 .addBtn{
-  position:fixed;
-  bottom:0;
+  /* position:fixed;
+  bottom:0; */
 }
 
 
