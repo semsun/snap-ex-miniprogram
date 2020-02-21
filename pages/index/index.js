@@ -84,7 +84,6 @@ Page({
         } else {
           res.data.items.forEach(v => {
             listData.push({
-              // title: v.expenseId,
               title: v.description,
               date: util.formatDate(new Date(v.submittedDate)),
               status: v.status,
@@ -126,7 +125,7 @@ Page({
   onNetworkFail() {
     wx.showToast({
       title: 'Server error',
-      icon: 'none', //如果要纯文本，不要icon，将值设为'none'
+      icon: 'none', 
       duration: 2000
     })
 
