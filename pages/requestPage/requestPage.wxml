@@ -1,13 +1,13 @@
 <!--pages/requestPage/requestPage.wxml-->
-<view class="container">
+<view class="">
   <view wx:if="{{!isAdd}}">
     <view class="request-overview">
       <view class="request-overview-text">{{pageData.purposeDescription}}</view>
       <view class="request-overview-text">CNY {{pageData.totalAmount}}</view>
     </view>
 
-    <view class='listview'>
-      <block wx:for="{{listdata}}" wx:key="index">
+    <view class='listview' style="display:{{isShowListView}}">
+      <block wx:for="{{pageData.item}}" wx:key="index">
         <navigator url="" class="weui-media-box weui-media-box_appmsg text-content" hover-class="weui-cell_active">
           <view class="weui-media-box__hd weui-media-box__hd_in-appmsg">
             <view class="icon-small-wrp">

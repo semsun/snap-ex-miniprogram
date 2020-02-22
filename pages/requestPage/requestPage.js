@@ -14,13 +14,12 @@ Page({
     inputRequestName: "",
     btnIsLoading: false,
     isShowSubmitBtn: 'none',
+    isShowListView: 'none',
     pageData: {
       purposeDescription: "",
       totalAmount: "",
       item: []
     },
-    // 数据源
-    listdata: []
   },
 
   /**
@@ -126,8 +125,11 @@ Page({
           purposeDescription: res.data.item.description,
           totalAmount: res.data.item.totalAmount
         }
+        //todo 判断有无invoice invoice list
+        var tempIsHasInvoiceListData = 'none'
         that.setData({
-          pageData: tempPageData
+          pageData: tempPageData,
+          isShowListView: tempIsHasInvoiceListData
         })
       },
       fail(res) {
