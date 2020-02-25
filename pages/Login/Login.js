@@ -156,8 +156,10 @@ Page({
       title: 'Logining...',
     })
     setTimeout(function () {
-      wx.hideLoading()
-      _this.setData({ loginBtnDisabled: false })
+      if(_this.data.loginBtnDisabled) {
+        wx.hideLoading()
+        _this.setData({ loginBtnDisabled: false })
+      }
     }, 10000)
 
     wx.scanCode({
@@ -178,24 +180,41 @@ Page({
               },
               success: function (res) {
                 console.log(res)
-                wx.setStorage({
-                  key: api.SESSION_ID,
-                  data: res.data.WechatAccessToken,
-                  success: function (res) {
-                    wx.redirectTo({
-                      url: '/pages/index/index',
-                    })
-                  },
-                  fail: function(res) {
-                    console.log("Set storage failed!")
+
+                if (res.data.WechatAccessToken) {
+                  wx.setStorage({
+                    key: api.SESSION_ID,
+                    data: res.data.WechatAccessToken,
+                    success: function (res) {
+                      wx.redirectTo({
+                        url: '/pages/index/index',
+                      })
+                    },
+                    fail: function (res) {
+                      console.log("Set storage failed!")
+                      if (_this.data.loginBtnDisabled) {
+                        wx.hideLoading()
+                        _this.setData({ loginBtnDisabled: false })
+                      }
+                      wx.showModal({
+                        title: "Local Error",
+                        content: 'Access local storage failed',
+                        showCancel: false
+                      })
+                    }
+                  })
+                } else {
+                  if (_this.data.loginBtnDisabled) {
                     wx.hideLoading()
-                    wx.showModal({
-                      title: "Local Error",
-                      content: 'Access local storage failed',
-                      showCancel: false
-                    })
+                    _this.setData({ loginBtnDisabled: false })
                   }
-                })
+                  var errMsg = res.errmsg ? res.errmsg : res.message
+                  wx.showModal({
+                    title: "Login Error",
+                    content: errMsg,
+                    showCancel: false
+                  })
+                }
               },
               fail: function (res) {
                 console.log("login failed!")
