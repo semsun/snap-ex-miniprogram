@@ -74,18 +74,17 @@ Page({
         },
         success(res) {
           console.log(res.data)
-          if (400 > res.data.status >= 200) {
+          if (res.data.status == 'SUCCESS') {
             that.setData({
               expenseId: res.data.message,
               isAdd: false,
               btnContext: "Add",
-                            pageData: {
+              pageData: {
                 purposeDescription: that.data.inputRequestName,
                 totalAmount: "0.00",
                 item: []
               },
             })
-            wx.hideLoading()
           } else {
             that.onNetworkFail()
           }
@@ -94,10 +93,11 @@ Page({
           that.onNetworkFail()
           console.log(res)
         },
-        complete(res){
+        complete(res) {
           that.setData({
             btnIsLoading: false
           })
+          wx.hideLoading()
         }
       })
     } else {

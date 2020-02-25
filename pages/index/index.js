@@ -82,9 +82,7 @@ Page({
     api.request({
       url: app.globalData.host + ":" + app.globalData.port + "/expense/search",
       method: "POST",
-      data: {
-        "staffId": app.globalData.staffId
-      },
+      data: {},
       header: {
         WechatAccessToken: null
       },
