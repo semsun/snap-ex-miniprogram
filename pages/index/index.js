@@ -75,6 +75,10 @@ Page({
   },
 
   getExpenseList: function(that) {
+    wx.showLoading({
+      title: 'Loading...',
+      mask:true
+    })
     api.request({
       url: app.globalData.host + ":" + app.globalData.port + "/expense/search",
       method: "POST",
@@ -85,6 +89,7 @@ Page({
         WechatAccessToken: null
       },
       success(res) {
+        wx.hideLoading()
         console.log(res.data)
         var listData = []
         if (typeof(res.data.items) == typeof(undefined)) {
@@ -131,6 +136,7 @@ Page({
   },
 
   onNetworkFail() {
+    wx.hideLoading()
     wx.showToast({
       title: 'Server error',
       icon: 'none',
@@ -139,5 +145,17 @@ Page({
 
   },
 
-  //todo 需要做下拉刷新
+  //下拉刷新
+  onPullDownRefresh: function(e) {
+    var that = this
+    wx.getStorage({
+      key: api.SESSION_ID,
+      success: function(res) {
+        that.getExpenseList(that)
+      },
+      fail: function(res) {
+        that.gotoLogin("")
+      }
+    })
+  }
 })
