@@ -16,7 +16,8 @@ Page({
     mail: '',
     name: '',
     sid: '',
-    qrCodeResult: ''
+    qrCodeResult: '',
+    loginBtnDisabled: false
   },
 
   /**
@@ -149,6 +150,16 @@ Page({
   scanQRCodeLogin: function() {
     var _this = this
 
+    _this.setData({ loginBtnDisabled: true})
+
+    wx.showLoading({
+      title: 'Logining...',
+    })
+    setTimeout(function () {
+      wx.hideLoading()
+      _this.setData({ loginBtnDisabled: false })
+    }, 10000)
+
     wx.scanCode({
       success: function(res) {
         console.log(res);
@@ -177,11 +188,23 @@ Page({
                   },
                   fail: function(res) {
                     console.log("Set storage failed!")
+                    wx.hideLoading()
+                    wx.showModal({
+                      title: "Local Error",
+                      content: 'Access local storage failed',
+                      showCancel: false
+                    })
                   }
                 })
               },
               fail: function (res) {
                 console.log("login failed!")
+                wx.hideLoading()
+                wx.showModal({
+                  title: "Server Error",
+                  content: 'Login failed',
+                  showCancel: false
+                })
               }
             })
           }
@@ -206,7 +229,7 @@ Page({
     }
     
     wx.navigateTo({
-      url: '/pages/dashboard/dashboard',
+      url: '/pages/index/index',
     })
   }
 })
