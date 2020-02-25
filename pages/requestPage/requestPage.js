@@ -116,10 +116,15 @@ Page({
         console.log(res.data)
         var tempPageData = {
           purposeDescription: res.data.item.description,
-          totalAmount: res.data.item.totalAmount
+          totalAmount: res.data.item.totalAmount,
+          item: res.data.item.purposes
         }
         //todo 判断有无invoice invoice list
-        var tempIsHasInvoiceListData = 'none'
+        if (!(tempPageData.item.length > 0)) {
+          var tempIsHasInvoiceListData = 'none'
+        } else {
+          var tempIsHasInvoiceListData = 'display'
+        }
         that.setData({
           pageData: tempPageData,
           isShowListView: tempIsHasInvoiceListData
@@ -145,5 +150,9 @@ Page({
       icon: 'none', //如果要纯文本，不要icon，将值设为'none'
       duration: 2000
     })
+  },
+
+  onItemClick: function(e) {
+
   }
 })
