@@ -77,7 +77,7 @@ Page({
       //新增request name
       //call pao gor api,success then will change btn context to "Add"
       api.request({
-        url: app.globalData.host + ":" + app.globalData.port + "/snapex/expense/savedraft",
+        url: app.globalData.host + ":" + app.globalData.port + "/expense/savedraft",
         method: "POST",
         data: {
           "staffId": app.globalData.staffId,
@@ -115,7 +115,7 @@ Page({
 
   getPurposeData: function(that, expenseId) {
     api.request({
-      url: app.globalData.host + ":" + app.globalData.port + "/snapex/expense/" + expenseId + "/detail",
+      url: app.globalData.host + ":" + app.globalData.port + "/expense/" + expenseId + "/detail",
       header: {
         WechatAccessToken: null
       },

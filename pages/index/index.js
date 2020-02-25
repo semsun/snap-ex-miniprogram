@@ -54,7 +54,7 @@ Page({
         that.getExpenseList(that)
       },
       fail: function(res) {
-       that.gotoLogin("")
+        that.gotoLogin("")
       }
     })
   },
@@ -76,7 +76,7 @@ Page({
 
   getExpenseList: function(that) {
     api.request({
-      url: app.globalData.host + ":" + app.globalData.port + "/snapex/expense/search",
+      url: app.globalData.host + ":" + app.globalData.port + "/expense/search",
       method: "POST",
       data: {
         "staffId": app.globalData.staffId
@@ -137,5 +137,7 @@ Page({
       duration: 2000
     })
 
-  }
+  },
+
+  //todo 需要做下拉刷新
 })
