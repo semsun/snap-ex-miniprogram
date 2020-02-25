@@ -2,6 +2,7 @@
 //获取应用实例
 const app = getApp()
 var authRequest = require('../../utils/authRequest.js')
+var util = require('../../utils/util.js')
 
 Page({
   data: {
@@ -91,9 +92,10 @@ Page({
     var tmpData = JSON.stringify({
       "code": "044001600111",
       "number": "37669836",
-      "date": "20170902",
+      "date": "2017-09-02",
       "category": 0,
-      "amount": 12.74
+      "amount": 12.74,
+      "expenseId": "test003"
     })
     console.log("toJson:" + tmpData)
     wx.navigateTo({
@@ -104,6 +106,13 @@ Page({
     // wx.setStorageSync("tmpData", "DataFromIndex");
     wx.navigateTo({
       url: '/pages/Invoice/invoiceList/invoiceList',
+    })
+  },
+
+  toPurpose: function (e) {
+    wx.navigateTo({
+      // url: '/pages/purpose/purpose?expenseId=test003&expenseDetailId=IeIErjVaGe',
+      url: '/pages/purpose/purpose?expenseId=test003',
     })
   },
   popButton: function(e) {
@@ -178,28 +187,55 @@ Page({
     //   }
     // })
 
-    authRequest.request({
-    // wx.request({
-      url: 'http://www.snapex.xyz:8001/snapex/expense/E0000001/basic', //仅为示例，并非真实的接口地址
-      method: 'GET',
+    wx.request({
+      // url: 'http://192.168.0.102:8080/mini_program', //仅为示例，并非真实的接口地址
+      url: 'http://www.snapex.xyz:8002/user/register', //仅为示例，并非真实的接口地址
+      method: 'POST',
+      data: {
+        "code": "asdf",
+        "hashKey": "O92t5LBl6WzA9hVeUatESONOKZlts6"
+      },
       header: {
-        WechatAccessToken: null
+        'content-type': 'application/json' // 默认值
       },
       success(res) {
         console.log(res.data)
 
-        // wx.getUserInfo({
-        //   withCredentials: true,
-        //   success: function (res) {
-        //     console.log(res)
-        //   },
-        //   fail: function (res) {
-        //     console.log(res)
-        //   }
-        // })
+        wx.getUserInfo({
+          withCredentials: true,
+          success: function (res) {
+            console.log(res)
+          },
+          fail: function (res) {
+            console.log(res)
+          }
+        })
 
       }
     })
+
+    // authRequest.request({
+    // // wx.request({
+    //   url: 'http://www.snapex.xyz:8001/snapex/expense/E0000001/basic', //仅为示例，并非真实的接口地址
+    //   method: 'GET',
+    //   header: {
+    //     WechatAccessToken: null
+    //   },
+    //   success(res) {
+    //     console.log(res.data)
+
+    //     // wx.getUserInfo({
+    //     //   withCredentials: true,
+    //     //   success: function (res) {
+    //     //     console.log(res)
+    //     //   },
+    //     //   fail: function (res) {
+    //     //     console.log(res)
+    //     //   }
+    //     // })
+
+    //   }
+    // })
 
     // wx.getStorage({
     //   key:"WechatAccessToken",
@@ -212,5 +248,10 @@ Page({
     //   }
     // })
 
+  },
+  createId: function() {
+    var length = 5
+    var str = Date.now().toString(36)
+    console.log(str)
   }
 })
