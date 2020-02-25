@@ -42,25 +42,10 @@ Page({
   },
 
   addInvoice: function(e) {
-    wx.scanCode({
-      success: (res) => {
-        var strArr = res.result.split(',');
-        console.log(strArr);
-        this.setData({
-          invoice: {
-            code: strArr[2],
-            number: strArr[3],
-            date: strArr[5],
-            amount: parseFloat(strArr[4])
-          }
-        })
-
-        var param = JSON.stringify(this.data.invoice);
-        console.log(param);
-        wx.navigateTo({
-          url: '/pages/Invoice/InvoicePage?json=' + param,
-        })
-      }
+    var that = this
+    wx.navigateTo({
+      // url: '/pages/purpose/purpose?expenseId=test003&expenseDetailId=IeIErjVaGe',
+      url: '/pages/purpose/purpose?expenseId=' + that.data.expenseId,
     })
   },
 
@@ -89,22 +74,30 @@ Page({
         },
         success(res) {
           console.log(res.data)
-          that.setData({
-            expenseId: res.data.message,
-            isAdd: false,
-            btnContext: "Add",
-            btnIsLoading: false,
-            pageData: {
-              purposeDescription: that.data.inputRequestName,
-              totalAmount: "0.00",
-              item: []
-            },
-          })
-          wx.hideLoading()
+          if (400 > res.data.status >= 200) {
+            that.setData({
+              expenseId: res.data.message,
+              isAdd: false,
+              btnContext: "Add",
+                            pageData: {
+                purposeDescription: that.data.inputRequestName,
+                totalAmount: "0.00",
+                item: []
+              },
+            })
+            wx.hideLoading()
+          } else {
+            that.onNetworkFail()
+          }
         },
         fail(res) {
           that.onNetworkFail()
           console.log(res)
+        },
+        complete(res){
+          that.setData({
+            btnIsLoading: false
+          })
         }
       })
     } else {
@@ -152,6 +145,5 @@ Page({
       icon: 'none', //如果要纯文本，不要icon，将值设为'none'
       duration: 2000
     })
-
   }
 })
