@@ -119,7 +119,7 @@ Page({
           totalAmount: res.data.item.totalAmount,
           item: res.data.item.purposes
         }
-        //todo 判断有无invoice invoice list
+        //todo invoice invoice list 给这加上icon资源
         if (!(tempPageData.item.length > 0)) {
           var tempIsHasInvoiceListData = 'none'
         } else {
@@ -153,6 +153,10 @@ Page({
   },
 
   onItemClick: function(e) {
-
+    wx.navigateTo({
+      // url: '/pages/purpose/purpose?expenseId=test003&expenseDetailId=IeIErjVaGe',
+      url: '/pages/purpose/purpose?expenseId=' + e.mark.itemdata.expenseId +
+        '&expenseDetailId=' + e.mark.itemdata.expenseDetailId,
+    })
   }
 })
