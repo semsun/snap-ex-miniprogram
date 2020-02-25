@@ -48,6 +48,48 @@ var auth = {
       fail: paramObj.fail
     })
   },
+  uploadFile: function (paramObj) {
+    // wx.removeStorageSync(SESSION_ID)
+    // 获取授权码
+    auth.getAuthCode({
+      success: function (authCode) {
+        // 添加授权码到 HEAD
+        paramObj.header.WechatAccessToken = authCode
+        paramObj.header.accept = "application/json;charset=UTF-8"
+        var tmpFunc = paramObj.success
+        paramObj.success = function (res) {
+          console.log("[UploadFile] " + res)
+          if (res.data.status && res.data.status == STATUS_EXPIRE) {
+            // Token 失效处理
+            wx.removeStorage({
+              key: SESSION_ID,
+              success: function (res) {
+                auth.retry = auth.retry + 1;
+                console.log("[UploadFile] Retry times: " + auth.retry)
+                if (auth.retry >= RETRY_TIMES) {
+                  auth.retry = 0
+                  // 限制自动重试次数
+                  console.log("[UploadFile] Full retry, return ERROR")
+                  typeof paramObj.fail == "function" && paramObj.fail(res)
+                } else {
+                  // 清除缓存，递归调用请求
+                  auth.uploadFile(paramObj)
+                  return
+                }
+              },
+            })
+          } else {
+            // 返回成功信息
+            console.log("[UploadFile] Return to business page")
+            typeof tmpFunc == "function" && tmpFunc(res)
+          }
+        }
+
+        wx.uploadFile(paramObj)
+      },
+      fail: paramObj.fail
+    })
+  },
   getAuthCode: function(paramObj) {
     wx.getStorage({
       key: SESSION_ID,
@@ -113,5 +155,6 @@ module.exports = {
   SESSION_ID: SESSION_ID,
   REG_URL: REG_URL,
   test1: auth.test1,
-  request: auth.request
+  request: auth.request,
+  uploadFile: auth.uploadFile
 }

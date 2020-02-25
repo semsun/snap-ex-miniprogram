@@ -10,7 +10,8 @@
     "pages/Invoice/invoiceDetail/invoiceDetail",
     "pages/requestPage/requestPage",
     "pages/Invoice/invoiceList/invoiceList",
-    "pages/Login/Login"
+    "pages/Login/Login",
+    "pages/purpose/purpose"
   ],
   "window": {
     "backgroundTextStyle": "light",

@@ -22,7 +22,19 @@ const formatNumber = n => {
   return n[1] ? n : '0' + n
 }
 
+const generateId = length => {
+  return Number(Math.random().toString().substr(3, length) + Date.now()).toString(36)
+}
+
+const findIndexInArray = (array, txt) => {
+  for( let i = 0; i < array.length; i++ ) {
+    if(array[i] == txt) return i
+  }
+}
+
 module.exports = {
   formatTime: formatTime,
-  formatDate: formatDate
+  formatDate: formatDate,
+  generateId: generateId,
+  findIndexInArray: findIndexInArray
 }

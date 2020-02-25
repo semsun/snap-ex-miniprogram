@@ -39,6 +39,6 @@ App({
     // host: "http://service.snapex.xyz",
     // port: "8090"
     host: "http://www.snapex.xyz",
-    port: "8001"
+    port: "8002"
   }
 })
