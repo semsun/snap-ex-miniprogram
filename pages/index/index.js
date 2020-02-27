@@ -47,16 +47,16 @@ Page({
         }
       })
     }
-    var that = this
-    wx.getStorage({
-      key: api.SESSION_ID,
-      success: function(res) {
-        that.getExpenseList(that)
-      },
-      fail: function(res) {
-        that.gotoLogin("")
-      }
-    })
+    // var that = this
+    // wx.getStorage({
+    //   key: api.SESSION_ID,
+    //   success: function(res) {
+    //     that.getExpenseList(that)
+    //   },
+    //   fail: function(res) {
+    //     that.gotoLogin("")
+    //   }
+    // })
   },
 
   getUserInfo: function(e) {
@@ -158,5 +158,19 @@ Page({
         that.gotoLogin("")
       }
     })
+  },
+
+  onShow(e){
+    var that = this
+    wx.getStorage({
+      key: api.SESSION_ID,
+      success: function (res) {
+        that.getExpenseList(that)
+      },
+      fail: function (res) {
+        that.gotoLogin("")
+      }
+    })
   }
+
 })
