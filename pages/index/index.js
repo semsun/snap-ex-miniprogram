@@ -77,7 +77,7 @@ Page({
   getExpenseList: function(that) {
     wx.showLoading({
       title: 'Loading...',
-      mask:true
+      mask: true
     })
     api.request({
       url: app.globalData.host + ":" + app.globalData.port + "/expense/search",
@@ -87,13 +87,13 @@ Page({
         WechatAccessToken: null
       },
       success(res) {
-        wx.hideLoading()
         console.log(res.data)
         var listData = []
-        if (typeof(res.data.items) == typeof(undefined)) {
+        if (typeof(res.data.data) == typeof(undefined) || res.data.code !=
+          0) {
           that.onNetworkFail()
         } else {
-          res.data.items.forEach(v => {
+          res.data.data.forEach(v => {
             listData.push({
               title: v.description,
               date: util.formatDate(new Date(v.submittedDate)),
@@ -109,6 +109,9 @@ Page({
       fail(res) {
         that.onNetworkFail()
         console.log(res)
+      },
+      complete(res) {
+        wx.hideLoading()
       }
     })
   },

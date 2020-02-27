@@ -114,10 +114,14 @@ Page({
       },
       success(res) {
         console.log(res.data)
+        res.data = res.data.data
+        if (res.code != 0) {
+          that.onNetworkFail()
+        }
         var tempPageData = {
-          purposeDescription: res.data.item.description,
-          totalAmount: res.data.item.totalAmount,
-          item: res.data.item.purposes
+          purposeDescription: res.data.description,
+          totalAmount: res.data.totalAmount,
+          item: res.data.purposes
         }
         //todo invoice invoice list 给这加上icon资源
         if (!(tempPageData.item.length > 0)) {
@@ -132,6 +136,7 @@ Page({
       },
       fail(res) {
         console.log(res)
+        that.onNetworkFail()
       }
     })
   },
