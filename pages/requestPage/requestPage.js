@@ -65,7 +65,6 @@ Page({
         url: app.globalData.host + ":" + app.globalData.port + "/expense/savedraft",
         method: "POST",
         data: {
-          "staffId": app.globalData.staffId,
           "description": that.data.inputRequestName,
           "status": 0
         },
@@ -74,9 +73,9 @@ Page({
         },
         success(res) {
           console.log(res.data)
-          if (res.data.status == 'SUCCESS') {
+          if (res.data.code == 0) {
             that.setData({
-              expenseId: res.data.message,
+              expenseId: res.data.id,
               isAdd: false,
               btnContext: "Add",
               pageData: {
@@ -114,10 +113,10 @@ Page({
       },
       success(res) {
         console.log(res.data)
-        res.data = res.data.data
-        if (res.code != 0) {
+        if (res.data.code != 0) {
           that.onNetworkFail()
-        }
+        }  
+        res.data = res.data.data
         var tempPageData = {
           purposeDescription: res.data.description,
           totalAmount: res.data.totalAmount,
