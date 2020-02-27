@@ -43,7 +43,7 @@ Page({
       btnContext: isAdd_t ? "Save" : "Add",
       expenseId: param.expenseId,
       isShowSubmitBtn: (!isAdd_t && param.purposeStatus == 0) ? 'show' : 'none',
-      isShowBtn: param.purposeStatus != 0 ? 'none' : 'show'
+      isShowBtn: (!isAdd_t && param.purposeStatus != 0 )? 'none' : 'show'
     })
     if (!isAdd_t) {
       this.getPurposeData(this, param.expenseId)
