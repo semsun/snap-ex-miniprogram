@@ -12,11 +12,6 @@
   font-size: 50rpx;
 }
 
-
-.fullpage {
-  /* align-items: center; */
-}
-
 /* // 定义.listview设置容器样式 */
 
 .listview {
@@ -30,12 +25,10 @@
   height: 40px;
 }
 
-.addBtn{
-  /* position:fixed;
-  bottom:0; */
-}
-
-
 .btn{
   width:100%;
+}
+
+.item-style{
+  background: #FFFFFF
 }

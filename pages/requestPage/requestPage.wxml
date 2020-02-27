@@ -8,7 +8,7 @@
 
     <view class='listview' style="display:{{isShowListView}}">
       <block wx:for="{{pageData.item}}" wx:key="index">
-        <view bindtap="onItemClick" mark:itemdata="{{item}}" class="weui-media-box weui-media-box_appmsg text-content" hover-class="weui-cell_active">
+        <view bindtap="onItemClick" mark:itemdata="{{item}}" class="weui-media-box weui-media-box_appmsg text-content item-style" hover-class="weui-cell_active">
           <view class="weui-media-box__hd weui-media-box__hd_in-appmsg">
             <view class="icon-small-wrp">
               <image class="icon_size" src="{{item.icon}}" />

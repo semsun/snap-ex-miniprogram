@@ -105,6 +105,7 @@ Page({
     }
   },
 
+  //获取purpose data
   getPurposeData: function(that, expenseId) {
     api.request({
       url: app.globalData.host + ":" + app.globalData.port + "/expense/" + expenseId + "/detail",
@@ -115,13 +116,38 @@ Page({
         console.log(res.data)
         if (res.data.code != 0) {
           that.onNetworkFail()
-        }  
+        }
         res.data = res.data.data
+
         var tempPageData = {
           purposeDescription: res.data.description,
-          totalAmount: res.data.totalAmount,
-          item: res.data.purposes
+          totalAmount: res.data.totalAmount
         }
+        tempPageData.item = res.data.purposes.map(function(value, index, array) {
+          switch (value.purpose) {
+            case 'Team Build':
+              value.icon = "/images/icons/teambuild_selected.png"
+              break
+            case 'Taffic':
+              value.icon = "/images/icons/bus_selected.png"
+              break
+            case 'Hotel':
+              value.icon = "/images/icons/house_selected.png"
+              break
+            case 'Food':
+              value.icon = "/images/icons/meat_selected.png"
+              break
+            case 'Ttaining':
+              value.icon = "/images/icons/training_selected.png"
+              break
+            case 'Travel':
+              value.icon = "/images/icons/travel_selected.png"
+              break
+            default:
+              value.icon = "/images/icons/teambuild_selected.png"
+          }
+          return value
+        })
         //todo invoice invoice list 给这加上icon资源
         if (!(tempPageData.item.length > 0)) {
           var tempIsHasInvoiceListData = 'none'
