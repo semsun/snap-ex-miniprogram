@@ -13,8 +13,16 @@ Page({
     btnContext: "Save",
     inputRequestName: "",
     btnIsLoading: false,
+    btnSumitIsLoading: false,
     isShowSubmitBtn: 'none',
+    isShowBtn: 'show',
     isShowListView: 'none',
+    dialogShow: false,
+    buttons: [{
+      text: 'cancel'
+    }, {
+      text: 'confirm'
+    }],
     pageData: {
       purposeDescription: "",
       totalAmount: "",
@@ -34,7 +42,8 @@ Page({
       isAdd: isAdd_t,
       btnContext: isAdd_t ? "Save" : "Add",
       expenseId: param.expenseId,
-      isShowSubmitBtn: (!isAdd_t && param.purposeStatus == 0) ? 'show' : 'none'
+      isShowSubmitBtn: (!isAdd_t && param.purposeStatus == 0) ? 'show' : 'none',
+      isShowBtn: param.purposeStatus != 0 ? 'none' : 'show'
     })
     if (!isAdd_t) {
       this.getPurposeData(this, param.expenseId)
@@ -107,6 +116,10 @@ Page({
 
   //获取purpose data
   getPurposeData: function(that, expenseId) {
+    wx.showLoading({
+      title: 'Loading...',
+      mask: true
+    })
     api.request({
       url: app.globalData.host + ":" + app.globalData.port + "/expense/" + expenseId + "/detail",
       header: {
@@ -148,26 +161,35 @@ Page({
           }
           return value
         })
-        //todo invoice invoice list 给这加上icon资源
+
+        var isShowSubmitBtn_temp = that.data.isShowSubmitBtn
         if (!(tempPageData.item.length > 0)) {
           var tempIsHasInvoiceListData = 'none'
+          isShowSubmitBtn_temp = 'none'
         } else {
           var tempIsHasInvoiceListData = 'display'
+
         }
         that.setData({
           pageData: tempPageData,
-          isShowListView: tempIsHasInvoiceListData
+          isShowListView: tempIsHasInvoiceListData,
+          isShowSubmitBtn: isShowSubmitBtn_temp
         })
       },
       fail(res) {
         console.log(res)
         that.onNetworkFail()
+      },
+      complete(res) {
+        wx.hideLoading()
       }
     })
   },
 
   submitPurpose: function(that) {
-
+    this.setData({
+      dialogShow: true
+    })
   },
 
   inputRequestName: function(e) {
@@ -188,5 +210,61 @@ Page({
       url: '/pages/purpose/purpose?expenseId=' + e.mark.itemdata.expenseId +
         '&expenseDetailId=' + e.mark.itemdata.expenseDetailId,
     })
+  },
+
+  onPullDownRefresh(e) {
+    if (!this.data.isAdd) {
+      this.getPurposeData(this, this.data.expenseId)
+    }
+  },
+
+  tapDialogButton(e) {
+    this.setData({
+      dialogShow: false,
+    })
+    if (e.detail.index == 1) {
+      this.callSubmitRequest()
+    }
+  },
+
+  callSubmitRequest() {
+    wx.showLoading({
+      title: 'Loading...',
+      mask: true
+    })
+    var that = this
+    this.setData({
+      btnSumitIsLoading: true
+    })
+    api.request({
+      url: app.globalData.host + ":" + app.globalData.port + "/expense/" + this.data.expenseId + "/submit",
+      method: "POST",
+      data: {},
+      header: {
+        WechatAccessToken: null
+      },
+      success(res) {
+        console.log(res.data)
+        var result = res.data
+        if (result.code == 0) {
+          wx.navigateBack({
+            delta: 1
+          })
+        } else {
+          that.onNetworkFail()
+        }
+      },
+      fail(res) {
+        that.onNetworkFail()
+        console.log(res)
+      },
+      complete(res) {
+        that.setData({
+          btnSumitIsLoading: false
+        })
+        wx.hideLoading()
+      }
+    })
   }
+
 })
