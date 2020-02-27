@@ -4,9 +4,10 @@ const api = require('../../utils/authRequest.js')
 const util = require('../../utils/util.js')
 
 const ID_PARAM = "[purposeId]"
+const TOKEN = "[accessToken]"
 const API_ADD_PURPOSE = app.globalData.host + ":" + app.globalData.port + "/expense/purpose/add"
 const API_UPLOAD_INVOICE_IMG = app.globalData.host + ":" + app.globalData.port + "/invoice/" + ID_PARAM + "/upload"
-const API_QUERY_INVOICE_IMG = app.globalData.host + ":" + app.globalData.port + "/invoice/" + ID_PARAM + "/image"
+const API_QUERY_INVOICE_IMG = app.globalData.host + ":" + app.globalData.port + "/invoice/" + ID_PARAM + "/image?access_token=" + TOKEN
 const API_QUREY_PURPOSE = app.globalData.host + ":" + app.globalData.port + "/expense/purpose/" + ID_PARAM
 const BACK_URL = "/pages/index/index"
 
@@ -130,6 +131,8 @@ Page({
               ["purpose.category"]: iPurpose,
               currencyIndex: iCurrency
             })
+
+            _this.queryInvoiceImage(expenseDetailId)
           }
           wx.hideLoading()
         },
@@ -275,7 +278,7 @@ Page({
         console.log(res)
         if (res.data.status == 'SUCCESS') {
           // 保存成功后操作
-          if (_this.data.purpose.image_path) {
+          if ( _this.data.purpose.image_path && !_this.data.purpose.expenseDetailId ) {
             var _image_path = _this.data.purpose.image_path[0]
             console.log("ImagePath: " + _image_path)
             // Purpose 保存成功后，上传 invoice 图片
@@ -414,21 +417,13 @@ Page({
     })
   },
 
-  queryInvoiceImage() {
+  queryInvoiceImage(purposeId) {
     var _this = this
-    var queryUrl = API_QUERY_INVOICE_IMG.replace(ID_PARAM, this.data.purpose.expenseDetailId)
-    api.request({
-      url: queryUrl,
-      method: "GET",
-      header: {
-        WechatAccessToken: null
-      },
-      success: function (res) {
-        console.log(res)
-        _this.data.purpose.image_path = res.data
-      },
-      fail: function (res) {
-        console.log(res)
+    api.getAuthCode({
+      success: function (code) {
+        var imagePath = API_QUERY_INVOICE_IMG.replace(ID_PARAM, purposeId).replace(TOKEN, code)
+
+        _this.setData({ ["purpose.image_path"]: imagePath })
       }
     })
   }
