@@ -34,7 +34,7 @@ Page({
       expenseDetailId: null,
       expenseId: "",
       invoiceId: "",
-      purpose: "",
+      purpose: this.data.purposeArry[0],
       description: "Catering service",
       image_path: ""
     },
@@ -305,9 +305,10 @@ Page({
                     showCancel: false
                   })
 
-                  wx.redirectTo({
-                    url: BACK_URL,
-                  })
+                  // wx.redirectTo({
+                  //   url: BACK_URL,
+                  // })
+                  wx.navigateBack()
                 }
               },
               fail: function (res) {
@@ -329,9 +330,10 @@ Page({
               showCancel: false
             })
 
-            wx.redirectTo({
-              url: BACK_URL,
-            })
+            // wx.redirectTo({
+            //   url: BACK_URL,
+            // })
+            wx.navigateBack()
           }
         } else {
           // 保存失败

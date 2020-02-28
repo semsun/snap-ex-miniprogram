@@ -218,10 +218,13 @@ Page({
               },
               fail: function (res) {
                 console.log("login failed!")
-                wx.hideLoading()
+                if (_this.data.loginBtnDisabled) {
+                  wx.hideLoading()
+                  _this.setData({ loginBtnDisabled: false })
+                }
                 wx.showModal({
                   title: "Server Error",
-                  content: 'Login failed',
+                  content: 'Login failed:' + JSON.stringify(res),
                   showCancel: false
                 })
               }
