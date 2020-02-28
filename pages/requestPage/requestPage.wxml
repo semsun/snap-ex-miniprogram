@@ -8,7 +8,7 @@
 
     <view class='listview' style="display:{{isShowListView}}">
       <block wx:for="{{pageData.item}}" wx:key="index">
-        <view bindtap="onItemClick" mark:itemdata="{{item}}" class="weui-media-box weui-media-box_appmsg text-content" hover-class="weui-cell_active">
+        <view bindtap="onItemClick" mark:itemdata="{{item}}" class="weui-media-box weui-media-box_appmsg text-content item-style" hover-class="weui-cell_active">
           <view class="weui-media-box__hd weui-media-box__hd_in-appmsg">
             <view class="icon-small-wrp">
               <image class="icon_size" src="{{item.icon}}" />
@@ -27,10 +27,13 @@
   <view wx:else class="request-overview">
     <input class="request-overview-text" bindinput="inputRequestName" auto-focus placeholder="Input Request Name" />
   </view>
-  <button class="btn" type="primary" bindtap="submitPurpose" style="display:{{isShowSubmitBtn}}">Submit</button>
+  <button class="btn" type="primary" loading="{{btnSumitIsLoading}}" bindtap="submitPurpose" style="display:{{isShowSubmitBtn}}">Submit</button>
 
   <view style="display: flex;align-items: center;justify-content: center;  width: 100%;height: 100%;">
-    <button class="btn addBtn" loading="{{btnIsLoading}}" type="primary" bindtap="onBtnClick">{{btnContext}}</button>
-
+    <button style="display:{{isShowBtn}}" class="btn addBtn" loading="{{btnIsLoading}}" type="primary" bindtap="onBtnClick">{{btnContext}}</button>
   </view>
+
+  <mp-dialog  show="{{dialogShow}}" bindbuttontap="tapDialogButton" buttons="{{buttons}}" mask="true">
+    <view>Submit now!</view>
+  </mp-dialog>
 </view>

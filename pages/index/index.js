@@ -47,16 +47,16 @@ Page({
         }
       })
     }
-    var that = this
-    wx.getStorage({
-      key: api.SESSION_ID,
-      success: function(res) {
-        that.getExpenseList(that)
-      },
-      fail: function(res) {
-        that.gotoLogin("")
-      }
-    })
+    // var that = this
+    // wx.getStorage({
+    //   key: api.SESSION_ID,
+    //   success: function(res) {
+    //     that.getExpenseList(that)
+    //   },
+    //   fail: function(res) {
+    //     that.gotoLogin("")
+    //   }
+    // })
   },
 
   getUserInfo: function(e) {
@@ -77,7 +77,7 @@ Page({
   getExpenseList: function(that) {
     wx.showLoading({
       title: 'Loading...',
-      mask:true
+      mask: true
     })
     api.request({
       url: app.globalData.host + ":" + app.globalData.port + "/expense/search",
@@ -87,13 +87,13 @@ Page({
         WechatAccessToken: null
       },
       success(res) {
-        wx.hideLoading()
         console.log(res.data)
         var listData = []
-        if (typeof(res.data.items) == typeof(undefined)) {
+        if (typeof(res.data.data) == typeof(undefined) || res.data.code !=
+          0) {
           that.onNetworkFail()
         } else {
-          res.data.items.forEach(v => {
+          res.data.data.forEach(v => {
             listData.push({
               title: v.description,
               date: util.formatDate(new Date(v.submittedDate)),
@@ -109,6 +109,9 @@ Page({
       fail(res) {
         that.onNetworkFail()
         console.log(res)
+      },
+      complete(res) {
+        wx.hideLoading()
       }
     })
   },
@@ -155,5 +158,19 @@ Page({
         that.gotoLogin("")
       }
     })
+  },
+
+  onShow(e){
+    var that = this
+    wx.getStorage({
+      key: api.SESSION_ID,
+      success: function (res) {
+        that.getExpenseList(that)
+      },
+      fail: function (res) {
+        that.gotoLogin("")
+      }
+    })
   }
+
 })
