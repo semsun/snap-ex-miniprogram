@@ -17,7 +17,7 @@ var auth = {
         var tmpFunc = paramObj.success
         paramObj.success = function(res) {
           console.log(res)
-          if (res.data.status && res.data.status == STATUS_EXPIRE) {
+          if (res.data.code && res.data.code == STATUS_EXPIRE) {
             // Token 失效处理
             wx.removeStorage({
               key: SESSION_ID,
@@ -59,7 +59,7 @@ var auth = {
         var tmpFunc = paramObj.success
         paramObj.success = function (res) {
           console.log("[UploadFile] " + res)
-          if (res.data.status && res.data.status == STATUS_EXPIRE) {
+          if (res.data.code && res.data.code == STATUS_EXPIRE) {
             // Token 失效处理
             wx.removeStorage({
               key: SESSION_ID,

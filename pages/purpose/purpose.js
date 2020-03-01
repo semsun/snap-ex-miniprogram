@@ -7,9 +7,10 @@ const ID_PARAM = "[purposeId]"
 const TOKEN = "[accessToken]"
 const API_ADD_PURPOSE = app.globalData.host + ":" + app.globalData.port + "/expense/purpose/add"
 const API_UPLOAD_INVOICE_IMG = app.globalData.host + ":" + app.globalData.port + "/invoice/" + ID_PARAM + "/upload"
+const API_ADD_INVOICE = app.globalData.host + ":" + app.globalData.port + "/invoice/add"
+const API_QUERY_INVOICE = app.globalData.host + ":" + app.globalData.port + "/invoice/" + ID_PARAM
 const API_QUERY_INVOICE_IMG = app.globalData.host + ":" + app.globalData.port + "/invoice/" + ID_PARAM + "/image?access_token=" + TOKEN
 const API_QUREY_PURPOSE = app.globalData.host + ":" + app.globalData.port + "/expense/purpose/" + ID_PARAM
-const BACK_URL = "/pages/index/index"
 
 Page({
 
@@ -24,7 +25,7 @@ Page({
     purpose: {
       code: "12345",
       number: "98765",
-      category: 0, /* 0: Team Build; 1: Taffic; 2: Room; 3: Food; 4:Training; 5: Travel */
+      purposeId: 0, /* 0: Team Build; 1: Taffic; 2: Room; 3: Food; 4:Training; 5: Travel */
       companyName: "Test Company",
       occurDate: "20191017",
       currency: "CNY",
@@ -34,7 +35,7 @@ Page({
       expenseDetailId: null,
       expenseId: "",
       invoiceId: "",
-      purpose: this.data.purposeArry[0],
+      purposeName: "",
       description: "Catering service",
       image_path: ""
     },
@@ -122,17 +123,19 @@ Page({
         },
         success: function(res) {
           console.log(res)
-          if(res.data.item) {
-            _this.setData({ purpose: res.data.item })
+          if(0 == res.data.code && res.data.data) {
+            _this.setData({ purpose: res.data.data })
+            _this.setData({ ["purpose.expenseDetailId"]: expenseDetailId }) // return is expenseDetailId
             _this.setData({ ["purpose.expenseId"]: expenseId })
-            var iPurpose = util.findIndexInArray(_this.data.purposeArray, _this.data.purpose.purpose)
+            var iPurpose = util.findIndexInArray(_this.data.purposeArray, _this.data.purpose.purposeName)
             var iCurrency = util.findIndexInArray(_this.data.currencyArray, _this.data.purpose.currency)
             _this.setData({
-              ["purpose.category"]: iPurpose,
+              ["purpose.purposeId"]: iPurpose,
               currencyIndex: iCurrency
             })
 
-            _this.queryInvoiceImage(expenseDetailId)
+            // _this.queryInvoiceImage(_this.data.purpose.invoiceId)
+            _this.queryInvoiceImage("XiAKPXxhRBTgOEyzJIgTIFpUhmoLDIdU")
           }
           wx.hideLoading()
         },
@@ -144,6 +147,7 @@ Page({
       console.log("New Purpose")
       _this.setData({ ['purpose.occurDate']: util.formatDate(new Date) })
       _this.setData({ ["purpose.expenseId"]: expenseId })
+      _this.setData({ ["purpose.purposeName"]: _this.data.purposeArray[0]})
     }
 
   },
@@ -204,11 +208,11 @@ Page({
     //   console.log(res.dataset.id);
     // })
     console.log($tmp);
-    this.setData({ ['purpose.category']: $tmp })
-    this.setData({ ['purpose.purpose']: this.data.purposeArray[$tmp]})
+    this.setData({ ['purpose.purposeId']: $tmp })
+    this.setData({ ['purpose.purposeName']: this.data.purposeArray[$tmp]})
   },
 
-  addInvoice: function (e) {
+  addPurpose: function (e) {
     wx.scanCode({
       success: (res) => {
         var strArr = res.result.split(',');
@@ -257,7 +261,7 @@ Page({
     })
   },
 
-  saveInvoice: function () {
+  saveAction: function () {
     var _this = this
 
     wx.showLoading({
@@ -265,8 +269,14 @@ Page({
     })
     setTimeout(function () {
       wx.hideLoading()
-    }, 10000)
+    }, 50000)
 
+    this.addInvoice()
+  },
+
+  savePurpose: function () {
+    var _this = this
+    console.log("Save Purpose")
     api.request({
       url: API_ADD_PURPOSE,
       method: "POST",
@@ -276,71 +286,32 @@ Page({
       data: _this.data.purpose,
       success: function (res) {
         console.log(res)
-        if (res.data.status == 'SUCCESS') {
+        if (res.data.code == 0) {
+          var expenseDetailId = res.data.id
+          _this.setData({ ["purpose.expenseDetailId"]: expenseDetailId })
+          // 由于关联图片问题，需先新增 invoice
+          if (_this.data.purpose.image_path) {
+            _this.uploadImage();
+          }
           // 保存成功后操作
-          if ( _this.data.purpose.image_path && !_this.data.purpose.expenseDetailId ) {
-            var _image_path = _this.data.purpose.image_path[0]
-            console.log("ImagePath: " + _image_path)
-            // Purpose 保存成功后，上传 invoice 图片
-            var upload_url = API_UPLOAD_INVOICE_IMG.replace(ID_PARAM, res.data.message)
-            console.log(upload_url)
-            api.uploadFile({
-              url: upload_url,
-              filePath: _image_path,
-              name: "invoice",
-              header: {
-                WechatAccessToken: null,
-              },
-              formData: {
-                expensePurposeId: res.data.message
-              },
-              success: function (res) {
-                console.log("[UploadFile]" + res)
-                // 上传图片成功
-                if (res.status == 'SUCCESS') {
-                  wx.hideLoading()
-                  wx.showModal({
-                    title: 'Save Error',
-                    content: res.message,
-                    showCancel: false
-                  })
-
-                  // wx.redirectTo({
-                  //   url: BACK_URL,
-                  // })
-                  wx.navigateBack()
-                }
-              },
-              fail: function (res) {
-                console.log(res)
-                wx.hideLoading()
-                wx.showModal({
-                  title: 'Upload Invoice Error',
-                  content: "Purpose have saved, but invoice picture upload failed!",
-                  showCancel: false
-                })
-              }
-            })
-          } else {
-            // Purpose 保存成功后，上传 invoice 图片
+          if (!_this.data.purpose.image_path) {
+            // Purpose 保存成功
             wx.hideLoading()
             wx.showModal({
-              title: 'Save Error',
-              content: res.message,
-              showCancel: false
+              title: 'Save Success',
+              content: "Purpose saved successful!",
+              showCancel: false,
+              success: function (res) {
+                wx.navigateBack()
+              }
             })
-
-            // wx.redirectTo({
-            //   url: BACK_URL,
-            // })
-            wx.navigateBack()
           }
         } else {
           // 保存失败
           wx.hideLoading()
           wx.showModal({
             title: 'Save Error',
-            content: res.data.message,
+            content: res.data.msg,
             showCancel: false
           })
         }
@@ -355,51 +326,90 @@ Page({
         })
       }
     })
+  },
+  uploadImage() {
+    console.log("Upload Image")
+    var _this = this
+    var _image_path = _this.data.purpose.image_path[0]
+    var invoiceId = _this.data.purpose.invoiceId
+    console.log("ImagePath: " + _image_path)
+    // Purpose 保存成功后，上传 invoice 图片
+    var upload_url = API_UPLOAD_INVOICE_IMG.replace(ID_PARAM, invoiceId)
+    console.log(upload_url)
+    api.uploadFile({
+      url: upload_url,
+      filePath: _image_path,
+      name: "invoice",
+      header: {
+        WechatAccessToken: null,
+      },
+      formData: {
+        invoiceId: invoiceId
+      },
+      success: function (res) {
+        console.log("[UploadFile]" + JSON.stringify(res.data))
+        var data = JSON.parse(res.data)
 
-    // var item = { 
-    //   purpose: this.data.purpose_array[this.data.purpose_index].purpose, 
-    //   date: this.data.invoice.date, 
-    //   currency: this.data.invoice.currency, 
-    //   amount: this.data.invoice.amount }
-
-    //   wx.getStorage({
-    //     key: 'purposes',
-    //     success: function(res) {
-    //       res.data.push(item);
-
-    //       wx.setStorage({
-    //         key: 'purposes',
-    //         data: res.data,
-    //         success:function(res) {
-    //           wx.showToast({
-    //             icon: 'cancel',
-    //             title: 'Save Successful',
-    //           })
-    //           setTimeout(function(){
-    //             wx.navigateTo({
-    //               url: '/pages/claimForm/claimForm',
-    //             })
-    //           }, 800)
-    //         },
-    //         fail: function (res) {
-    //           wx.hideLoading()
-    //           wx.showModal({
-    //             title: 'Save Failed!',
-    //             content: res.errMsg,
-    //             showCancel: false
-    //           })
-    //         }
-    //       })
-    //     },
-    //     fail: function (res) {
-    //       wx.hideLoading()
-    //       wx.showModal({
-    //         title: 'Save Failed!',
-    //         content: res.errMsg,
-    //         showCancel: false
-    //       })
-    //     }
-    //   })
+        // 上传图片成功
+        if (data.code == 0) {
+          wx.hideLoading()
+          wx.showModal({
+            title: 'Save Successful',
+            content: "Purpose with images saved successfull!",
+            showCancel: false,
+            success: function (res) {
+              wx.navigateBack()
+            }
+          })
+        } else {
+          wx.hideLoading()
+          wx.showModal({
+            title: 'Save Error',
+            content: "Purpose have saved, but image upload failed!",
+            showCancel: false
+          })
+        }
+      },
+      fail: function (res) {
+        console.log(res)
+        wx.hideLoading()
+        wx.showModal({
+          title: 'Upload Invoice Error',
+          content: "Purpose have saved, but invoice picture upload failed!",
+          showCancel: false
+        })
+      }
+    })
+  },
+  addInvoice() {
+    var _this = this
+    console.log("Add invoice")
+    api.request({
+      url: API_ADD_INVOICE,
+      method: "POST",
+      header: {
+        WechatAccessToken: null
+      },
+      data: {},
+      success: function(res) {
+        console.log("[ADD INVOICE SUCCESS]" + res)
+        // 新增 invoice 成功，使用 invoice 关联上传图片
+        if (res.data.code == 0) {
+          _this.setData({ ["purpose.invoiceId"]: res.data.data.invoiceId })
+          // 获取到 InvoiceId 后，带入 purpose 并保存。
+          _this.savePurpose();
+        }
+      },
+      fail: function(res) {
+        console.log("[ADD INVOICE FAILED]" + res)
+        wx.hideLoading()
+        wx.showModal({
+          title: 'Upload Invoice Error',
+          content: res.data.msg,
+          showCancel: false
+        })
+      }
+    })
   },
   takeInvoicePhoto() {
     console.log("click take pricture")
@@ -419,14 +429,48 @@ Page({
     })
   },
 
-  queryInvoiceImage(purposeId) {
+  queryInvoiceImage(invoiceId) {
     var _this = this
-    api.getAuthCode({
-      success: function (code) {
-        var imagePath = API_QUERY_INVOICE_IMG.replace(ID_PARAM, purposeId).replace(TOKEN, code)
+    var invoicde_url = API_QUERY_INVOICE.replace(ID_PARAM, invoiceId)
+    api.request({
+      url: invoicde_url,
+      method: "GET",
+      header: {
+        WechatAccessToken: null
+      },
+      success: function (res) {
+        console.log(res)
+        
+        if (res.data.code == 0) {
+          var imagePath = API_QUERY_INVOICE_IMG.replace(ID_PARAM, invoiceId).replace(TOKEN, res.data.data.accessKey)
+          console.log(imagePath)
 
-        _this.setData({ ["purpose.image_path"]: imagePath })
+          _this.setData({ ["purpose.image_path"]: imagePath })
+        } else {
+          wx.hideLoading()
+          wx.showModal({
+            title: 'Get Image Error',
+            content: res.data.msg,
+            showCancel: false
+          })
+        }
+      },
+      fail: function (res) {
+        wx.hideLoading()
+        wx.showModal({
+          title: 'Get Image Error',
+          content: JSON.stringify(res),
+          showCancel: false
+        })
       }
     })
+    // api.getAuthCode({
+    //   success: function (code) {
+    //     var imagePath = API_QUERY_INVOICE_IMG.replace(ID_PARAM, purposeId).replace(TOKEN, code)
+    //     console.log(imagePath)
+
+    //     _this.setData({ ["purpose.image_path"]: imagePath })
+    //   }
+    // })
   }
 })

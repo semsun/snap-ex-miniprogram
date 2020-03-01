@@ -8,7 +8,7 @@
           <view class="weui-cell">
             <block wx:for="{{[0, 1, 2]}}" wx:key="unique" wx:for-item="i">
               <view data-id="{{i}}" bindtap="changeCategory" class="select_box align_col_center">
-                <block wx:if="{{i === purpose.category}}">
+                <block wx:if="{{i === purpose.purposeId}}">
                   <image class="icon_size" src="{{categorys[i].icon_selected}}" />
                 </block>
                 <block wx:else>
@@ -21,7 +21,7 @@
           <view class="weui-cell">
             <block wx:for="{{[3, 4, 5]}}" wx:key="unique" wx:for-item="i">
               <view data-id="{{i}}" bindtap="changeCategory" class="select_box align_col_center">
-                <block wx:if="{{i === purpose.category}}">
+                <block wx:if="{{i === purpose.purposeId}}">
                   <image class="icon_size" src="{{categorys[i].icon_selected}}" />
                 </block>
                 <block wx:else>
@@ -137,7 +137,7 @@
 
   <view class="btn-area" id="buttonContainer">
     <!-- <button type="primary" bindtap="queryInvoiceImage">ReadPicture</button> -->
-    <button type="primary" bindtap="saveInvoice">Save</button>
-    <button type="primary" bindtap="addInvoice">Add New</button>
+    <button type="primary" bindtap="saveAction">Save</button>
+    <button type="primary" bindtap="addPurpose">Add New</button>
   </view>
 </view>
