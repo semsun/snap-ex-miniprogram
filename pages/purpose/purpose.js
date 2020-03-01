@@ -213,26 +213,44 @@ Page({
   },
 
   addPurpose: function (e) {
-    wx.scanCode({
-      success: (res) => {
-        var strArr = res.result.split(',');
-        console.log(strArr);
-        this.setData({
-          purpose: {
-            code: strArr[2],
-            number: strArr[3],
-            date: strArr[5],
-            amount: parseFloat(strArr[4])
-          }
-        })
+    var _this = this
 
-        var param = JSON.stringify(this.data.purpose);
-        console.log(param);
+    wx.showLoading({
+      title: 'Saving...',
+    })
+    setTimeout(function () {
+      wx.hideLoading()
+    }, 50000)
+
+    var newPurposeUrl = "/pages/purpose/purpose?expenseId=" + _this.data.purpose.expenseId
+
+    this.addInvoice({
+      success: function (res) {
         wx.redirectTo({
-          url: '/pages/Invoice/InvoicePage?json=' + param,
+          url: newPurposeUrl,
         })
       }
     })
+    // wx.scanCode({
+    //   success: (res) => {
+    //     var strArr = res.result.split(',');
+    //     console.log(strArr);
+    //     this.setData({
+    //       purpose: {
+    //         code: strArr[2],
+    //         number: strArr[3],
+    //         date: strArr[5],
+    //         amount: parseFloat(strArr[4])
+    //       }
+    //     })
+
+    //     var param = JSON.stringify(this.data.purpose);
+    //     console.log(param);
+    //     wx.redirectTo({
+    //       url: '/pages/Invoice/InvoicePage?json=' + param,
+    //     })
+    //   }
+    // })
   },
 
   bindCurrencyChange(e) {
@@ -271,10 +289,12 @@ Page({
       wx.hideLoading()
     }, 50000)
 
-    this.addInvoice()
+    this.addInvoice({success: function(res) {
+      wx.navigateBack()
+    }})
   },
 
-  savePurpose: function () {
+  savePurpose: function (param) {
     var _this = this
     console.log("Save Purpose")
     api.request({
@@ -291,7 +311,7 @@ Page({
           _this.setData({ ["purpose.expenseDetailId"]: expenseDetailId })
           // 由于关联图片问题，需先新增 invoice
           if (_this.data.purpose.image_path) {
-            _this.uploadImage();
+            _this.uploadImage(param);
           }
           // 保存成功后操作
           if (!_this.data.purpose.image_path) {
@@ -301,9 +321,7 @@ Page({
               title: 'Save Success',
               content: "Purpose saved successful!",
               showCancel: false,
-              success: function (res) {
-                wx.navigateBack()
-              }
+              success: param.success
             })
           }
         } else {
@@ -327,7 +345,7 @@ Page({
       }
     })
   },
-  uploadImage() {
+  uploadImage(param) {
     console.log("Upload Image")
     var _this = this
     var _image_path = _this.data.purpose.image_path[0]
@@ -357,9 +375,7 @@ Page({
             title: 'Save Successful',
             content: "Purpose with images saved successfull!",
             showCancel: false,
-            success: function (res) {
-              wx.navigateBack()
-            }
+            success: param.success
           })
         } else {
           wx.hideLoading()
@@ -381,7 +397,7 @@ Page({
       }
     })
   },
-  addInvoice() {
+  addInvoice(param) {
     var _this = this
     console.log("Add invoice")
     api.request({
@@ -397,7 +413,7 @@ Page({
         if (res.data.code == 0) {
           _this.setData({ ["purpose.invoiceId"]: res.data.data.invoiceId })
           // 获取到 InvoiceId 后，带入 purpose 并保存。
-          _this.savePurpose();
+          _this.savePurpose(param);
         }
       },
       fail: function(res) {
