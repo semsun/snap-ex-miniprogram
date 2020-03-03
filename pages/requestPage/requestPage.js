@@ -137,23 +137,23 @@ Page({
           totalAmount: res.data.totalAmount
         }
         tempPageData.item = res.data.purposes.map(function(value, index, array) {
-          switch (value.purpose) {
-            case 'Team Build':
+          switch (value.purposeId) {
+            case 0:
               value.icon = "/images/icons/teambuild_selected.png"
               break
-            case 'Taffic':
+            case 1:
               value.icon = "/images/icons/bus_selected.png"
               break
-            case 'Hotel':
+            case 2:
               value.icon = "/images/icons/house_selected.png"
               break
-            case 'Food':
+            case 3:
               value.icon = "/images/icons/meat_selected.png"
               break
-            case 'Ttaining':
+            case 4:
               value.icon = "/images/icons/training_selected.png"
               break
-            case 'Travel':
+            case 5:
               value.icon = "/images/icons/travel_selected.png"
               break
             default:
