@@ -26,8 +26,8 @@
   width: 100%;
 }
 
-.list-item-icon{
-  margin:  20rpx 50rpx 0 20rpx
+.list-item-icon {
+  margin: 20rpx 50rpx 0 20rpx;
 }
 
 /* // 定义.text-content设置文本样式 */
@@ -39,8 +39,7 @@
   background-color: #fff;
 }
 
-.addBtn{
-  position:fixed; 
-  bottom:0;
-  width:100%;
+.btn-group {
+  position: fixed;
+  bottom: 0;
 }

@@ -25,6 +25,7 @@
       </view>
     </block>
   </view>
-
-  <button class="addBtn" type="primary" bindtap="addInvoice">ADD</button>
+  <view class="btn-area btn-group">
+    <button class="" type="primary" bindtap="addInvoice">ADD</button>
+  </view>
 </view>

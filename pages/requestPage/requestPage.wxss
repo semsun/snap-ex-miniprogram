@@ -25,9 +25,11 @@
   height: 40px;
 }
 
-.btn{
-  width:100%;
+.btn-group {
+  position: fixed;
+  bottom: 0;
 }
+
 
 .item-style{
   background: #FFFFFF
