@@ -182,6 +182,7 @@ Page({
       },
       complete(res) {
         wx.hideLoading()
+        wx.stopPullDownRefresh()
       }
     })
   },

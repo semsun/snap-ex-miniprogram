@@ -2,5 +2,6 @@
   "usingComponents": {
     "mp-dialog": "../components/dialog/dialog"
   },
-  "enablePullDownRefresh": true
+  "enablePullDownRefresh": true,
+  "backgroundTextStyle": "dark"
 }

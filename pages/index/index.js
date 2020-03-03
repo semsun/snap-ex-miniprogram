@@ -98,6 +98,7 @@ Page({
               title: v.description,
               date: util.formatDate(new Date(v.submittedDate)),
               status: v.status,
+              totalAmount: util.formatAmountEasy(v.totalAmount),
               expenseId: v.expenseId
             })
           })
@@ -112,6 +113,7 @@ Page({
       },
       complete(res) {
         wx.hideLoading()
+        wx.stopPullDownRefresh()
       }
     })
   },
@@ -160,14 +162,14 @@ Page({
     })
   },
 
-  onShow(e){
+  onShow(e) {
     var that = this
     wx.getStorage({
       key: api.SESSION_ID,
-      success: function (res) {
+      success: function(res) {
         that.getExpenseList(that)
       },
-      fail: function (res) {
+      fail: function(res) {
         that.gotoLogin("")
       }
     })

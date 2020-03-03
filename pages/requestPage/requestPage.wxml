@@ -33,8 +33,6 @@
     <button type="primary" loading="{{btnSumitIsLoading}}" bindtap="submitPurpose" style="display:{{isShowSubmitBtn}}">Submit</button>
   </view>
 
-
-
   <mp-dialog show="{{dialogShow}}" bindbuttontap="tapDialogButton" buttons="{{buttons}}" mask="true">
     <view>Submit now!</view>
   </mp-dialog>
