@@ -171,7 +171,7 @@ Page({
         } else {
           var tempIsHasInvoiceListData = 'display'
         }
-        var isShowSubmitBtn_temp = (!that.data.isAdd && that.data.purposeStatus == 0) ? 'display' : 'none'
+        var isShowSubmitBtn_temp = (!that.data.isAdd && that.data.purposeStatus == 0 && tempIsHasInvoiceListData =='display') ? 'display' : 'none'
         that.setData({
           pageData: tempPageData,
           isShowListView: tempIsHasInvoiceListData,
