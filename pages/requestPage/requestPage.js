@@ -42,6 +42,7 @@ Page({
     this.setData({
       isAdd: isAdd_t,
       btnContext: isAdd_t ? "Save" : "Add",
+      purposeStatus: param.purposeStatus,
       expenseId: param.expenseId,
       isShowSubmitBtn: (!isAdd_t && param.purposeStatus == 0) ? 'show' : 'none',
       isShowBtn: (!isAdd_t && param.purposeStatus != 0) ? 'none' : 'show'
@@ -85,6 +86,7 @@ Page({
           console.log(res.data)
           if (res.data.code == 0) {
             that.setData({
+              purposeStatus: 0,
               expenseId: res.data.id,
               isAdd: false,
               btnContext: "Add",
@@ -164,14 +166,12 @@ Page({
           return value
         })
 
-        var isShowSubmitBtn_temp = that.data.isShowSubmitBtn
         if (!(tempPageData.item.length > 0)) {
           var tempIsHasInvoiceListData = 'none'
-          isShowSubmitBtn_temp = 'none'
         } else {
           var tempIsHasInvoiceListData = 'display'
-
         }
+        var isShowSubmitBtn_temp = (!that.data.isAdd && that.data.purposeStatus == 0) ? 'display' : 'none'
         that.setData({
           pageData: tempPageData,
           isShowListView: tempIsHasInvoiceListData,

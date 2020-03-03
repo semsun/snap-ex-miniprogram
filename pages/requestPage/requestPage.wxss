@@ -9,7 +9,7 @@
 
 .request-overview-text{
   color: #FFFFFF;
-  font-size: 50rpx;
+  font-size: 30rpx;
 }
 
 /* // 定义.listview设置容器样式 */
