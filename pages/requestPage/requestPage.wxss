@@ -34,3 +34,7 @@
 .item-style{
   background: #FFFFFF
 }
+
+.list-item-icon {
+  margin: 20rpx 50rpx 0 20rpx;
+}

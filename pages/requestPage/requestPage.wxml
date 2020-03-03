@@ -9,16 +9,16 @@
     <view class='listview' style="display:{{isShowListView}}">
       <block wx:for="{{pageData.item}}" wx:key="index">
         <view bindtap="onItemClick" mark:itemdata="{{item}}" class="weui-media-box weui-media-box_appmsg text-content item-style" hover-class="weui-cell_active">
-          <view class="weui-media-box__hd weui-media-box__hd_in-appmsg">
-            <view class="icon-small-wrp">
+           <view class="list-item-icon">
               <image class="icon_size" src="{{item.icon}}" />
             </view>
-          </view>
+    
           <view class="weui-media-box__bd weui-media-box__bd_in-appmsg">
             <view class="weui-media-box__title">{{item.description}}</view>
             <!-- <view class="weui-media-box__desc">{{isAdd}}</view> -->
+                      <view class="weui-media-box__desc">{{item.amount}}</view>
           </view>
-          <view class="weui-media-box__desc">{{item.amount}}</view>
+          <view class="weui-media-box__title">></view>
         </view>
       </block>
     </view>
