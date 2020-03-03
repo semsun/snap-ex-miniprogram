@@ -3,7 +3,7 @@ const app = getApp()
 const STATUS_EXPIRE = "401"
 const SESSION_ID = "WechatAccessToken"
 const RETRY_TIMES = 3
-const REG_URL = app.globalData.host + ":" + app.globalData.port + "/user/register"
+const REG_URL = app.globalData.host + "/user/register"
 
 var auth = {
   retry: 0,

@@ -5,12 +5,12 @@ const util = require('../../utils/util.js')
 
 const ID_PARAM = "[purposeId]"
 const TOKEN = "[accessToken]"
-const API_ADD_PURPOSE = app.globalData.host + ":" + app.globalData.port + "/expense/purpose/add"
-const API_UPLOAD_INVOICE_IMG = app.globalData.host + ":" + app.globalData.port + "/invoice/" + ID_PARAM + "/upload"
-const API_ADD_INVOICE = app.globalData.host + ":" + app.globalData.port + "/invoice/add"
-const API_QUERY_INVOICE = app.globalData.host + ":" + app.globalData.port + "/invoice/" + ID_PARAM
-const API_QUERY_INVOICE_IMG = app.globalData.host + ":" + app.globalData.port + "/invoice/" + ID_PARAM + "/image?access_token=" + TOKEN
-const API_QUREY_PURPOSE = app.globalData.host + ":" + app.globalData.port + "/expense/purpose/" + ID_PARAM
+const API_ADD_PURPOSE = app.globalData.host + "/expense/purpose/add"
+const API_UPLOAD_INVOICE_IMG = app.globalData.host + "/invoice/" + ID_PARAM + "/upload"
+const API_ADD_INVOICE = app.globalData.host + "/invoice/add"
+const API_QUERY_INVOICE = app.globalData.host + "/invoice/" + ID_PARAM
+const API_QUERY_INVOICE_IMG = app.globalData.host + "/invoice/" + ID_PARAM + "/image?accessKey=" + TOKEN
+const API_QUREY_PURPOSE = app.globalData.host + "/expense/purpose/" + ID_PARAM
 
 Page({
 
