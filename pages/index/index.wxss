@@ -26,6 +26,10 @@
   width: 100%;
 }
 
+.list-item-icon{
+  margin:  20rpx 50rpx 0 20rpx
+}
+
 /* // 定义.text-content设置文本样式 */
 
 .text-content {
