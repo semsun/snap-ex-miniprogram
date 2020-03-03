@@ -1,6 +1,7 @@
 // pages/requestPage/requestPage.js
 const app = getApp()
 var api = require('../../utils/authRequest.js')
+const util = require('../../utils/util.js')
 
 Page({
 
@@ -43,7 +44,7 @@ Page({
       btnContext: isAdd_t ? "Save" : "Add",
       expenseId: param.expenseId,
       isShowSubmitBtn: (!isAdd_t && param.purposeStatus == 0) ? 'show' : 'none',
-      isShowBtn: (!isAdd_t && param.purposeStatus != 0 )? 'none' : 'show'
+      isShowBtn: (!isAdd_t && param.purposeStatus != 0) ? 'none' : 'show'
     })
     if (!isAdd_t) {
       this.getPurposeData(this, param.expenseId)
@@ -134,7 +135,7 @@ Page({
 
         var tempPageData = {
           purposeDescription: res.data.description,
-          totalAmount: res.data.totalAmount
+          totalAmount: util.formatAmountEasy(res.data.totalAmount)
         }
         tempPageData.item = res.data.purposes.map(function(value, index, array) {
           switch (value.purposeId) {
@@ -159,6 +160,7 @@ Page({
             default:
               value.icon = "/images/icons/teambuild_selected.png"
           }
+          value.amount = util.formatAmountEasy(value.amount)
           return value
         })
 

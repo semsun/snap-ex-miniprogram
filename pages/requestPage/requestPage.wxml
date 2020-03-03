@@ -2,8 +2,8 @@
 <view class="">
   <view wx:if="{{!isAdd}}">
     <view class="request-overview">
-      <view class="request-overview-text">{{pageData.purposeDescription}}</view>
-      <view class="request-overview-text">CNY {{pageData.totalAmount}}</view>
+      <view class="request-overview-text">Request Name: {{pageData.purposeDescription}}</view>
+      <view class="request-overview-text">Total Amount: {{pageData.totalAmount}} CNY</view>
     </view>
 
     <view class='listview' style="display:{{isShowListView}}">
