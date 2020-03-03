@@ -72,7 +72,7 @@ Page({
       //新增request name
       //call pao gor api,success then will change btn context to "Add"
       api.request({
-        url: app.globalData.host + ":" + app.globalData.port + "/expense/savedraft",
+        url: app.globalData.host + "/expense/savedraft",
         method: "POST",
         data: {
           "description": that.data.inputRequestName,
@@ -122,7 +122,7 @@ Page({
       mask: true
     })
     api.request({
-      url: app.globalData.host + ":" + app.globalData.port + "/expense/" + expenseId + "/detail",
+      url: app.globalData.host + "/expense/" + expenseId + "/detail",
       header: {
         WechatAccessToken: null
       },
@@ -240,7 +240,7 @@ Page({
       btnSumitIsLoading: true
     })
     api.request({
-      url: app.globalData.host + ":" + app.globalData.port + "/expense/" + this.data.expenseId + "/submit",
+      url: app.globalData.host + "/expense/" + this.data.expenseId + "/submit",
       method: "POST",
       data: {},
       header: {

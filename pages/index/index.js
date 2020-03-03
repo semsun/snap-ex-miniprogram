@@ -2,6 +2,7 @@
 const util = require('../../utils/util.js')
 const app = getApp()
 var api = require('../../utils/authRequest.js')
+const API_SEARCH = app.globalData.host + "/expense/search"
 
 Page({
 
@@ -80,7 +81,7 @@ Page({
       mask: true
     })
     api.request({
-      url: app.globalData.host + ":" + app.globalData.port + "/expense/search",
+      url: API_SEARCH,
       method: "POST",
       data: {},
       header: {
