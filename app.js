@@ -38,7 +38,9 @@ App({
     staffId: "34052468",
     // host: "http://service.snapex.xyz",
     // port: "8090"
-    host: "http://www.snapex.xyz",
-    port: "8002"
+    // host: "http://www.snapex.xyz",
+    // port: "8002"
+    host: "https://www.semsun.net",
+    port: "443"
   }
 })
