@@ -26,8 +26,8 @@ Page({
       code: "12345",
       number: "98765",
       purposeId: 0, /* 0: Team Build; 1: Taffic; 2: Room; 3: Food; 4:Training; 5: Travel */
-      companyName: "Test Company",
-      occurDate: "20191017",
+      companyName: "",
+      occurDate: "",
       currency: "CNY",
       amount: 0,
       amountCNY: 0,
@@ -36,7 +36,7 @@ Page({
       expenseId: "",
       invoiceId: "",
       purposeName: "",
-      description: "Catering service",
+      description: "",
       image_path: ""
     },
     purpose_array: [
@@ -134,8 +134,8 @@ Page({
               currencyIndex: iCurrency
             })
 
-            // _this.queryInvoiceImage(_this.data.purpose.invoiceId)
-            _this.queryInvoiceImage("XiAKPXxhRBTgOEyzJIgTIFpUhmoLDIdU")
+            _this.queryInvoiceImage(_this.data.purpose.invoiceId)
+            // _this.queryInvoiceImage("XiAKPXxhRBTgOEyzJIgTIFpUhmoLDIdU")
           }
           wx.hideLoading()
         },
@@ -289,7 +289,8 @@ Page({
       wx.hideLoading()
     }, 50000)
 
-    this.addInvoice({success: function(res) {
+    // this.addInvoice({success: function(res) {
+    this.savePurpose({success: function(res) {
       wx.navigateBack()
     }})
   },
@@ -307,9 +308,9 @@ Page({
       success: function (res) {
         console.log(res)
         if (res.data.code == 0) {
-          var expenseDetailId = res.data.id
+          var expenseDetailId = res.data.data.expenseDetailId
           _this.setData({ ["purpose.expenseDetailId"]: expenseDetailId })
-          // 由于关联图片问题，需先新增 invoice
+          _this.setData({ ["purpose.invoiceId"]: res.data.data.invoiceId})
           if (_this.data.purpose.image_path) {
             _this.uploadImage(param);
           }
