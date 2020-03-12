@@ -322,7 +322,8 @@ Page({
               title: 'Save Success',
               content: "Purpose saved successful!",
               showCancel: false,
-              success: param.success
+              success: param.success,
+              confirmText: "OK"
             })
           }
         } else {
@@ -331,7 +332,8 @@ Page({
           wx.showModal({
             title: 'Save Error',
             content: res.data.msg,
-            showCancel: false
+            showCancel: false,
+            confirmText: "OK"
           })
         }
       },
@@ -341,7 +343,8 @@ Page({
         wx.showModal({
           title: 'Save Error',
           content: res.errMsg,
-          showCancel: false
+          showCancel: false,
+          confirmText: "OK"
         })
       }
     })
@@ -376,14 +379,16 @@ Page({
             title: 'Save Successful',
             content: "Purpose with images saved successfull!",
             showCancel: false,
-            success: param.success
+            success: param.success,
+            confirmText: "OK"
           })
         } else {
           wx.hideLoading()
           wx.showModal({
             title: 'Save Error',
-            content: "Purpose have saved, but image upload failed!",
-            showCancel: false
+            content: "Purpose have saved, but invoice upload return failed!",
+            showCancel: false,
+            confirmText: "OK"
           })
         }
       },
@@ -393,7 +398,8 @@ Page({
         wx.showModal({
           title: 'Upload Invoice Error',
           content: "Purpose have saved, but invoice picture upload failed!",
-          showCancel: false
+          showCancel: false,
+          confirmText: "OK"
         })
       }
     })
@@ -423,7 +429,8 @@ Page({
         wx.showModal({
           title: 'Upload Invoice Error',
           content: res.data.msg,
-          showCancel: false
+          showCancel: false,
+          confirmText: "OK"
         })
       }
     })
@@ -468,7 +475,8 @@ Page({
           wx.showModal({
             title: 'Get Image Error',
             content: res.data.msg,
-            showCancel: false
+            showCancel: false,
+            confirmText: "OK"
           })
         }
       },
@@ -477,7 +485,8 @@ Page({
         wx.showModal({
           title: 'Get Image Error',
           content: JSON.stringify(res),
-          showCancel: false
+          showCancel: false,
+          confirmText: "OK"
         })
       }
     })
