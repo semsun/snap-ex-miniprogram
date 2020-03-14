@@ -52,19 +52,37 @@ Page({
     }
 
     if(options) {
-      var omail = options.mail
-      var osid = options.sid
-      if(osid) osid = osid.trim()
+      // var omail = options.mail
+      // var osid = options.sid
+      // if(osid) osid = osid.trim()
 
-      var oname = ''
-      if(omail && omail.length > 0) {
-        oname = omail.trim().split('@')[0]
+      // var oname = ''
+      // if(omail && omail.length > 0) {
+      //   oname = omail.trim().split('@')[0]
+      // }
+      // this.setData({
+      //   mail:omail,
+      //   sid:osid,
+      //   name:oname
+      // })
+      var hashKey = option.k
+
+      if (hashKey) {
+        _this.setData({ loginBtnDisabled: true })
+
+        wx.showLoading({
+          title: 'Logining...',
+        })
+        setTimeout(function () {
+          if (_this.data.loginBtnDisabled) {
+            wx.hideLoading()
+            _this.setData({ loginBtnDisabled: false })
+          }
+        }, 10000)
+
+        _this.setData({ qrCodeResult: hashKey })
+        _this.apiLogin()
       }
-      this.setData({
-        mail:omail,
-        sid:osid,
-        name:oname
-      })
     }
     
     // wx.login({
@@ -166,68 +184,74 @@ Page({
       success: function(res) {
         console.log(res);
         _this.setData({qrCodeResult:res.result})
-        wx.login({
-          success: function(res) {
-            wx.request({
-              url: api.REG_URL,
-              method: 'POST',
-              data: {
-                "code": res.code,
-                "hashKey": _this.data.qrCodeResult
-              },
-              header: {
-                'content-type': 'application/json' // 默认值
-              },
-              success: function (res) {
-                console.log(res)
+        _this.apiLogin()
+      }
+    })
+  },
 
-                if (res.data.WechatAccessToken) {
-                  wx.setStorage({
-                    key: api.SESSION_ID,
-                    data: res.data.WechatAccessToken,
-                    success: function (res) {
-                      wx.redirectTo({
-                        url: '/pages/index/index',
-                      })
-                    },
-                    fail: function (res) {
-                      console.log("Set storage failed!")
-                      if (_this.data.loginBtnDisabled) {
-                        wx.hideLoading()
-                        _this.setData({ loginBtnDisabled: false })
-                      }
-                      wx.showModal({
-                        title: "Local Error",
-                        content: 'Access local storage failed',
-                        showCancel: false
-                      })
-                    }
+  apiLogin: function(e) {
+    var _this = this
+
+    wx.login({
+      success: function (res) {
+        wx.request({
+          url: api.REG_URL,
+          method: 'POST',
+          data: {
+            "code": res.code,
+            "hashKey": _this.data.qrCodeResult
+          },
+          header: {
+            'content-type': 'application/json' // 默认值
+          },
+          success: function (res) {
+            console.log(res)
+
+            if (res.data.WechatAccessToken) {
+              wx.setStorage({
+                key: api.SESSION_ID,
+                data: res.data.WechatAccessToken,
+                success: function (res) {
+                  wx.redirectTo({
+                    url: '/pages/index/index',
                   })
-                } else {
+                },
+                fail: function (res) {
+                  console.log("Set storage failed!")
                   if (_this.data.loginBtnDisabled) {
                     wx.hideLoading()
                     _this.setData({ loginBtnDisabled: false })
                   }
-                  var errMsg = res.errmsg ? res.errmsg : res.message
                   wx.showModal({
-                    title: "Login Error",
-                    content: errMsg,
+                    title: "Local Error",
+                    content: 'Access local storage failed',
                     showCancel: false
                   })
                 }
-              },
-              fail: function (res) {
-                console.log("login failed!")
-                if (_this.data.loginBtnDisabled) {
-                  wx.hideLoading()
-                  _this.setData({ loginBtnDisabled: false })
-                }
-                wx.showModal({
-                  title: "Server Error",
-                  content: 'Login failed:' + JSON.stringify(res),
-                  showCancel: false
-                })
+              })
+            } else {
+              if (_this.data.loginBtnDisabled) {
+                wx.hideLoading()
+                _this.setData({ loginBtnDisabled: false })
               }
+              var errMsg = res.errmsg ? res.errmsg : res.message
+              wx.showModal({
+                title: "Login Error",
+                content: errMsg,
+                showCancel: false
+              })
+            }
+          },
+          fail: function (res) {
+            console.log("login failed!")
+            if (_this.data.loginBtnDisabled) {
+              wx.hideLoading()
+              _this.setData({ loginBtnDisabled: false })
+            }
+            wx.showModal({
+              title: "Server Error",
+              content: 'Login failed:' + JSON.stringify(res),
+              showCancel: false
             })
           }
         })
