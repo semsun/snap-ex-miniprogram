@@ -40,7 +40,7 @@
               <view class="weui-label">Currency</view>
             </view>
             <view class="weui-cell__bd">
-              <picker bindchange="bindCurrencyChange" value="{{currencyIndex}}" range="{{currencyArray}}">
+              <picker bindchange="bindCurrencyChange" disabled="{{disabledEdit}}" value="{{currencyIndex}}" range="{{currencyArray}}">
                 <view class="weui-input">{{currencyArray[currencyIndex]}}</view>
               </picker>
             </view>
@@ -50,7 +50,7 @@
               <view class="weui-label">Total</view>
             </view>
             <view class="weui-cell__bd">
-              <input class="weui-input" bindblur="updateAmount" name="input" placeholder="Input Amount" value="{{purpose.amount}}" />
+              <input class="weui-input" bindblur="updateAmount" name="input" disabled="{{disabledEdit}}" placeholder="Input Amount" value="{{purpose.amount}}" />
             </view>
           </view>
           <view class="weui-cell weui-cell_input">
@@ -58,7 +58,7 @@
               <view class="weui-label">Date</view>
             </view>
             <view class="weui-cell__bd">
-              <picker mode="date" value="{{purpose.occurDate}}" start="2015-09-01" end="2020-09-01" bindchange="bindDateChange">
+              <picker mode="date" value="{{purpose.occurDate}}" disabled="{{disabledEdit}}" start="2015-09-01" end="2020-09-01" bindchange="bindDateChange">
                 <view class="weui-input">{{purpose.occurDate}}</view>
               </picker>
             </view>
@@ -68,12 +68,12 @@
         <view class="page-section-title">Description</view>
         <view class="weui-cells weui-cells_after-title">
           <view class="textarea-wrp">
-            <textarea bindblur="bindDescriptionChange" placeholder="Input Description" auto-height value="{{purpose.description}}" />
+            <textarea bindblur="bindDescriptionChange" disabled="{{disabledEdit}}" placeholder="Input Description" auto-height value="{{purpose.description}}" />
           </view>
         </view>
         
         <view class="weui-cells align_col_center">
-          <button type="primary" plain="true" bindtap="takeInvoicePhoto">{{sel_pho_btn_title}}</button>
+          <button type="primary" plain="true" disabled="{{disabledEdit}}" bindtap="takeInvoicePhoto">{{sel_pho_btn_title}}</button>
           <image wx:if="{{purpose.image_path}}" mode="aspectFit" src="{{purpose.image_path}}"></image>
         </view>
         
@@ -137,7 +137,7 @@
 
   <view class="btn-area" id="buttonContainer">
     <!-- <button type="primary" bindtap="queryInvoiceImage">ReadPicture</button> -->
-    <button type="primary" bindtap="saveAction">Save</button>
-    <button type="primary" bindtap="addPurpose">Add New</button>
+    <button type="primary" disabled="{{disabledEdit}}" bindtap="saveAction">Save</button>
+    <!-- <button type="primary" bindtap="addPurpose">Add New</button> -->
   </view>
 </view>

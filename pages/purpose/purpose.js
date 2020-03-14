@@ -19,8 +19,10 @@ Page({
    */
   data: {
     currencyIndex: 0,
-    currencyArray: ["CNY", "USD"], 
+    currencyArray: ["CNY"], 
     purposeArray: ["Team Building", "Taffic", "Hotal", "Food", "Training", "Travel"],
+
+    disabledEdit: false,
 
     purpose: {
       code: "12345",
@@ -105,6 +107,11 @@ Page({
 
     var expenseId = options.expenseId
     var expenseDetailId = options.expenseDetailId
+    var eFlag = options.disabledEdit
+
+    if(eFlag && eFlag == "true") {
+      _this.setData({disabledEdit: true})
+    }
     // this.setData({ ['purpose.expenseDetailId']: util.generateId(5) })
 
     if( expenseDetailId ) {
@@ -127,6 +134,7 @@ Page({
             _this.setData({ purpose: res.data.data })
             _this.setData({ ["purpose.expenseDetailId"]: expenseDetailId }) // return is expenseDetailId
             _this.setData({ ["purpose.expenseId"]: expenseId })
+            _this.setData({ ['purpose.amount']: util.formatAmountEasy(_this.data.purpose.amount) })
             var iPurpose = util.findIndexInArray(_this.data.purposeArray, _this.data.purpose.purposeName)
             var iCurrency = util.findIndexInArray(_this.data.currencyArray, _this.data.purpose.currency)
             _this.setData({
@@ -147,8 +155,10 @@ Page({
       console.log("New Purpose")
       _this.setData({ ['purpose.occurDate']: util.formatDate(new Date) })
       _this.setData({ ["purpose.expenseId"]: expenseId })
-      _this.setData({ ["purpose.purposeName"]: _this.data.purposeArray[0]})
+      _this.setData({ ["purpose.purposeName"]: _this.data.purposeArray[0] })
+      _this.setData({ ['purpose.amount']: util.formatAmountEasy(_this.data.purpose.amount) })
     }
+
 
   },
 
@@ -201,6 +211,7 @@ Page({
 
   },
   changeCategory: function (e) {
+    if (this.data.disabledEdit) return
     var $tmp = e.currentTarget.dataset.id;
     // let query = wx.createSelectorQuery().in(this);
     // query.select('.icon_size');
@@ -263,7 +274,7 @@ Page({
 
   updateAmount: function (e) {
     this.setData({
-      ['purpose.amount']: e.detail.value
+      ['purpose.amount']: util.formatAmountEasy(e.detail.value)
     })
   },
 
@@ -318,13 +329,17 @@ Page({
           if (!_this.data.purpose.image_path) {
             // Purpose 保存成功
             wx.hideLoading()
-            wx.showModal({
-              title: 'Save Success',
-              content: "Purpose saved successful!",
-              showCancel: false,
-              success: param.success,
-              confirmText: "OK"
+            // wx.showModal({
+            //   title: 'Save Success',
+            //   content: "Purpose saved successful!",
+            //   showCancel: false,
+            //   success: param.success,
+            //   confirmText: "OK"
+            // })
+            wx.showToast({
+              title: 'Saved',
             })
+            param.success()
           }
         } else {
           // 保存失败
@@ -375,13 +390,17 @@ Page({
         // 上传图片成功
         if (data.code == 0) {
           wx.hideLoading()
-          wx.showModal({
-            title: 'Save Successful',
-            content: "Purpose with images saved successfull!",
-            showCancel: false,
-            success: param.success,
-            confirmText: "OK"
+          // wx.showModal({
+          //   title: 'Save Successful',
+          //   content: "Purpose with images saved successfull!",
+          //   showCancel: false,
+          //   success: param.success,
+          //   confirmText: "OK"
+          // })
+          wx.showToast({
+            title: 'Saved',
           })
+          param.success()
         } else {
           wx.hideLoading()
           wx.showModal({

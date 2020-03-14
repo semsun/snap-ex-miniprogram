@@ -112,7 +112,7 @@ Page({
   toPurpose: function (e) {
     wx.navigateTo({
       // url: '/pages/purpose/purpose?expenseId=test003&expenseDetailId=IeIErjVaGe',
-      url: '/pages/purpose/purpose?expenseId=test003',
+      url: '/pages/purpose/purpose?expenseId=test003&disabledEdit=false',
     })
   },
   popButton: function(e) {
