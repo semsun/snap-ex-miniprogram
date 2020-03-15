@@ -94,6 +94,13 @@ Page({
     ],
     purpose_index: 0,
     sel_pho_btn_title: "Add Invoice",
+
+    showDialog: false,
+    groups: [
+      { text: '示例菜单', value: 1 },
+      { text: '示例菜单', value: 2 },
+      { text: '负向菜单', type: 'warn', value: 3 }
+    ]
   },
   bindPickerChange_purpose: function (e) {
     console.log('picker send change, value:', e.detail.value);
@@ -282,6 +289,16 @@ Page({
     })
   },
 
+  focusAmount: function(e) {
+    var _this = this
+    console.log("Focus: " + e.detail.value)
+    if (e.detail.value == 0 ) {
+      _this.setData({ displayAmount: ""})
+      console.log("Zero");
+    } else {
+      _this.setData({ displayAmount: util.removeNumberFormat(e.detail.value) })
+    }
+  },
   updateAmount: function (e) {
     var _this = this
     var amount = e.detail.value
@@ -562,5 +579,21 @@ Page({
     //     _this.setData({ ["purpose.image_path"]: imagePath })
     //   }
     // })
+  },
+
+  /* Pop message */
+  openDialog: function () {
+    this.setData({
+      showDialog: true
+    })
+  },
+  closeDialog: function () {
+    this.setData({
+      showDialog: false
+    })
+  },
+  btnClick(e) {
+    console.log(e)
+    this.closeDialog()
   }
 })
