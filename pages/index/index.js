@@ -97,7 +97,7 @@ Page({
           res.data.data.forEach(v => {
             listData.push({
               title: v.description,
-              date: util.formatDate(new Date(v.submittedDate)),
+              date: typeof (v.submittedDate) == typeof (undefined) ? "--" : util.formatDate(new Date(v.submittedDate)),
               status: v.status,
               totalAmount: util.formatAmountEasy(v.totalAmount),
               expenseId: v.expenseId

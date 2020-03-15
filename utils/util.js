@@ -65,9 +65,16 @@ function number_format(number, decimals, dec_point, thousands_sep) {　　
 }
 
 function easy_number_format(number) {
- return number_format(number, 2, ".", ",")
+  return number_format(number, 2, ".", ",")
 }
 
+
+function delcommafy(num) {
+  if (typeof(num) != typeof(undefined)) {
+    var x = num.toString().split(',');
+    return parseFloat(x.join(""));
+  }
+}
 
 module.exports = {
   formatTime: formatTime,
@@ -75,5 +82,6 @@ module.exports = {
   generateId: generateId,
   formatAmount: number_format,
   formatAmountEasy: easy_number_format,
-  findIndexInArray: findIndexInArray
+  findIndexInArray: findIndexInArray,
+  removeNumberFormat: delcommafy,
 }
