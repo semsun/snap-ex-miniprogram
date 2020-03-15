@@ -1,6 +1,5 @@
 {
   "usingComponents": {},
-  "navigationBarTitleText": "Dashboard",
   "enablePullDownRefresh": true,
   "backgroundTextStyle": "dark"
 }
