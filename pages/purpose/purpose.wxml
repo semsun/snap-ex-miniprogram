@@ -50,7 +50,7 @@
               <view class="weui-label">Amount</view>
             </view>
             <view class="weui-cell__bd">
-              <input class="weui-input" type="digit" bindblur="updateAmount" name="input" disabled="{{disabledEdit}}" placeholder="Input Amount" value="{{displayAmount}}" />
+              <input class="weui-input" type="digit" bindfocus="focusAmount" bindblur="updateAmount" name="input" disabled="{{disabledEdit}}" placeholder="Input Amount" value="{{displayAmount}}" />
             </view>
           </view>
           <view class="weui-cell weui-cell_input">
@@ -73,7 +73,7 @@
         </view>
         
         <view class="weui-cells align_col_center">
-          <button type="primary" plain="true" disabled="{{disabledEdit}}" bindtap="takeInvoicePhoto">{{sel_pho_btn_title}}</button>
+          <button type="primary" plain="true" disabled="{{disabledEdit}}" bindtap="openDialog">{{sel_pho_btn_title}}</button>
           <image wx:if="{{purpose.image_path}}" mode="aspectFit" src="{{purpose.image_path}}"></image>
         </view>
         
@@ -140,4 +140,15 @@
     <button type="primary" disabled="{{disabledEdit}}" bindtap="saveAction">Save</button>
     <!-- <button type="primary" bindtap="addPurpose">Add New</button> -->
   </view>
+
+  <!-- <mp-actionSheet bindactiontap="btnClick" show="{{showDialog}}" actions="{{groups}}" title="这是一个标题，可以为一行或者两行。">
+      <view slot="{{'actionSlot' + '1'}}" class="custom-action">
+          <view class="custom-action_desc">前往图中包含的小程序：</view>
+          <view class="custom-action_content">
+              <mp-icon icon="qr-code" size="{{20}}"></mp-icon>
+              <text class="custom-action_name">小程序名称</text>
+              <mp-icon icon="arrow" size="{{12}}"></mp-icon>
+          </view>
+      </view>
+  </mp-actionSheet> -->
 </view>
