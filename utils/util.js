@@ -69,6 +69,9 @@ function number_format(number, decimals, dec_point, thousands_sep, roundtag) {
 }
 
 function easy_number_format(number) {
+  if (number.toString().includes(',')){
+    return number
+  }
   return number_format(number, 2, ".", ",",'floor')
 }
 
