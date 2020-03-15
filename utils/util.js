@@ -32,25 +32,29 @@ const findIndexInArray = (array, txt) => {
   }
 }
 
-function number_format(number, decimals, dec_point, thousands_sep) {　　
+function number_format(number, decimals, dec_point, thousands_sep, roundtag) {
   /*
-   * 参数说明：
-   * number：要格式化的数字
-   * decimals：保留几位小数
-   * dec_point：小数点符号
-   * thousands_sep：千分位符号
-   * */
+  * 参数说明：
+  * number：要格式化的数字
+  * decimals：保留几位小数
+  * dec_point：小数点符号
+  * thousands_sep：千分位符号
+  * roundtag:舍入参数，默认 "ceil" 向上取,"floor"向下取,"round" 四舍五入
+  * */
   number = (number + '').replace(/[^0-9+-Ee.]/g, '');
+  roundtag = roundtag || "ceil"; //"ceil","floor","round"
   var n = !isFinite(+number) ? 0 : +number,
-    prec = !isFinite(+decimals) ? 2 : Math.abs(decimals),
+    prec = !isFinite(+decimals) ? 0 : Math.abs(decimals),
     sep = (typeof thousands_sep === 'undefined') ? ',' : thousands_sep,
     dec = (typeof dec_point === 'undefined') ? '.' : dec_point,
     s = '',
-    toFixedFix = function(n, prec) {
-      var k = Math.pow(10, prec);
-      return '' + Math.ceil(n * k) / k;
-    };
+    toFixedFix = function (n, prec) {
 
+      var k = Math.pow(10, prec);
+      console.log();
+
+      return '' + parseFloat(Math[roundtag](parseFloat((n * k).toFixed(prec * 2))).toFixed(prec * 2)) / k;
+    };
   s = (prec ? toFixedFix(n, prec) : '' + Math.round(n)).split('.');
   var re = /(-?\d+)(\d{3})/;
   while (re.test(s[0])) {
@@ -65,7 +69,7 @@ function number_format(number, decimals, dec_point, thousands_sep) {　　
 }
 
 function easy_number_format(number) {
-  return number_format(number, 2, ".", ",")
+  return number_format(number, 2, ".", ",",'floor')
 }
 
 
