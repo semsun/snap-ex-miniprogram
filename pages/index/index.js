@@ -14,6 +14,7 @@ Page({
     hasUserInfo: false,
     canIUse: wx.canIUse('button.open-type.getUserInfo'),
     isShowExitDialog: false,
+    isShowExitBtn:'none',
     buttons: [{
       text: 'Cancel'
     }, {
@@ -161,10 +162,16 @@ Page({
     wx.getStorage({
       key: api.SESSION_ID,
       success: function(res) {
+        that.setData({
+          isShowExitBtn:'display'
+        })
         that.getExpenseList(that)
       },
       fail: function(res) {
-        that.gotoLogin("")
+        // that.gotoLogin("")
+        that.setData({
+          isShowExitBtn: 'none'
+        })
       }
     })
   },
@@ -174,10 +181,15 @@ Page({
     wx.getStorage({
       key: api.SESSION_ID,
       success: function(res) {
+        that.setData({
+          isShowExitBtn: 'display'
+        })
         that.getExpenseList(that)
       },
       fail: function(res) {
-        that.gotoLogin("")
+        that.setData({
+          isShowExitBtn: 'none'
+        })
       }
     })
   },
@@ -207,6 +219,23 @@ Page({
         that.gotoLogin("")
       }
     })
+  },
+
+  loginOrdo(fun){
+    var that = this
+    wx.getStorage({
+      key: api.SESSION_ID,
+      success: function (res) {
+       fun()
+      },
+      fail: function (res) {
+        that.gotoLogin("")
+      }
+    })
+  },
+
+  addInvoiceOrLogin(e){
+    this.loginOrdo(this.addInvoice)
   }
 
 })
