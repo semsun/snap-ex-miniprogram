@@ -212,10 +212,10 @@ Page({
   exitAccount() {
     var that = this
     wx.clearStorage({
-      success: function(res) {
-        that.gotoLogin("")
-      },
-      fail: function(res) {
+      complete: function(res) {
+        that.setData({
+          listdata: []
+        })
         that.gotoLogin("")
       }
     })
