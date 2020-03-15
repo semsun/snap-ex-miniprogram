@@ -73,7 +73,7 @@
         </view>
         
         <view class="weui-cells align_col_center">
-          <button type="primary" plain="true" disabled="{{disabledEdit}}" bindtap="openDialog">{{sel_pho_btn_title}}</button>
+          <button type="primary" plain="true" disabled="{{disabledEdit}}" bindtap="takeInvoicePhoto">{{sel_pho_btn_title}}</button>
           <image wx:if="{{purpose.image_path}}" mode="aspectFit" src="{{purpose.image_path}}"></image>
         </view>
         
