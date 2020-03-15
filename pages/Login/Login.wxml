@@ -23,7 +23,7 @@
 
   <view class="btn-area" id="buttonContainer">
     <!-- <button type="primary"  open-type="getPhoneNumber" bindgetphonenumber='login'>Login</button> -->
-    <button type="primary" disabled="{{loginBtnDisabled}}" bindtap='scanQRCodeLogin'>Scan QRCode Begin</button>
+    <button type="primary" disabled="{{loginBtnDisabled}}" bindtap='scanQRCodeLogin'>Scan QRCode Login</button>
     <button  type="default" bindtap='cancelLogin'>Cancel</button>
   </view>
 </view>
