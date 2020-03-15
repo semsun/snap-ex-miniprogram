@@ -34,6 +34,6 @@
   </view>
 
   <mp-dialog show="{{dialogShow}}" bindbuttontap="tapDialogButton" buttons="{{buttons}}" mask="true">
-    <view>Submit now!</view>
+    <view>Submit now?</view>
   </mp-dialog>
 </view>

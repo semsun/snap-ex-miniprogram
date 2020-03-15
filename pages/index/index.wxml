@@ -27,6 +27,11 @@
     </block>
   </view>
   <view class="btn-area btn-group">
-    <button class="" type="primary" bindtap="addInvoice">ADD</button>
+    <button type="primary" bindtap="addInvoice">ADD</button>
+    <button type="warn" bindtap="exitProfile">EXIT</button>
   </view>
+
+  <mp-dialog show="{{isShowExitDialog}}" bindbuttontap="tapExitDialogButton" buttons="{{buttons}}" mask="true">
+    <view>Logout your account?</view>
+  </mp-dialog>
 </view>

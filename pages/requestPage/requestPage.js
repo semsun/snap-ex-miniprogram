@@ -20,9 +20,9 @@ Page({
     isShowListView: 'none',
     dialogShow: false,
     buttons: [{
-      text: 'cancel'
+      text: 'Cancel'
     }, {
-      text: 'confirm'
+      text: 'Yes'
     }],
     pageData: {
       purposeDescription: "",

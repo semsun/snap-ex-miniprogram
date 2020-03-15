@@ -13,6 +13,12 @@ Page({
     userInfo: {},
     hasUserInfo: false,
     canIUse: wx.canIUse('button.open-type.getUserInfo'),
+    isShowExitDialog: false,
+    buttons: [{
+      text: 'Cancel'
+    }, {
+      text: 'Yes'
+    }],
     // 数据源
     listdata: []
   },
@@ -97,7 +103,7 @@ Page({
           res.data.data.forEach(v => {
             listData.push({
               title: v.description,
-              date: typeof (v.submittedDate) == typeof (undefined) ? "--" : util.formatDate(new Date(v.submittedDate)),
+              date: typeof(v.submittedDate) == typeof(undefined) ? "--" : util.formatDate(new Date(v.submittedDate)),
               status: v.status,
               totalAmount: util.formatAmountEasy(v.totalAmount),
               expenseId: v.expenseId
@@ -169,6 +175,33 @@ Page({
       key: api.SESSION_ID,
       success: function(res) {
         that.getExpenseList(that)
+      },
+      fail: function(res) {
+        that.gotoLogin("")
+      }
+    })
+  },
+
+  exitProfile(e) {
+    this.setData({
+      isShowExitDialog: true,
+    })
+  },
+
+  tapExitDialogButton(e) {
+    this.setData({
+      isShowExitDialog: false,
+    })
+    if (e.detail.index == 1) {
+      this.exitAccount()
+    }
+  },
+
+  exitAccount() {
+    var that = this
+    wx.clearStorage({
+      success: function(res) {
+        that.gotoLogin("")
       },
       fail: function(res) {
         that.gotoLogin("")
