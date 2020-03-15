@@ -3,12 +3,12 @@
   <view class="page-body">
     
       <view class="page-section">
-        <view class="page-section-title">Purpose</view>
+        <view class="page-section-title purpose_cnt_titie">Purpose</view>
         <view class="weui-cells weui-cells_after-title">
           <view class="weui-cell">
             <block wx:for="{{[0, 1, 2]}}" wx:key="unique" wx:for-item="i">
-              <view data-id="{{i}}" bindtap="changeCategory" class="select_box align_col_center">
-                <block wx:if="{{i === purpose.purposeId}}">
+              <view data-id="{{purposeIds[i]}}" bindtap="changeCategory" class="select_box align_col_center">
+                <block wx:if="{{purposeIds[i] === purpose.purposeId}}">
                   <image class="icon_size" src="{{categorys[i].icon_selected}}" />
                 </block>
                 <block wx:else>
@@ -20,8 +20,8 @@
           </view>
           <view class="weui-cell">
             <block wx:for="{{[3, 4, 5]}}" wx:key="unique" wx:for-item="i">
-              <view data-id="{{i}}" bindtap="changeCategory" class="select_box align_col_center">
-                <block wx:if="{{i === purpose.purposeId}}">
+              <view data-id="{{purposeIds[i]}}" bindtap="changeCategory" class="select_box align_col_center">
+                <block wx:if="{{purposeIds[i] === purpose.purposeId}}">
                   <image class="icon_size" src="{{categorys[i].icon_selected}}" />
                 </block>
                 <block wx:else>
@@ -33,7 +33,7 @@
           </view>
         </view>
           
-        <view class="page-section-title">Detail</view>
+        <view class="page-section-title purpose_cnt_titie">Detail</view>
         <view class="weui-cells weui-cells_after-title">
           <view class="weui-cell weui-cell_input">
             <view class="weui-cell__hd">
@@ -47,10 +47,10 @@
           </view>
           <view class="weui-cell weui-cell_input">
             <view class="weui-cell__hd">
-              <view class="weui-label">Total</view>
+              <view class="weui-label">Amount</view>
             </view>
             <view class="weui-cell__bd">
-              <input class="weui-input" bindblur="updateAmount" name="input" disabled="{{disabledEdit}}" placeholder="Input Amount" value="{{purpose.amount}}" />
+              <input class="weui-input" type="digit" bindblur="updateAmount" name="input" disabled="{{disabledEdit}}" placeholder="Input Amount" value="{{displayAmount}}" />
             </view>
           </view>
           <view class="weui-cell weui-cell_input">
@@ -58,14 +58,14 @@
               <view class="weui-label">Date</view>
             </view>
             <view class="weui-cell__bd">
-              <picker mode="date" value="{{purpose.occurDate}}" disabled="{{disabledEdit}}" start="2015-09-01" end="2020-09-01" bindchange="bindDateChange">
+              <picker mode="date" value="{{purpose.occurDate}}" disabled="{{disabledEdit}}" start="{{selBeginDate}}" end="{{selEndDate}}" bindchange="bindDateChange">
                 <view class="weui-input">{{purpose.occurDate}}</view>
               </picker>
             </view>
           </view>
         </view>
         
-        <view class="page-section-title">Description</view>
+        <view class="page-section-title purpose_cnt_titie">Description</view>
         <view class="weui-cells weui-cells_after-title">
           <view class="textarea-wrp">
             <textarea bindblur="bindDescriptionChange" disabled="{{disabledEdit}}" placeholder="Input Description" auto-height value="{{purpose.description}}" />

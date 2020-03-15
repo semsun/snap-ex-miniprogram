@@ -2,6 +2,10 @@
 @import '../components/weui-wxss/dist/style/weui.wxss';
 @import '../components/weui-wxss/dist/style/index.wxss';
 
+.purpose_cnt_titie {
+  margin-top: 15rpx;
+  font-weight: 800;
+}
 label {
   display: inline-block;
   min-width: 270rpx;

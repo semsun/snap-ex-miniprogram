@@ -20,7 +20,11 @@ Page({
   data: {
     currencyIndex: 0,
     currencyArray: ["CNY"], 
-    purposeArray: ["Team Building", "Taffic", "Hotal", "Food", "Training", "Travel"],
+    purposeArray: ["Team Building", "Taffic", "Hotal", "Food", "Training", "Others"],
+    purposeIds: [0, 1, 2, 3, 4, 5],
+    selBeginDate: "2017-01-01",
+    selEndDate: "2020-12-31",
+    displayAmount: "0.00",
 
     disabledEdit: false,
 
@@ -85,11 +89,11 @@ Page({
       {
         icon_normal: "/images/icons/travel_normal.png",
         icon_selected: "/images/icons/travel_selected.png",
-        name: "Travel"
+        name: "Others"
       }
     ],
     purpose_index: 0,
-    sel_pho_btn_title: "Select Picture",
+    sel_pho_btn_title: "Add Invoice",
   },
   bindPickerChange_purpose: function (e) {
     console.log('picker send change, value:', e.detail.value);
@@ -112,6 +116,8 @@ Page({
     if(eFlag && eFlag == "true") {
       _this.setData({disabledEdit: true})
     }
+
+    _this.setData({selEndDate: util.formatDate(new Date)})
     // this.setData({ ['purpose.expenseDetailId']: util.generateId(5) })
 
     if( expenseDetailId ) {
@@ -134,13 +140,17 @@ Page({
             _this.setData({ purpose: res.data.data })
             _this.setData({ ["purpose.expenseDetailId"]: expenseDetailId }) // return is expenseDetailId
             _this.setData({ ["purpose.expenseId"]: expenseId })
-            _this.setData({ ['purpose.amount']: util.formatAmountEasy(_this.data.purpose.amount) })
+            _this.setData({ displayAmount: util.formatAmountEasy(_this.data.purpose.amount) })
             var iPurpose = util.findIndexInArray(_this.data.purposeArray, _this.data.purpose.purposeName)
             var iCurrency = util.findIndexInArray(_this.data.currencyArray, _this.data.purpose.currency)
             _this.setData({
               ["purpose.purposeId"]: iPurpose,
               currencyIndex: iCurrency
             })
+
+            if(res.data.data.status != 0) {
+              _this.setData({disabledEdit: true})
+            }
 
             _this.queryInvoiceImage(_this.data.purpose.invoiceId)
             // _this.queryInvoiceImage("XiAKPXxhRBTgOEyzJIgTIFpUhmoLDIdU")
@@ -273,9 +283,41 @@ Page({
   },
 
   updateAmount: function (e) {
-    this.setData({
-      ['purpose.amount']: util.formatAmountEasy(e.detail.value)
-    })
+    var _this = this
+    var amount = e.detail.value
+    if (amount < 0) {
+      wx.showModal({
+        title: 'Amount Input Error',
+        content: "Amount should be greater than 0",
+        showCancel: false,
+        confirmText: "OK",
+        success: function (res) {
+          _this.setData({
+            ['purpose.amount']: 0,
+            displayAmount: util.formatAmountEasy(0)
+          })
+        }
+      })
+    } else if (amount > 9999999.99) {
+      wx.showModal({
+        title: 'Amount Input Error',
+        content: "Amount should be less than 9999999.99",
+        showCancel: false,
+        confirmText: "OK",
+        success: function (res) {
+          _this.setData({
+            ['purpose.amount']: 9999999.99,
+            displayAmount: util.formatAmountEasy(9999999.99)
+          })
+        }
+      })
+    }else {
+      _this.setData({
+        ['purpose.amount']: e.detail.value,
+        displayAmount: util.formatAmountEasy(e.detail.value)
+      })
+    }
+    
   },
 
   bindDateChange(e) {
@@ -466,7 +508,7 @@ Page({
         var tempFilePaths = res.tempFilePaths
         _this.setData({
           ['purpose.image_path']: tempFilePaths,
-          sel_pho_btn_title: "Change Picture"
+          sel_pho_btn_title: "Change Invoice"
         })
       }
     })
@@ -488,7 +530,10 @@ Page({
           var imagePath = API_QUERY_INVOICE_IMG.replace(ID_PARAM, invoiceId).replace(TOKEN, res.data.data.accessKey)
           console.log(imagePath)
 
-          _this.setData({ ["purpose.image_path"]: imagePath })
+          _this.setData({ 
+            ["purpose.image_path"]: imagePath,
+            sel_pho_btn_title: "Change Invoice" 
+          })
         } else {
           wx.hideLoading()
           wx.showModal({
