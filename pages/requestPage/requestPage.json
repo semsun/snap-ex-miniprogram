@@ -3,6 +3,6 @@
     "mp-dialog": "../components/dialog/dialog"
   },
   "enablePullDownRefresh": true,
-  "navigationBarTitleText": "request",
+  "navigationBarTitleText": "Request",
   "backgroundTextStyle": "dark"
 }
