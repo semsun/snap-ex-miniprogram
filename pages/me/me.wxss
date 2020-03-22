@@ -1,0 +1,75 @@
+/* pages/me/me.wxss */
+@import '../components/weui-wxss/dist/style/weui.wxss';
+
+.userinfo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: white;
+  padding-bottom: 20rpx;
+}
+
+.userinfo-avatar {
+  width: 128rpx;
+  height: 128rpx;
+  margin: 20rpx;
+  border-radius: 50%;
+}
+
+.userinfo-nickname {
+  color: #aaa;
+}
+
+.bottom-area {
+  position: fixed;
+  bottom: 0;
+}
+
+.login-area {
+  background: white;
+  margin-top: 40rpx;
+  padding-bottom: 40rpx;
+  padding-top: 60rpx;
+}
+
+.logined-area {
+  margin-top: 40rpx;
+  padding-bottom: 40rpx;
+}
+
+.login-text-content {
+  text-align: center;
+  font-size: 35rpx;
+  text-size-adjust: true;
+  color: #333;
+}
+
+.cr-text {
+  margin-top: 30rpx;
+  margin-bottom: 30rpx;
+  text-align: center;
+  font-size: 22rpx;
+  color: #aaa;
+}
+
+.function-item {
+  display: flex;
+  flex-direction: row;
+  padding: 40rpx;
+  padding-left: 40rpx;
+  align-content: center;
+  border-bottom: 1rpx solid #f5f5f5;
+  background-color: #fff;
+}
+
+.function-item-text {
+  width: 95%;
+  color: #333;
+  font-size: 30rpx;
+}
+
+.function-item-icon {
+  font-size: 30rpx;
+  color: #999;
+  text-align: right;
+}

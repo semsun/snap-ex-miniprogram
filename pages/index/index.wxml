@@ -1,12 +1,12 @@
 <!--dashboard.wxml-->
 <view class="dashboard-page">
-  <view class="userinfo">
+  <!-- <view class="userinfo">
     <button wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 获取头像昵称 </button>
     <block wx:else>
       <image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
       <text class="userinfo-nickname">{{userInfo.nickName}}</text>
     </block>
-  </view>
+  </view> -->
 
 
   <view class='listview'>
@@ -22,13 +22,13 @@
           <view class="weui-media-box__title">{{item.title}}</view>
           <view class="weui-media-box__desc">{{item.date}}</view>
         </view>
-        <view class="weui-media-box__title">{{item.totalAmount}}</view>
+        <view class="weui-media-box__title">{{item.totalAmount}} CNY</view>
       </view>
     </block>
   </view>
   <view class="btn-area btn-group">
     <button type="primary" bindtap="addInvoiceOrLogin">Add</button>
-    <button type="warn" style="display:{{isShowExitBtn}}" bindtap="exitProfile">Exit</button>
+    <!-- <button type="warn" style="display:{{isShowExitBtn}}" bindtap="exitProfile">Exit</button> -->
   </view>
 
   <mp-dialog show="{{isShowExitDialog}}" bindbuttontap="tapExitDialogButton" buttons="{{buttons}}" mask="true">

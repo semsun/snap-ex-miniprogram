@@ -21,7 +21,7 @@
 /* // 定义.listview设置容器样式 */
 
 .listview {
-  padding: 10px 0 20%;
+  padding: 0 0 20%;
   /* align-content: center; */
   width: 100%;
 }

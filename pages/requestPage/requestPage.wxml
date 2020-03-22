@@ -16,7 +16,7 @@
           <view class="weui-media-box__bd weui-media-box__bd_in-appmsg">
             <view class="weui-media-box__title">{{item.description}}</view>
             <!-- <view class="weui-media-box__desc">{{isAdd}}</view> -->
-                      <view class="weui-media-box__desc">{{item.amount}}</view>
+                      <view class="weui-media-box__desc">{{item.amount}} CNY</view>
           </view>
           <view class="weui-media-box__title">></view>
         </view>
