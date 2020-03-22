@@ -188,7 +188,8 @@ Page({
       },
       fail: function(res) {
         that.setData({
-          isShowExitBtn: 'none'
+          isShowExitBtn: 'none',
+          listdata: [],
         })
       }
     })

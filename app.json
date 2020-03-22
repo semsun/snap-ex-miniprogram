@@ -11,7 +11,8 @@
     "pages/requestPage/requestPage",
     "pages/Invoice/invoiceList/invoiceList",
     "pages/Login/Login",
-    "pages/purpose/purpose"
+    "pages/purpose/purpose",
+    "pages/me/me"
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -19,5 +20,25 @@
     "navigationBarTitleText": "Snap-eX",
     "navigationBarTextStyle": "black"
   },
-  "sitemapLocation": "sitemap.json"
+  "sitemapLocation": "sitemap.json",
+  "tabBar": {
+    "color": "#7A7E83",
+    "selectedColor": "#3cc51f",
+    "borderStyle": "black",
+    "backgroundColor": "#ffffff",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "iconPath": "images/icon_cloud.png",
+        "selectedIconPath": "images/icon_cloud_HL.png",
+        "text": "Home"
+      },
+      {
+        "pagePath": "pages/me/me",
+        "iconPath": "images/icon_component.png",
+        "selectedIconPath": "images/icon_component_HL.png",
+        "text": "Me"
+      }
+    ]
+  }
 }

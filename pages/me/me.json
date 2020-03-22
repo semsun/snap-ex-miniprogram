@@ -2,7 +2,5 @@
   "usingComponents": {
     "mp-dialog": "../components/dialog/dialog"
   },
-  "enablePullDownRefresh": true,
-  "navigationBarTitleText": "request",
   "backgroundTextStyle": "dark"
 }

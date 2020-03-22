@@ -1,0 +1,41 @@
+<!--pages/me/me.wxml-->
+<view>
+  <view class="userinfo">
+    <button wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 获取头像昵称 </button>
+    <block wx:else>
+      <image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
+      <text class="userinfo-nickname">{{userInfo.nickName}}</text>
+    </block>
+  </view>
+
+  <view wx:if="{{isNeedLogin}}">
+
+    <view class='login-area'>
+      <view class="login-text-content">Please login first</view>
+      <view class="btn-area">
+        <button type="primary" bindtap="gotoLogin">Login</button>
+      </view>
+    </view>
+  </view>
+  <view wx:else>
+    <view class='logined-area'>
+      <view>
+        <view class="function-item" bindtap="todoFun">
+          <view class="function-item-text">Invoice Helper</view>
+          <view class="function-item-icon">></view>
+        </view>
+      </view>
+      <view class="btn-area">
+        <button type="warn" style="display:{{isShowExitBtn}}" bindtap="exitProfile">Exit</button>
+      </view>
+    </view>
+  </view>
+
+  <view class="cr-text">
+    -- FunJoin Team provides technical support --
+  </view>
+
+  <mp-dialog show="{{isShowExitDialog}}" bindbuttontap="tapExitDialogButton" buttons="{{buttons}}" mask="true">
+    <view>Logout your account?</view>
+  </mp-dialog>
+</view>
