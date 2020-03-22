@@ -277,5 +277,10 @@ Page({
     wx.navigateTo({
       url: '/pages/index/index',
     })
+  },
+  cancelLogin: function(e) {
+    wx.redirectTo({
+      url: '/pages/index/index',
+    })
   }
 })

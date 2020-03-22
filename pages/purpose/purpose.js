@@ -27,6 +27,7 @@ Page({
     displayAmount: "0.00",
 
     disabledEdit: false,
+    changeImage: false,
 
     purpose: {
       code: "12345",
@@ -381,11 +382,11 @@ Page({
           var expenseDetailId = res.data.data.expenseDetailId
           _this.setData({ ["purpose.expenseDetailId"]: expenseDetailId })
           _this.setData({ ["purpose.invoiceId"]: res.data.data.invoiceId})
-          if (_this.data.purpose.image_path) {
+          if (_this.data.changeImage && _this.data.purpose.image_path) {
             _this.uploadImage(param);
           }
           // 保存成功后操作
-          if (!_this.data.purpose.image_path) {
+          if (!_this.data.changeImage) {
             // Purpose 保存成功
             wx.hideLoading()
             // wx.showModal({
@@ -525,7 +526,8 @@ Page({
         var tempFilePaths = res.tempFilePaths
         _this.setData({
           ['purpose.image_path']: tempFilePaths,
-          sel_pho_btn_title: "Change Invoice"
+          sel_pho_btn_title: "Change Invoice",
+          changeImage: true
         })
       }
     })

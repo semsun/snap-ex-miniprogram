@@ -136,6 +136,16 @@ var auth = {
       fail: paramObj.fail
     })
   },
+  logout: function(paramObj) {
+    wx.removeStorage({
+      key: SESSION_ID,
+      success: function(res) {
+        wx.redirectTo({
+          url: '/pages/Login/Login',
+        })
+      },
+    })
+  },
   test1: function(paramObj) {
     console.log("Test1 call Test2")
     paramObj.func = function (res) {
@@ -157,5 +167,6 @@ module.exports = {
   test1: auth.test1,
   getAuthCode: auth.getAuthCode,
   request: auth.request,
-  uploadFile: auth.uploadFile
+  uploadFile: auth.uploadFile,
+  logout: auth.logout
 }
