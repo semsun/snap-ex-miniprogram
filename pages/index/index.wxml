@@ -22,7 +22,7 @@
           <view class="weui-media-box__title">{{item.title}}</view>
           <view class="weui-media-box__desc">{{item.date}}</view>
         </view>
-        <view class="weui-media-box__title">{{item.totalAmount}}</view>
+        <view class="weui-media-box__title">{{item.totalAmount}} CNY</view>
       </view>
     </block>
   </view>
