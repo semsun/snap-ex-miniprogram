@@ -1,7 +1,7 @@
 <!--pages/me/me.wxml-->
 <view>
   <view class="userinfo">
-    <button wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 获取头像昵称 </button>
+    <button wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo">Get WeChat profile</button>
     <block wx:else>
       <image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
       <text class="userinfo-nickname">{{userInfo.nickName}}</text>
@@ -11,7 +11,11 @@
   <view wx:if="{{isNeedLogin}}">
 
     <view class='login-area'>
-      <view class="login-text-content">Please login first</view>
+      <view class="login-text-content">
+        <text>This program can support your electronic claim form process. 
+        <br/>You can log on by your company barcode. 
+        <br/>Please contact your company's Snap-ex team if any query.</text>
+      </view>
       <view class="btn-area">
         <button type="primary" bindtap="gotoLogin">Login</button>
       </view>

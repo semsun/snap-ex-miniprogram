@@ -38,6 +38,8 @@
 }
 
 .login-text-content {
+  padding-left: 40rpx;
+  padding-right: 40rpx;
   text-align: center;
   font-size: 35rpx;
   text-size-adjust: true;
