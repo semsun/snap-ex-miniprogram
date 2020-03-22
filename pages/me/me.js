@@ -98,10 +98,7 @@ Page({
     var that = this
     wx.clearStorage({
       complete: function(res) {
-        that.setData({
-          listdata: []
-        })
-        that.gotoLogin("")
+        that.getLoginStatus()
       }
     })
   },
@@ -112,7 +109,7 @@ Page({
     })
   },
 
-  todoFun(e){
+  todoFun(e) {
     wx.showToast({
       title: 'Coming soon!',
       icon: 'none',
