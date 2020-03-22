@@ -48,7 +48,7 @@
   margin-top: 30rpx;
   margin-bottom: 30rpx;
   text-align: center;
-  font-size: 30rpx;
+  font-size: 22rpx;
   color: #aaa;
 }
 
