@@ -212,7 +212,8 @@ Page({
                 key: api.SESSION_ID,
                 data: res.data.WechatAccessToken,
                 success: function (res) {
-                  wx.redirectTo({
+                  // wx.redirectTo({
+                  wx.switchTab({
                     url: '/pages/index/index',
                   })
                 },
@@ -273,13 +274,15 @@ Page({
       })
       return false
     }
-    
-    wx.navigateTo({
+
+    // wx.navigateTo({
+    wx.switchTab({
       url: '/pages/index/index',
     })
   },
-  cancelLogin: function(e) {
-    wx.redirectTo({
+  cancelLogin: function (e) {
+    // wx.navigateTo({
+    wx.switchTab({
       url: '/pages/index/index',
     })
   }
