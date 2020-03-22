@@ -14,7 +14,7 @@
       <view class="login-text-content">
         <text>This program can support your electronic claim form process. 
         <br/>You can log on by your company barcode. 
-        <br/>Please contact your company Snap-ex team if any query.</text>
+        <br/>Please contact your company's Snap-ex team if any query.</text>
       </view>
       <view class="btn-area">
         <button type="primary" bindtap="gotoLogin">Login</button>
