@@ -65,7 +65,7 @@ Page({
       //   sid:osid,
       //   name:oname
       // })
-      var hashKey = option.k
+      var hashKey = options.k
 
       if (hashKey) {
         _this.setData({ loginBtnDisabled: true })
@@ -207,41 +207,55 @@ Page({
           success: function (res) {
             console.log(res)
 
-            if (res.data.WechatAccessToken) {
-              wx.setStorage({
-                key: api.SESSION_ID,
-                data: res.data.WechatAccessToken,
-                success: function (res) {
-                  // wx.redirectTo({
-                  wx.switchTab({
-                    url: '/pages/index/index',
-                  })
-                },
-                fail: function (res) {
-                  console.log("Set storage failed!")
-                  if (_this.data.loginBtnDisabled) {
-                    wx.hideLoading()
-                    _this.setData({ loginBtnDisabled: false })
-                  }
-                  wx.showModal({
-                    title: "Local Error",
-                    content: 'Access local storage failed',
-                    showCancel: false
-                  })
-                }
-              })
-            } else {
+            if (res.data.code == 1000) {
+              console.log("QRCode expired!")
               if (_this.data.loginBtnDisabled) {
                 wx.hideLoading()
                 _this.setData({ loginBtnDisabled: false })
               }
-              var errMsg = res.errmsg ? res.errmsg : res.message
               wx.showModal({
-                title: "Login Error",
-                content: errMsg,
+                title: "Error",
+                content: 'QRCode have expired. Please generate new one.',
                 showCancel: false
               })
+            } else {
+              if (res.data.WechatAccessToken) {
+                wx.setStorage({
+                  key: api.SESSION_ID,
+                  data: res.data.WechatAccessToken,
+                  success: function (res) {
+                    // wx.redirectTo({
+                    wx.switchTab({
+                      url: '/pages/index/index',
+                    })
+                  },
+                  fail: function (res) {
+                    console.log("Set storage failed!")
+                    if (_this.data.loginBtnDisabled) {
+                      wx.hideLoading()
+                      _this.setData({ loginBtnDisabled: false })
+                    }
+                    wx.showModal({
+                      title: "Local Error",
+                      content: 'Access local storage failed',
+                      showCancel: false
+                    })
+                  }
+                })
+              } else {
+                if (_this.data.loginBtnDisabled) {
+                  wx.hideLoading()
+                  _this.setData({ loginBtnDisabled: false })
+                }
+                var errMsg = res.errmsg ? res.errmsg : res.message
+                wx.showModal({
+                  title: "Login Error",
+                  content: errMsg,
+                  showCancel: false
+                })
+              }
             }
+
           },
           fail: function (res) {
             console.log("login failed!")
