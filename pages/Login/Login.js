@@ -207,7 +207,18 @@ Page({
           success: function (res) {
             console.log(res)
 
-            if (res.data.code == 1000) {
+            if (res.data.status) {
+              console.log("Server Error!")
+              if (_this.data.loginBtnDisabled) {
+                wx.hideLoading()
+                _this.setData({ loginBtnDisabled: false })
+              }
+              wx.showModal({
+                title: "Error",
+                content: 'Server return error!',
+                showCancel: false
+              })
+            } else if (res.data.code == 1000) {
               console.log("QRCode expired!")
               if (_this.data.loginBtnDisabled) {
                 wx.hideLoading()
