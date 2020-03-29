@@ -41,7 +41,7 @@ Page({
 
     this.setData({
       isAdd: isAdd_t,
-      btnContext: isAdd_t ? "Save" : "Add",
+      btnContext: isAdd_t ? "Save" : "Add purpose",
       purposeStatus: param.purposeStatus,
       expenseId: param.expenseId,
       isShowSubmitBtn: (!isAdd_t && param.purposeStatus == 0) ? 'show' : 'none',
@@ -89,7 +89,7 @@ Page({
               purposeStatus: 0,
               expenseId: res.data.id,
               isAdd: false,
-              btnContext: "Add",
+              btnContext: "Add purpose",
               pageData: {
                 purposeDescription: that.data.inputRequestName,
                 totalAmount: "0.00",

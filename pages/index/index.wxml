@@ -27,7 +27,7 @@
     </block>
   </view>
   <view class="btn-area btn-group">
-    <button type="primary" bindtap="addInvoiceOrLogin">Add</button>
+    <button type="primary" bindtap="addInvoiceOrLogin">Add Request</button>
     <!-- <button type="warn" style="display:{{isShowExitBtn}}" bindtap="exitProfile">Exit</button> -->
   </view>
 

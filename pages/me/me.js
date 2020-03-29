@@ -55,7 +55,7 @@ Page({
     }
   },
 
-  getUserInfo: function (e) {
+  getUserInfo: function(e) {
     console.log(e)
     app.globalData.userInfo = e.detail.userInfo
     this.setData({
@@ -63,7 +63,7 @@ Page({
       hasUserInfo: true
     })
   },
-  
+
   onShow(e) {
     this.getLoginStatus()
   },
@@ -124,7 +124,12 @@ Page({
       icon: 'none',
       duration: 2000
     })
+  },
 
+  genralFun(e) {
+    wx.navigateTo({
+      url: '/pages/general/general',
+    })
   }
 
 })
