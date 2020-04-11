@@ -13,7 +13,8 @@
     "pages/Login/Login",
     "pages/purpose/purpose",
     "pages/me/me",
-    "pages/general/general"
+    "pages/general/general",
+    "pages/summitResult/summitResult"
   ],
   "window": {
     "backgroundTextStyle": "light",
