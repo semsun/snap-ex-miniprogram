@@ -16,7 +16,7 @@
 
 .userinfo-nickname {
   color: #252525;
-  font-size: 16px;
+  font-size: 16pt;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -27,7 +27,7 @@
 .list-title {
   margin: 32rpx;
   color: #252525;
-  font-size: 14px;
+  font-size: 14pt;
 }
 
 .listview {
@@ -55,26 +55,26 @@
 
 .item-title {
   color: #404040;
-  font-size: 16px;
+  font-size: 16pt;
 }
 
 .item-amount {
   text-align: right;
   color: #404040;
-  font-size: 16px;
+  font-size: 16pt;
 }
 
 .item-desc {
   color: #929292;
-  font-size: 13px;
+  font-size: 13pt;
 }
 
 .item-status-draft {
   float: right;
   letter-spacing: 0.18px;
-  width: 60px;
+  width: 160rpx;
   color: #252525;
-  font-size: 12px;
+  font-size: 12pt;
   border-radius: 10px; /*设置圆角*/
   text-align: center;
   line-height: 14px;
@@ -84,9 +84,9 @@
 .item-status-submitted {
   float: right;
   letter-spacing: 0.18px;
-  width: 93px;
+  width: 230rpx;
   font-family: UniversNextforHSBC-Light;
-  font-size: 12px;
+  font-size: 12pt;
   color: #fff;
   border-radius: 10px; /*设置圆角*/
   text-align: center;

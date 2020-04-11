@@ -8,19 +8,19 @@
 }
 
 .request-title {
-  font-size: 14px;
+  font-size: 14pt;
   color: #333;
   text-align: left;
 }
 
 .request-input {
-  font-size: 16px;
+  font-size: 16pt;
   color: #333;
   text-align: left;
 }
 
 .claim-type-title {
-  font-size: 14px;
+  font-size: 14pt;
   color: #252525;
   letter-spacing: -0.15px;
   margin: 32rpx;
@@ -34,7 +34,7 @@
 }
 
 .valid-view-text {
-  font-size: 16px;
+  font-size: 16pt;
   color: #252525;
   letter-spacing: -0.32px;
 }
@@ -45,14 +45,14 @@
 }
 
 .disable-view-text {
-  font-size: 16px;
+  font-size: 16pt;
   color: #999;
   letter-spacing: -0.32px;
 }
 
 .disable-view-tips {
   margin: 32rpx;
-  font-size: 16px;
+  font-size: 16pt;
   color: #999;
   text-align: left;
 }

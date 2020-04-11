@@ -8,14 +8,14 @@
 }
 
 .request-overview-text {
-  font-size: 25px;
+  font-size: 25pt;
   color: #fff;
   letter-spacing: 0.38px;
   line-height: 25px;
 }
 
 .request-overview-totalAmount {
-  font-size: 16px;
+  font-size: 16pt;
   color: #fff;
   letter-spacing: 0.24px;
   margin-top: 80rpx;
