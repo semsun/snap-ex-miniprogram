@@ -5,7 +5,6 @@ let util = require('../../utils/util.js')
 
 let item_add = {
   purposeId: -1, //add invoice id
-  purposeDesc: '添加票据',
   description: 'Add invoice or evidence',
 }
 
@@ -143,30 +142,38 @@ Page({
           switch (value.purposeId) {
             case -1:
               value.icon = "/images/icons/teambuild_selected.png"
+              value.purposeDesc = '添加票据'
               break
             case 0:
               value.icon = "/images/icons/teambuild_selected.png"
+              value.purposeDesc = '团建 Team building'
               break
             case 1:
               value.icon = "/images/icons/bus_selected.png"
+              value.purposeDesc = '交通 Travel ticket'
               break
             case 2:
               value.icon = "/images/icons/house_selected.png"
+              value.purposeDesc = '住宿 Hotel'
               break
             case 3:
               value.icon = "/images/icons/meat_selected.png"
+              value.purposeDesc = '餐饮 Dinner'
               break
             case 4:
               value.icon = "/images/icons/training_selected.png"
+              value.purposeDesc = '医疗 Medical'
               break
             case 5:
               value.icon = "/images/icons/travel_selected.png"
+              value.purposeDesc = '医疗 Medical'
               break
             default:
               value.icon = "/images/icons/teambuild_selected.png"
+              value.purposeDesc = ''
           }
           if (value.purposeId != -1) {
-            value.amount = util.formatAmountEasy(value.amount) +' CNY'
+            value.amount = util.formatAmountEasy(value.amount)
           }
           return value
         })

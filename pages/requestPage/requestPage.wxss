@@ -42,8 +42,33 @@
 
 .item-style {
   background: #fff;
+  margin: 32rpx;
+  padding: 32rpx;
+  box-sizing: border-box;
 }
 
 .list-item-icon {
   margin: 20rpx 50rpx 0 20rpx;
+}
+
+.item-title {
+  font-size: 16pt;
+  color: #404040;
+}
+
+.item-amount {
+  float: right;
+  font-size: 16pt;
+  color: #404040;
+}
+
+.item-desc {
+  font-size: 13pt;
+  color: #929292;
+}
+
+.item-currency {
+  font-size: 13pt;
+  color: #404040;
+  float: right;
 }
