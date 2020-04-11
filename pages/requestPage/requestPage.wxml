@@ -1,35 +1,35 @@
 <!--pages/requestPage/requestPage.wxml-->
 <view class="">
-  <view wx:if="{{!isAdd}}">
-    <view class="request-overview">
-      <view class="request-overview-text">Request Name: {{pageData.purposeDescription}}</view>
-      <view class="request-overview-text">Total Amount: {{pageData.totalAmount}} CNY</view>
-    </view>
+  <!-- <view wx:if="{{!isAdd}}"> -->
+  <view class="request-overview">
+    <view class="request-overview-text">{{pageData.purposeDescription}}</view>
+    <view class="request-overview-text" style="margin-top:32rpx">{{pageData.totalAmount}} CNY</view>
+    <view class="request-overview-totalAmount">Total amount: {{pageData.totalAmount}} CNY</view>
+  </view>
 
-    <view class='listview' style="display:{{isShowListView}}">
-      <block wx:for="{{pageData.item}}" wx:key="index">
-        <view bindtap="onItemClick" mark:itemdata="{{item}}" class="weui-media-box weui-media-box_appmsg text-content item-style" hover-class="weui-cell_active">
-           <view class="list-item-icon">
-              <image class="icon_size" src="{{item.icon}}" />
-            </view>
-    
-          <view class="weui-media-box__bd weui-media-box__bd_in-appmsg">
-            <view class="weui-media-box__title">{{item.description}}</view>
-            <!-- <view class="weui-media-box__desc">{{isAdd}}</view> -->
-                      <view class="weui-media-box__desc">{{item.amount}} CNY</view>
-          </view>
-          <view class="weui-media-box__title">></view>
+  <view class='listview' style="display:{{isShowListView}}">
+    <block wx:for="{{pageData.item}}" wx:key="index">
+      <view bindtap="onItemClick" mark:itemdata="{{item}}" class="weui-media-box weui-media-box_appmsg text-content item-style" hover-class="weui-cell_active">
+        <view class="list-item-icon">
+          <image class="icon_size" src="{{item.icon}}" />
         </view>
-      </block>
-    </view>
 
+        <view class="weui-media-box__bd weui-media-box__bd_in-appmsg">
+          <view class="weui-media-box__title">{{item.description}}</view>
+          <!-- <view class="weui-media-box__desc">{{isAdd}}</view> -->
+          <view class="weui-media-box__desc">{{item.amount}}</view>
+        </view>
+        <view class="weui-media-box__title">></view>
+      </view>
+    </block>
   </view>
-  <view wx:else class="request-overview">
+
+  <!-- </view> -->
+  <!-- <view wx:else class="request-overview">
     <input class="request-overview-text" bindinput="inputRequestName" auto-focus placeholder="Input Request Name" />
-  </view>
+  </view> -->
 
   <view class="btn-area btn-group">
-    <button style="display:{{isShowBtn}}" loading="{{btnIsLoading}}" type="primary" bindtap="onBtnClick">{{btnContext}}</button>
     <button type="primary" loading="{{btnSumitIsLoading}}" bindtap="submitPurpose" style="display:{{isShowSubmitBtn}}">Submit</button>
   </view>
 

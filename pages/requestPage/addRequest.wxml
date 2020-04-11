@@ -18,5 +18,5 @@
 <view class="disable-view-tips">非出差目前暂时不支持，敬请期待！</view>
 
 <view class="btn-area btn-group">
-  <button type="primary"  disabled="{{ctaDisable}}" bindtap="addRequest">添加报销</button>
+  <button type="primary" loading="{{ctaIsLoading}}"  disabled="{{ctaDisable}}" bindtap="addRequest">添加报销</button>
 </view>

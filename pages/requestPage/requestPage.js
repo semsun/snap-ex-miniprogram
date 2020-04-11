@@ -1,7 +1,13 @@
 // pages/requestPage/requestPage.js
-const app = getApp()
-var api = require('../../utils/authRequest.js')
-const util = require('../../utils/util.js')
+let app = getApp()
+let api = require('../../utils/authRequest.js')
+let util = require('../../utils/util.js')
+
+let item_add = {
+  purposeId: -1, //add invoice id
+  purposeDesc: '添加票据',
+  description: 'Add invoice or evidence',
+}
 
 Page({
 
@@ -9,16 +15,11 @@ Page({
    * 页面的初始数据
    */
   data: {
-    isAdd: true,
     expenseId: "",
-    btnContext: "Save",
-    inputRequestName: "",
-    btnIsLoading: false,
     btnSumitIsLoading: false,
-    isShowSubmitBtn: 'none',
-    isShowBtn: 'show',
     isShowListView: 'none',
     dialogShow: false,
+    isShowSubmitBtn: 'show',
     buttons: [{
       text: 'Cancel'
     }, {
@@ -37,25 +38,19 @@ Page({
   onLoad: function(options) {
     var param = JSON.parse(options.json)
     console.log(param)
-    var isAdd_t = typeof(param.isAdd) != typeof(undefined) ? param.isAdd : true
-
+    let inputRequestName = typeof(param.inputRequestName) != typeof(undefined) ? param.inputRequestName : ""
     this.setData({
-      isAdd: isAdd_t,
-      btnContext: isAdd_t ? "Save" : "Add purpose",
+      isShowSubmitBtn: (param.purposeStatus == 0) ? 'display' : 'none',
       purposeStatus: param.purposeStatus,
-      expenseId: param.expenseId,
-      isShowSubmitBtn: (!isAdd_t && param.purposeStatus == 0) ? 'show' : 'none',
-      isShowBtn: (!isAdd_t && param.purposeStatus != 0) ? 'none' : 'show'
+      expenseId: param.expenseId
     })
-    if (!isAdd_t) {
-      this.getPurposeData(this, param.expenseId)
-    }
+    this.getPurposeData(this, param.expenseId)
+
   },
 
   addInvoice: function(e) {
     var that = this
     wx.navigateTo({
-      // url: '/pages/purpose/purpose?expenseId=test003&expenseDetailId=IeIErjVaGe',
       url: '/pages/purpose/purpose?expenseId=' + that.data.expenseId,
     })
   },
@@ -133,14 +128,22 @@ Page({
         if (res.data.code != 0) {
           that.onNetworkFail()
         }
+
         res.data = res.data.data
 
+        let isCanSubmit = res.data.status == 0
         var tempPageData = {
           purposeDescription: res.data.description,
           totalAmount: util.formatAmountEasy(res.data.totalAmount)
         }
+        if (isCanSubmit) {
+          res.data.purposes.push(item_add)
+        }
         tempPageData.item = res.data.purposes.map(function(value, index, array) {
           switch (value.purposeId) {
+            case -1:
+              value.icon = "/images/icons/teambuild_selected.png"
+              break
             case 0:
               value.icon = "/images/icons/teambuild_selected.png"
               break
@@ -162,20 +165,16 @@ Page({
             default:
               value.icon = "/images/icons/teambuild_selected.png"
           }
-          value.amount = util.formatAmountEasy(value.amount)
+          if (value.purposeId != -1) {
+            value.amount = util.formatAmountEasy(value.amount) +' CNY'
+          }
           return value
         })
 
-        if (!(tempPageData.item.length > 0)) {
-          var tempIsHasInvoiceListData = 'none'
-        } else {
-          var tempIsHasInvoiceListData = 'display'
-        }
-        var isShowSubmitBtn_temp = (!that.data.isAdd && that.data.purposeStatus == 0 && tempIsHasInvoiceListData == 'display' && tempPageData.totalAmount != '0.00') ? 'display' : 'none'
         that.setData({
           pageData: tempPageData,
-          isShowListView: tempIsHasInvoiceListData,
-          isShowSubmitBtn: isShowSubmitBtn_temp
+          isShowListView: 'display',
+          isShowSubmitBtn: isCanSubmit ? 'display' : 'none'
         })
       },
       fail(res) {
