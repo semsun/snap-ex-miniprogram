@@ -1,33 +1,40 @@
 <!--dashboard.wxml-->
 <view class="dashboard-page">
-  <!-- <view class="userinfo">
+  <view class="userinfo">
     <button wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 获取头像昵称 </button>
     <block wx:else>
-      <image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
-      <text class="userinfo-nickname">{{userInfo.nickName}}</text>
+      <view class="weui-flex">
+        <image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
+        <text class="userinfo-nickname">{{userInfo.nickName}}</text>
+      </view>
     </block>
-  </view> -->
+  </view>
 
+  <view class="list-title">报销列表 My reimbursement list</view>
 
   <view class='listview'>
     <block wx:for="{{listdata}}" wx:key="index">
-      <view bindtap="toInvoice" mark:itemdata="{{item}}" class="weui-flex text-content" hover-class="weui-cell_active">
+      <view bindtap="toInvoice" mark:itemdata="{{item}}" class="weui-flex text-content item-view" hover-class="weui-cell_active">
 
-        <view class="list-item-icon">
+        <!-- <view class="list-item-icon">
           <icon wx:if="{{item.status != '0'}}" class="icon-small" type="success" size="23"></icon>
           <icon wx:else class="icon-small" type="info_circle" size="23"></icon>
-        </view>
+        </view> -->
 
         <view class="weui-media-box__bd weui-media-box__bd_in-appmsg">
-          <view class="weui-media-box__title">{{item.title}}</view>
-          <view class="weui-media-box__desc">{{item.date}}</view>
+          <view class="weui-media-box__title item-title">{{item.title}}</view>
+          <view class="weui-media-box__desc item-desc">{{item.date}}</view>
         </view>
-        <view class="weui-media-box__title">{{item.totalAmount}} CNY</view>
+        <view class="weui-media-box__bd">
+          <view class="weui-media-box__title item-amount">{{item.totalAmount}} CNY</view>
+          <view wx:if="{{item.status != '0'}}" class="item-status-submitted">SUBMITTED</view>
+          <view wx:else class="item-status-draft">DRAFT</view>
+        </view>
       </view>
     </block>
   </view>
   <view class="btn-area btn-group">
-    <button type="primary" bindtap="addInvoiceOrLogin">Add Request</button>
+    <button type="primary" bindtap="addInvoiceOrLogin">添加报销</button>
     <!-- <button type="warn" style="display:{{isShowExitBtn}}" bindtap="exitProfile">Exit</button> -->
   </view>
 
