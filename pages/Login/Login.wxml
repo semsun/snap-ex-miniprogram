@@ -7,7 +7,7 @@
       <!-- <text class="userinfo-nickname">{{userInfo.nickName}}</text> -->
     </block>
     <view class="content_name">HTC官方报销平台</view>
-    <button class="loginBtn" disabled="{{loginBtnDisabled}}" bindtap='scanQRCodeLogin'>Scan QRCode Login</button>
+    <button class="loginBtn" disabled="{{loginBtnDisabled}}" bindtap='scanQRCodeLogin'>扫码绑定员工号</button>
     <view class="content_txt context_to_btn">This is for HSBC staff only. It is required to complete staff </view>
     <view class="content_txt">validation before continuing to use the services:</view>
     <view class="content_title">Step one</view>

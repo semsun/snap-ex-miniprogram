@@ -32,17 +32,21 @@
     height: 238rpx;
     border-radius: 50%;
     background: #D8D8D8;
-    margin-top: 140rpx;
+    margin-top: 164rpx;
     /* border: 0 solid #ffffff; */
     /* box-shadow: 4px 1px 1px #cccccc; */
 }
 
 .loginBtn {
-    width: 384rpx;
-    height: 96rpx;
-    border-radius: 0px;
-    background: #DB0011;
-    margin-top: 32rpx;
+  width: 384rpx;
+  height: 96rpx;
+  border-radius: 0px;
+  background: #DB0011;
+  margin-top: 32rpx;
+
+  color: #FFFFFF;
+  letter-spacing: -0.32px;
+  text-align: center;
 }
 
 .context_to_btn {
@@ -75,4 +79,12 @@
   text-align: center;
   line-height: 36rpx;
   margin-top: 36rpx;
+}
+
+.content_btn {
+  font-family: PingFangSC-Regular;
+  font-size: 16px;
+  color: #FFFFFF;
+  letter-spacing: -0.32px;
+  text-align: center;
 }
