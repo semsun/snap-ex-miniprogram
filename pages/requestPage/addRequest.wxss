@@ -1,1 +1,63 @@
 /* pages/requestPage/addRequest.wxss */
+
+.block-view {
+  margin-top: 32rpx;
+  background-color: #fff;
+  padding: 32rpx;
+  box-sizing: border-box;
+}
+
+.request-title {
+  font-size: 14px;
+  color: #333;
+  text-align: left;
+}
+
+.request-input {
+  font-size: 16px;
+  color: #333;
+  text-align: left;
+}
+
+.claim-type-title {
+  font-size: 14px;
+  color: #252525;
+  letter-spacing: -0.15px;
+  margin: 32rpx;
+  margin-top: 64rpx;
+}
+
+.valid-view {
+  background-color: #fff;
+  padding: 32rpx;
+  box-sizing: border-box;
+}
+
+.valid-view-text {
+  font-size: 16px;
+  color: #252525;
+  letter-spacing: -0.32px;
+}
+
+.disable-view {
+  padding: 32rpx;
+  box-sizing: border-box;
+}
+
+.disable-view-text {
+  font-size: 16px;
+  color: #999;
+  letter-spacing: -0.32px;
+}
+
+.disable-view-tips {
+  margin: 32rpx;
+  font-size: 16px;
+  color: #999;
+  text-align: left;
+}
+
+.btn-group {
+  position: fixed;
+  bottom: 0;
+}

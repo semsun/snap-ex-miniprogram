@@ -1,66 +1,38 @@
 // pages/requestPage/addRequest.js
+var inputRequestName = ""
+
 Page({
+
 
   /**
    * 页面的初始数据
    */
   data: {
-
+    ctaDisable: true,
   },
 
-  /**
-   * 生命周期函数--监听页面加载
-   */
-  onLoad: function (options) {
-
+  addRequest(e) {
+    console.log(inputRequestName)
+    var param = {
+      isAdd: true,
+      inputRequestName: inputRequestName
+    }
+    wx.navigateTo({
+      url: '/pages/requestPage/requestPage?json=' + JSON.stringify(param),
+    })
   },
 
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
 
+  inputRequestName: function(e) {
+    inputRequestName = e.detail.value
+    if (e.detail.value.length > 0) {
+      this.setData({
+        ctaDisable: false,
+      })
+    } else {
+      this.setData({
+        ctaDisable: true,
+      })
+    }
   },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-
-  }
 })

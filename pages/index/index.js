@@ -131,7 +131,7 @@ Page({
       isAdd: true
     }
     wx.navigateTo({
-      url: '/pages/requestPage/requestPage?json=' + JSON.stringify(param),
+      url: '/pages/requestPage/addRequest',
     })
   },
 

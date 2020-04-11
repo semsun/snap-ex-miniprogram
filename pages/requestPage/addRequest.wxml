@@ -1,2 +1,22 @@
 <!--pages/requestPage/addRequest.wxml-->
-<text>pages/requestPage/addRequest.wxml</text>
+<view class="block-view">
+  <view class="request-title">报销标题 Title</view>
+  <input class="request-input" bindinput="inputRequestName" auto-focus placeholder="Please enter title" />
+</view>
+
+<view class="claim-type-title">报销类型 Type</view>
+
+<view class="">
+  <view class="valid-view">
+    <view class="valid-view-text">非出差 Non-travel</view>
+  </view>
+  <view class="disable-view">
+    <view class="disable-view-text">出差 Travel</view>
+  </view>
+</view>
+
+<view class="disable-view-tips">非出差目前暂时不支持，敬请期待！</view>
+
+<view class="btn-area btn-group">
+  <button type="primary"  disabled="{{ctaDisable}}" bindtap="addRequest">添加报销</button>
+</view>
