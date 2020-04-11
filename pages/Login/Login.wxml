@@ -1,29 +1,19 @@
 <!--pages/Login/Login.wxml-->
 <view class="container">
   <view class="userinfo">
-    <button wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 获取头像昵称 </button>
+    <button wx:if="{{!hasUserInfo && canIUse}}" class="circle" open-type="getUserInfo" bindgetuserinfo="getUserInfo">  </button>
     <block wx:else>
-      <image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
-      <text class="userinfo-nickname">{{userInfo.nickName}}</text>
+      <image bindtap="bindViewTap" class="circle" src="{{userInfo.avatarUrl}}" mode="cover"></image>
+      <!-- <text class="userinfo-nickname">{{userInfo.nickName}}</text> -->
     </block>
-
-    <view class="weui-cells weui-cells_after-title">
-      <view class="weui-cell weui-cell_input">
-        <block wx:if="{{name}}">
-          <view class="weui-cell__bd">
-          Wellcom {{name}}! If it not you information, Please close this page. Thanks.
-          </view>
-        </block>
-          <view class="font-break">
-          {{qrCodeResult}}
-          </view>
-      </view>
-    </view>
-  </view>
-
-  <view class="btn-area" id="buttonContainer">
-    <!-- <button type="primary"  open-type="getPhoneNumber" bindgetphonenumber='login'>Login</button> -->
-    <button type="primary" disabled="{{loginBtnDisabled}}" bindtap='scanQRCodeLogin'>Scan QRCode Login</button>
-    <button  type="default" bindtap='cancelLogin'>Cancel</button>
+    <view class="content_name">HTC官方报销平台</view>
+    <button class="loginBtn" disabled="{{loginBtnDisabled}}" bindtap='scanQRCodeLogin'>Scan QRCode Login</button>
+    <view class="content_txt context_to_btn">This is for HSBC staff only. It is required to complete staff </view>
+    <view class="content_txt">validation before continuing to use the services:</view>
+    <view class="content_title">Step one</view>
+    <view class="content_txt">On intranet network, access the link:</view>
+    <view class="content_txt"> class="content_txt"http://hkl20133364.hk.hsbc:8052</view>
+    <view class="content_title">Step two</view>
+    <view class="content_txt">Click the button above to scan the QR code provided in step one.</view>
   </view>
 </view>
