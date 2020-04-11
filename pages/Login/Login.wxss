@@ -26,3 +26,65 @@
 .font-break {
   word-break:break-all;
 }
+
+.circle{
+    width: 238rpx;
+    height: 238rpx;
+    border-radius: 50%;
+    background: #D8D8D8;
+    margin-top: 164rpx;
+    /* border: 0 solid #ffffff; */
+    /* box-shadow: 4px 1px 1px #cccccc; */
+}
+
+.loginBtn {
+  width: 384rpx;
+  height: 96rpx;
+  border-radius: 0px;
+  background: #DB0011;
+  margin-top: 32rpx;
+
+  color: #FFFFFF;
+  letter-spacing: -0.32px;
+  text-align: center;
+}
+
+.context_to_btn {
+  margin-top: 68rpx;
+}
+
+.content_name {
+  font-family: PingFangSC-Regular;
+  font-size: 32rpx;
+  color: #252525;
+  letter-spacing: 0;
+  text-align: center;
+  margin-top: 80rpx;
+}
+
+.content_txt {
+  font-family: PingFangSC-Regular;
+  font-size: 22rpx;
+  color: #5C5C5C;
+  letter-spacing: 0;
+  text-align: center;
+  line-height: 36rpx;
+}
+
+.content_title {
+  font-family: PingFangSC-Semibold;
+  font-size: 22rpx;
+  color: #5C5C5C;
+  letter-spacing: 0;
+  text-align: center;
+  line-height: 36rpx;
+  margin-top: 36rpx;
+}
+
+.content_btn {
+  font-family: PingFangSC-Regular;
+  font-size: 16px;
+  color: #FFFFFF;
+  letter-spacing: -0.32px;
+  text-align: center;
+}

@@ -14,7 +14,8 @@
     "pages/purpose/purpose",
     "pages/me/me",
     "pages/general/general",
-    "pages/requestPage/addRequest"
+    "pages/requestPage/addRequest",
+    "pages/summitResult/summitResult"
   ],
   "window": {
     "backgroundTextStyle": "light",

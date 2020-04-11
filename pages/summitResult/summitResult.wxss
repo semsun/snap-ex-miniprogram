@@ -1,0 +1,45 @@
+/* pages/summitResult/summitResult.wxss */
+.icon {
+  margin-top: 250rpx;
+  width: 160rpx;
+  height: 160rpx;
+  border-radius: 50%;
+  background: #00847F;
+}
+
+.msg_title_to_icon {
+  margin-top: 48rpx;
+}
+
+.msg_ctx_to_title {
+  margin-top: 32rpx;
+}
+.btn_to_msg_ctx {
+  margin-top: 58rpx;
+}
+
+.msg_title {
+  font-size: 40rpx;
+  color: #252525;
+  letter-spacing: 0.74rpx;
+  text-align: center;
+  line-height: 28rpx;
+}
+
+.msg_content {
+  font-size: 28rpx;
+  color: #252525;
+  letter-spacing: -0.3rpx;
+  text-align: center;
+  line-height: 40rpx; 
+}
+
+.back_btn {
+  border: 2rpx solid #262626;
+  width: 686rpx;
+  height: 96rpx;
+  border-radius: 0rpx;
+
+  font-size: 16px;
+  color: #333333;
+}

@@ -1,0 +1,9 @@
+<!--pages/summitResult/summitResult.wxml-->
+<view class="page-body-wrapper">
+  <view class="icon"></view>
+  <view class="msg_title msg_title_to_icon">报销提交成功</view>
+  <view class="msg_content msg_ctx_to_title">您的报销项已成功提交。</view>
+  <view class="msg_content">审批环节和后续的状态在expense进行和查看</view>
+  <button bindtap="onBackBtnClick" class="back_btn btn_to_msg_ctx">返回 Back</button>
+</view>
+
