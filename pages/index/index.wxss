@@ -74,12 +74,14 @@
 }
 
 .item-status-draft {
-  padding-top: 5rpx;
-  padding-bottom: 5rpx;
+  padding-top: 8rpx;
+  padding-bottom: 8rpx;
+  padding-left: 18rpx;
+  padding-right: 18rpx;
   box-sizing: border-box;
   float: right;
   letter-spacing: 0.18px;
-  width: 140rpx;
+  /* width: 140rpx; */
   color: #252525;
   font-size: 12pt;
   border-radius: 10px; /*设置圆角*/
@@ -89,12 +91,14 @@
 }
 
 .item-status-submitted {
-  padding-top: 5rpx;
-  padding-bottom: 5rpx;
+  padding-top: 8rpx;
+  padding-bottom: 8rpx;
+  padding-left: 18rpx;
+  padding-right: 18rpx;
   box-sizing: border-box;
   float: right;
   letter-spacing: 0.18px;
-  width: 220rpx;
+  /* width: 220rpx; */
   font-family: UniversNextforHSBC-Light;
   font-size: 12pt;
   color: #fff;
@@ -108,4 +112,3 @@
   position: fixed;
   bottom: 0;
 }
-
