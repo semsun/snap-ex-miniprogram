@@ -14,7 +14,7 @@
     "pages/purpose/purpose",
     "pages/me/me",
     "pages/general/general",
-    "pages/purposeView/purposeView"
+    "pages/purposeView/purposeView",
     "pages/requestPage/addRequest",
     "pages/summitResult/summitResult"
   ],
