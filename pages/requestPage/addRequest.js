@@ -68,7 +68,7 @@ Page({
       inputRequestName: inputRequestName,
       expenseId: expenseId
     }
-    wx.navigateTo({
+    wx.redirectTo({
       url: '/pages/requestPage/requestPage?json=' + JSON.stringify(param),
     })
   },

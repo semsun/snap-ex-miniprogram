@@ -8,6 +8,8 @@ let item_add = {
   description: 'Add invoice or evidence',
 }
 
+
+
 Page({
 
   /**
@@ -44,8 +46,11 @@ Page({
       purposeStatus: param.purposeStatus,
       expenseId: param.expenseId
     })
-    this.getPurposeData(this, param.expenseId)
+  },
 
+  //显示页面的时候
+  onShow(e) {
+    this.getPurposeData(this, this.data.expenseId)
   },
 
   addInvoice: function() {
@@ -207,8 +212,11 @@ Page({
         console.log(res.data)
         var result = res.data
         if (result.code == 0) {
-          wx.navigateBack({
-            delta: 1
+          // wx.navigateBack({
+          //   delta: 1
+          // })
+          wx.redirectTo({
+            url: '/pages/summitResult/summitResult',
           })
         } else {
           that.onNetworkFail()
