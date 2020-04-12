@@ -1,6 +1,159 @@
 /* pages/TestPage/TestPackage.wxss */
-@import '../components/weui-wxss/dist/style/weui.wxss';
-@import '../components/weui-wxss/dist/style/index.wxss';
+@import '../components/funjoin-wxss/fjui.wxss';
+
+.content_container {
+  margin-left: 32rpx;
+  margin-right: 32rpx;
+}
+.ctx_title {
+  font-size: 28rpx;
+  color: #767676;
+  width: 226rpx;
+}
+
+.ctx_content {
+  font-size: 28rpx;
+  color: #252525;
+  text-align: right;
+  width: 460rpx;
+}
+
+.ctx_edit_title {
+  font-size: 28rpx;
+  color: #333333;
+  text-align: left;
+}
+
+.ctx_edit_content {
+  font-size: 32rpx;
+  color: #333333;
+  text-align: left;
+}
+
+.item_title {
+  font-size: 28rpx;
+  color: #252525;
+  margin-top: 30rpx;
+}
+
+.item_content {
+  margin-top: 30rpx;
+  width: 686rpx;
+  height: 332rpx;
+  background: #E7E7E7;
+}
+
+.note_count {
+  color: #252525;
+  font-family: "SF Pro Text";
+  font-size: 24rpx;
+  text-align: right;
+}
+
+.camera_size {
+  width: 96rpx;
+  height: 90.6rpx;
+}
+
+.item {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  width: 100%;
+  height: 104rpx;
+}
+
+.item_edit {
+  background: #FFFFFF;
+  width: 100%;
+  height: 104rpx;
+  margin-top: 2rpx;
+}
+
+.item_edit_nohigh_limited {
+  background: #FFFFFF;
+  width: 100%;
+  margin-top: 2rpx;
+}
+
+.origin_position {
+  margin-top: 32rpx;
+}
+
+.type_to_item {
+  margin-top: 32rpx;
+}
+
+.type_gap {
+  margin-top: 30rpx;
+}
+
+.row_style {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.btn_area_local {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  height: 150rpx;
+  background: #FFFFFF;
+  box-shadow: 0 -1px 10px 0 rgba(0,0,0,0.12);
+}
+
+.btn_del {
+  background: #FFFFFF;
+  border: 2rpx solid #333333;
+  width: 332rpx;
+  height: 90rpx;
+  border-radius: 0;
+
+  font-family: PingFangSC-Regular;
+  font-size: 32rpx;
+  color: #333333;
+  letter-spacing: 0;
+  text-align: center;
+}
+
+.btn_edit {
+  width: 332rpx;
+  height: 90rpx;
+}
+
+.btn_add {
+  width: 686rpx;
+  height: 96rpx;
+}
+
+.icon_place {
+  width: 64rpx;
+  height: 64rpx;
+  background: #D8D8D8;
+}
+
+.purpose_txt {
+  font-family: PingFangSC-Regular;
+  font-size: 24rpx;
+  color: #252525;
+  text-align: center;
+}
+
+.purpose_txt_gap {
+  margin-bottom: 18rpx;
+}
+
+.view_align_middle_center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.picker_bg {
+  width: 686rpx;
+}
 
 .purpose_cnt_titie {
   margin-top: 15rpx;
@@ -33,8 +186,9 @@ textarea {
 }
 
 .icon_size {
-  width: 40px;
-  height: 40px;
+  width: 64rpx;
+  height: 64rpx;
+  margin-top: 32rpx;
 }
 
 .align_col_center {
@@ -43,10 +197,16 @@ textarea {
   align-items: center;
 }
 
-.input_width {
-  margin-left: 1em;
-}
-
 .mark_bg {
   background-color: #ff0000;
+}
+
+.purpose_bg {
+  background: #ffffff
+}
+
+.arrow_size {
+  width: 22rpx;
+  height: 32rpx;
+  margin-top: 42rpx;
 }

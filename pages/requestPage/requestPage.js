@@ -56,7 +56,7 @@ Page({
   addInvoice: function() {
     var that = this
     wx.navigateTo({
-      url: '/pages/purpose/purpose?expenseId=' + that.data.expenseId,
+      url: '/pages/purpose/purpose?editFlag=true&expenseId=' + that.data.expenseId,
     })
   },
 

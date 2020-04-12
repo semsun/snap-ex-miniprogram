@@ -1,154 +1,96 @@
 <view class="container">
-
-  <view class="page-body">
-    
-      <view class="page-section">
-        <view class="page-section-title purpose_cnt_titie">Purpose</view>
-        <view class="weui-cells weui-cells_after-title">
-          <view class="weui-cell">
+  <view>
+    <block wx:if="{{!editFlag}}">
+    <view class="origin_position content_container  item">
+      <view class="ctx_title">报销类型 Purpose</view>
+      <view class="ctx_content">{{currencyDisplayArray[currencyIndex]}}</view>
+    </view>
+    <view class="content_container item">
+      <view class="ctx_title">报销金额 Amount</view>
+      <view class="ctx_content">{{displayAmount}} CNY</view>
+    </view>
+    <view class="content_container item">
+      <view class="ctx_title">备注 Note</view>
+      <view class="ctx_content">{{purpose.description}}</view>
+    </view>
+    </block>
+    <block wx:else>
+    <view class="origin_position">
+      <view class="content_container">
+        <view class="ctx_edit_title">报销类型 Purpose</view>
+        <view class="type_gap purpose_bg">
+          <view class="row_style">
             <block wx:for="{{[0, 1, 2]}}" wx:key="unique" wx:for-item="i">
               <view data-id="{{purposeIds[i]}}" bindtap="changeCategory" class="select_box align_col_center">
                 <block wx:if="{{purposeIds[i] === purpose.purposeId}}">
-                  <image class="icon_size" src="{{categorys[i].icon_selected}}" />
+                  <image class="icon_size purpose_txt_gap" src="{{categorys[i].icon_selected}}" />
                 </block>
                 <block wx:else>
-                  <image class="icon_size" src="{{categorys[i].icon_normal}}" />
+                  <image class="icon_size purpose_txt_gap" src="{{categorys[i].icon_normal}}" />
                 </block>
-                <view class="weui-label align_col_center">{{categorys[i].name}}</view>
+                <view class="purpose_txt align_col_center">{{categorys[i].cn_name}}</view>
+                <view class="purpose_txt align_col_center purpose_txt_gap">{{categorys[i].en_name}}</view>
               </view>
             </block>
           </view>
-          <view class="weui-cell">
+          <view class="row_style">
             <block wx:for="{{[3, 4, 5]}}" wx:key="unique" wx:for-item="i">
               <view data-id="{{purposeIds[i]}}" bindtap="changeCategory" class="select_box align_col_center">
                 <block wx:if="{{purposeIds[i] === purpose.purposeId}}">
-                  <image class="icon_size" src="{{categorys[i].icon_selected}}" />
+                  <image class="icon_size purpose_txt_gap" src="{{categorys[i].icon_selected}}" />
                 </block>
                 <block wx:else>
-                  <image class="icon_size" src="{{categorys[i].icon_normal}}" />
+                  <image class="icon_size purpose_txt_gap" src="{{categorys[i].icon_normal}}" />
                 </block>
-                <view class="weui-label align_col_center">{{categorys[i].name}}</view>
+                <view class="purpose_txt align_col_center">{{categorys[i].cn_name}}</view>
+                <view class="purpose_txt align_col_center purpose_txt_gap">{{categorys[i].en_name}}</view>
               </view>
             </block>
           </view>
         </view>
-          
-        <view class="page-section-title purpose_cnt_titie">Detail</view>
-        <view class="weui-cells weui-cells_after-title">
-          <view class="weui-cell weui-cell_input">
-            <view class="weui-cell__hd">
-              <view class="weui-label">Currency</view>
-            </view>
-            <view class="weui-cell__bd">
-              <picker bindchange="bindCurrencyChange" disabled="{{disabledEdit}}" value="{{currencyIndex}}" range="{{currencyArray}}">
-                <view class="weui-input">{{currencyArray[currencyIndex]}}</view>
-              </picker>
-            </view>
-          </view>
-          <view class="weui-cell weui-cell_input">
-            <view class="weui-cell__hd">
-              <view class="weui-label">Amount</view>
-            </view>
-            <view class="weui-cell__bd">
-              <input class="weui-input" type="digit" bindfocus="focusAmount" bindblur="updateAmount" name="input" disabled="{{disabledEdit}}" placeholder="Input Amount" value="{{displayAmount}}" />
-            </view>
-          </view>
-          <view class="weui-cell weui-cell_input">
-            <view class="weui-cell__hd">
-              <view class="weui-label">Date</view>
-            </view>
-            <view class="weui-cell__bd">
-              <picker mode="date" value="{{purpose.occurDate}}" disabled="{{disabledEdit}}" start="{{selBeginDate}}" end="{{selEndDate}}" bindchange="bindDateChange">
-                <view class="weui-input">{{purpose.occurDate}}</view>
-              </picker>
-            </view>
-          </view>
-        </view>
-        
-        <view class="page-section-title purpose_cnt_titie">Description</view>
-        <view class="weui-cells weui-cells_after-title">
-          <view class="textarea-wrp">
-            <textarea bindblur="bindDescriptionChange" disabled="{{disabledEdit}}" placeholder="Input Description" auto-height value="{{purpose.description}}" />
-          </view>
-        </view>
-        
-        <view class="weui-cells align_col_center">
-          <button type="primary" plain="true" disabled="{{disabledEdit}}" bindtap="takeInvoicePhoto">{{sel_pho_btn_title}}</button>
-          <image wx:if="{{purpose.image_path}}" mode="aspectFit" src="{{purpose.image_path}}"></image>
-        </view>
-        
-        <!-- <view class="page-section-title">Invoice Information</view>
-        <view class="weui-cells weui-cells_after-title">
-          <view class="weui-cell weui-cell_input">
-            <view class="weui-cell__hd">
-              <view class="weui-label">Code</view>
-            </view>
-            <view class="weui-cell__bd">
-              <input class="weui-input input_width" name="input" placeholder="Input Invoice Code" value="{{purpose.code}}" />
-            </view>
-          </view>
-          <view class="weui-cell weui-cell_input">
-            <view class="weui-cell__hd">
-              <view class="weui-label">Number</view>
-            </view>
-            <view class="weui-cell__bd">
-              <input class="weui-input input_width" name="input" placeholder="Input Invoice Number" value="{{purpose.number}}" />
-            </view>
-          </view>
-          <view class="weui-cell weui-cell_input">
-            <view class="weui-cell__hd">
-              <view class="weui-label">Company</view>
-            </view>
-            <view class="weui-cell__bd">
-              <input class="weui-input input_width" name="input" placeholder="Input Company Name" value="{{purpose.companyName}}" />
-            </view>
-          </view>
-          <view class="weui-cell weui-cell_input">
-            <view class="weui-cell__hd">
-              <view class="weui-label">Date</view>
-            </view>
-            <view class="weui-cell__bd">
-              <input class="weui-input input_width" name="input" placeholder="Input Invoice Date" value="{{purpose.date}}" />
-            </view>
-          </view>
-          <view class="weui-cell weui-cell_input">
-            <view class="weui-cell__hd">
-              <view class="weui-label">AMT.(CNY)</view>
-            </view>
-            <view class="weui-cell__bd">
-              <input class="weui-input input_width" name="input" placeholder="Input Invoice Amount" value="{{purpose.amount}}" />
-            </view>
-          </view>
-
-          <view class="weui-cell" style="padding: 1px 1px">
-            <view class="weui-cell__bd">
-                <view class="navigator-box navigator-box-show">
-                  <navigator url="/pages/Invoice/invoiceDetail/invoiceDetail" class="navigator">
-                    <view class="navigator-text">More</view>
-                    <view class="navigator-arrow"></view>
-                  </navigator>
-                </view>
-            </view>
-          </view>
-
-        </view> -->
       </view>
+    </view>
+    <view class="item_edit type_to_item">
+      <view class="content_container row_style">
+        <view class="picker_bg">
+          <picker bindchange="bindCurrencyChange" value="{{currencyIndex}}" range="{{currencyDisplayArray}}">
+            <view class="ctx_edit_title">报销货币 Currency</view>
+            <view class="ctx_edit_content">{{currencyDisplayArray[currencyIndex]}}</view>
+          </picker>
+        </view>
+        <image mode="aspectFit" class="arrow_size" src="{{arrow_path}}"></image>
+      </view>
+    </view>
+    <view class="item_edit">
+      <view class="content_container">
+        <view class="ctx_edit_title">报销金额 Amount</view>
+        <input class="ctx_edit_content" type="digit" bindfocus="focusAmount" bindblur="updateAmount" name="input" placeholder="Input Amount" value="{{displayAmount}}" />
+      </view>
+    </view>
+    <view class="item_edit_nohigh_limited">
+      <view class="content_container">
+        <view class="ctx_edit_title">备注 Note</view>
+        <textarea class="ctx_edit_content" bindinput="bindDescriptionChange" maxlength="{{note_max}}" placeholder="Input Description" auto-height value="{{purpose.description}}" />
+        <view class="note_count">{{note_count}}/{{note_max}}</view>
+      </view>
+    </view>
+    </block>
+    <view>
+      <view class="content_container">
+        <view class="item_title">票据拍照 Invoice or evidence photo</view>
+        <view wx:if="{{!purpose.image_path}}" bindtap="takeInvoicePhoto" class="item_content view_align_middle_center">
+          <image class="camera_size " mode="aspectFit" src="{{camera_path}}"></image>
+        </view>
+        <image wx:else bindtap="takeInvoicePhoto" mode="aspectFit" class="type_gap" src="{{purpose.image_path}}"></image>
+      </view>
+    </view>
   </view>
 
-  <view class="btn-area" id="buttonContainer">
-    <!-- <button type="primary" bindtap="queryInvoiceImage">ReadPicture</button> -->
-    <button type="primary" disabled="{{disabledEdit}}" bindtap="saveAction">Save</button>
-    <!-- <button type="primary" bindtap="addPurpose">Add New</button> -->
+  <view class="btn_area_local" id="buttonContainer">
+    <button wx:if="{{editFlag}}" bindtap="saveAction" class="btn-enable btn_add">添加票据 Add</button>
+    <block wx:else>
+      <button class="btn_del" bindtap="delAction">删除 Delete</button>
+      <button class="{{disabledEdit?'btn-disable':'btn-enable'}} btn_edit" bindtap="editAction">编辑 Edit</button>
+    </block>
   </view>
-
-  <!-- <mp-actionSheet bindactiontap="btnClick" show="{{showDialog}}" actions="{{groups}}" title="这是一个标题，可以为一行或者两行。">
-      <view slot="{{'actionSlot' + '1'}}" class="custom-action">
-          <view class="custom-action_desc">前往图中包含的小程序：</view>
-          <view class="custom-action_content">
-              <mp-icon icon="qr-code" size="{{20}}"></mp-icon>
-              <text class="custom-action_name">小程序名称</text>
-              <mp-icon icon="arrow" size="{{12}}"></mp-icon>
-          </view>
-      </view>
-  </mp-actionSheet> -->
 </view>

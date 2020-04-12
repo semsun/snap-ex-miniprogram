@@ -24,46 +24,42 @@
     <block wx:else>
     <view class="origin_position">
       <view class="content_container">
-        <view class="ctx_edit_title">票据类型 Type</view>
+        <view class="ctx_edit_title">报销类型 Purpose</view>
         <view class="type_gap">
-          <view class="row_style">
-            <view class="purpose_type_unsel view_align_middle_center">
-              <view class="icon_place"></view>
-              <view class="purpose_txt">交通 Travel ticket</view>
-            </view>
-            <view class="purpose_type_sel view_align_middle_center">
-              <view class="icon_place"></view>
-              <view class="purpose_txt">餐饮 Dinner</view>
-            </view>
+          <block wx:for="{{[0, 1, 2]}}" wx:key="unique" wx:for-item="i">
+              <view data-id="{{purposeIds[i]}}" bindtap="changeCategory" class="select_box align_col_center">
+                <block wx:if="{{purposeIds[i] === purpose.purposeId}}">
+                  <image class="icon_size" src="{{categorys[i].icon_selected}}" />
+                </block>
+                <block wx:else>
+                  <image class="icon_size" src="{{categorys[i].icon_normal}}" />
+                </block>
+                <view class="weui-label align_col_center">{{categorys[i].name}}</view>
+              </view>
+            </block>
           </view>
-          <view class="row_style">
-            <view class="purpose_type_unsel view_align_middle_center">
-              <view class="icon_place"></view>
-              <view class="purpose_txt">住宿 Hotel</view>
-            </view>
-            <view class="purpose_type_unsel view_align_middle_center">
-              <view class="icon_place"></view>
-              <view class="purpose_txt">医疗 Medical</view>
-            </view>
-          </view>
-          <view class="row_style">
-            <view class="purpose_type_unsel view_align_middle_center">
-              <view class="icon_place"></view>
-              <view class="purpose_txt">团建 Team building</view>
-            </view>
-            <view class="purpose_type_unsel view_align_middle_center">
-              <view class="icon_place"></view>
-              <view class="purpose_txt">其它 Others</view>
-            </view>
-          </view>
+          <view class="weui-cell">
+            <block wx:for="{{[3, 4, 5]}}" wx:key="unique" wx:for-item="i">
+              <view data-id="{{purposeIds[i]}}" bindtap="changeCategory" class="select_box align_col_center">
+                <block wx:if="{{purposeIds[i] === purpose.purposeId}}">
+                  <image class="icon_size" src="{{categorys[i].icon_selected}}" />
+                </block>
+                <block wx:else>
+                  <image class="icon_size" src="{{categorys[i].icon_normal}}" />
+                </block>
+                <view class="weui-label align_col_center">{{categorys[i].name}}</view>
+              </view>
+            </block>
         </view>
       </view>
     </view>
     <view class="item_edit type_to_item">
       <view class="content_container row_style">
-        <view>
-          <view class="ctx_edit_title">报销货币 Currency</view>
-          <view class="ctx_edit_content">餐饮 Dinner</view>
+        <view class="picker_bg">
+          <picker bindchange="bindCurrencyChange" disabled="{{disabledEdit}}" value="{{currencyIndex}}" range="{{currencyArray}}">
+            <view class="ctx_edit_title">报销货币 Currency</view>
+            <view class="weui-input">{{currencyArray[currencyIndex]}}</view>
+          </picker>
         </view>
         <view class="navigator-arrow"></view>
       </view>
@@ -71,29 +67,31 @@
     <view class="item_edit">
       <view class="content_container">
         <view class="ctx_edit_title">报销金额 Amount</view>
-        <view class="ctx_edit_content">5,897.00 CNY</view>
+        <input class="weui-input" type="digit" bindfocus="focusAmount" bindblur="updateAmount" name="input" disabled="{{disabledEdit}}" placeholder="Input Amount" value="{{displayAmount}}" />
       </view>
     </view>
     <view class="item_edit">
       <view class="content_container">
         <view class="ctx_edit_title">备注 Note</view>
-        <view class="ctx_edit_content">GZ to HK</view>
+        <view class="textarea-wrp">
+          <textarea bindblur="bindDescriptionChange" disabled="{{disabledEdit}}" placeholder="Input Description" auto-height value="{{purpose.description}}" />
+        </view>
       </view>
     </view>
     </block>
     <view>
       <view class="content_container">
         <view class="item_title">票据拍照 Invoice or evidence photo</view>
-        <view class="item_content"></view>
+        <view bindtap="takeInvoicePhoto" class="item_content"></view>
       </view>
     </view>
   </view>
 
   <view class="btn_area_local" id="buttonContainer">
-    <button wx:if="{{!editFlag}}" class="btn_add">添加票据 Add</button>
+    <button wx:if="{{!editFlag}}" class="btn-enable btn_add">添加票据 Add</button>
     <block wx:else>
       <button class="btn_del" bindtap="saveAction">删除 Delete</button>
-      <button class="btn_edit" bindtap="addPurpose">编辑 Edit</button>
+      <button class="btn-enable btn_edit" bindtap="addPurpose">编辑 Edit</button>
     </block>
   </view>
 </view>

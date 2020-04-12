@@ -11,6 +11,7 @@ const API_ADD_INVOICE = app.globalData.host + "/invoice/add"
 const API_QUERY_INVOICE = app.globalData.host + "/invoice/" + ID_PARAM
 const API_QUERY_INVOICE_IMG = app.globalData.host + "/invoice/" + ID_PARAM + "/image?accessKey=" + TOKEN
 const API_QUREY_PURPOSE = app.globalData.host + "/expense/purpose/" + ID_PARAM
+const API_DEL_PURPOSE = app.globalData.host + "/expense/purpose/del"
 
 Page({
 
@@ -19,13 +20,18 @@ Page({
    */
   data: {
     currencyIndex: 0,
-    currencyArray: ["CNY"], 
-    purposeArray: ["Team Building", "Taffic", "Hotal", "Food", "Training", "Others"],
-    purposeIds: [0, 1, 2, 3, 4, 5],
+    currencyArray: ["CNY"],
+    currencyDisplayArray: ["人民币 CNY"], 
+    purposeIds: [1, 17, 7, 8, 11, 13],
     selBeginDate: "2017-01-01",
     selEndDate: "2020-12-31",
     displayAmount: "0.00",
+    camera_path: "/images/camera.png",
+    arrow_path: "/images/arrow.png",
+    note_count: 0,
+    note_max: 120,
 
+    editFlag: false,
     disabledEdit: false,
     changeImage: false,
 
@@ -63,34 +69,40 @@ Page({
     ],
     categorys: [
       {
-        icon_normal: "/images/icons/teambuild_normal.png",
-        icon_selected: "/images/icons/teambuild_selected.png",
-        name: "Team Build"
+        icon_normal: "/images/icons/traffic-unselected.png",
+        icon_selected: "/images/icons/traffic-selected.png",
+        cn_name: "交通",
+        en_name: "Transport"
       },
       {
-        icon_normal: "/images/icons/bus_normal.png",
-        icon_selected: "/images/icons/bus_selected.png",
-        name: "Traffic"
+        icon_normal: "/images/icons/dinner-unselected.png",
+        icon_selected: "/images/icons/dinner-selected.png",
+        cn_name: "餐饮",
+        en_name: "Shift meal"
       },
       {
-        icon_normal: "/images/icons/house_normal.png",
-        icon_selected: "/images/icons/house_selected.png",
-        name: "Hotel"
+        icon_normal: "/images/icons/training-unselected.png",
+        icon_selected: "/images/icons/training-selected.png",
+        cn_name: "培训",
+        en_name: "Training"
       },
       {
-        icon_normal: "/images/icons/meat_normal.png",
-        icon_selected: "/images/icons/meat_selected.png",
-        name: "Food"
+        icon_normal: "/images/icons/teambuilding-unselected.png",
+        icon_selected: "/images/icons/teambuilding-selected.png",
+        cn_name: "团建",
+        en_name: "Team Build"
       },
       {
-        icon_normal: "/images/icons/training_normal.png",
-        icon_selected: "/images/icons/training_selected.png",
-        name: "Training"
+        icon_normal: "/images/icons/entertainment-unselected.png",
+        icon_selected: "/images/icons/entertainment-selected.png",
+        cn_name: "娱乐",
+        en_name: "Entertainment"
       },
       {
-        icon_normal: "/images/icons/travel_normal.png",
-        icon_selected: "/images/icons/travel_selected.png",
-        name: "Others"
+        icon_normal: "/images/icons/more-unselected.png",
+        icon_selected: "/images/icons/more-selected.png",
+        cn_name: "其他",
+        en_name: "Others"
       }
     ],
     purpose_index: 0,
@@ -120,6 +132,7 @@ Page({
     var expenseId = options.expenseId
     var expenseDetailId = options.expenseDetailId
     var eFlag = options.disabledEdit
+    _this.setData({ editFlag: options.editFlag})
 
     if(eFlag && eFlag == "true") {
       _this.setData({disabledEdit: true})
@@ -149,11 +162,14 @@ Page({
             _this.setData({ ["purpose.expenseDetailId"]: expenseDetailId }) // return is expenseDetailId
             _this.setData({ ["purpose.expenseId"]: expenseId })
             _this.setData({ displayAmount: util.formatAmountEasy(_this.data.purpose.amount) })
-            var iPurpose = util.findIndexInArray(_this.data.purposeArray, _this.data.purpose.purposeName)
             var iCurrency = util.findIndexInArray(_this.data.currencyArray, _this.data.purpose.currency)
+            var dLen = 0;
+            if (res.data.data.description) {
+              dLen = res.data.data.description.length
+            }
             _this.setData({
-              ["purpose.purposeId"]: iPurpose,
-              currencyIndex: iCurrency
+              currencyIndex: iCurrency,
+              note_count: dLen
             })
 
             if(res.data.data.status != 0) {
@@ -173,7 +189,7 @@ Page({
       console.log("New Purpose")
       _this.setData({ ['purpose.occurDate']: util.formatDate(new Date) })
       _this.setData({ ["purpose.expenseId"]: expenseId })
-      _this.setData({ ["purpose.purposeName"]: _this.data.purposeArray[0] })
+      _this.setData({ ["purpose.purposeName"]: _this.data.categorys[0].en_name })
       _this.setData({ ['purpose.amount']: util.formatAmountEasy(_this.data.purpose.amount) })
     }
 
@@ -238,7 +254,7 @@ Page({
     // })
     console.log($tmp);
     this.setData({ ['purpose.purposeId']: $tmp })
-    this.setData({ ['purpose.purposeName']: this.data.purposeArray[$tmp]})
+    this.setData({ ['purpose.purposeName']: this.data.categorys[$tmp].en_name})
   },
 
   addPurpose: function (e) {
@@ -345,6 +361,11 @@ Page({
   },
 
   bindDescriptionChange: function (e) {
+    var _this = this
+    if( e.detail.value.length > _this.data.note_max ) {
+      return false
+    }
+    _this.setData({note_count: e.detail.value.length}) 
     this.setData({
       ['purpose.description']: e.detail.value
     })
@@ -364,6 +385,28 @@ Page({
     this.savePurpose({success: function(res) {
       wx.navigateBack()
     }})
+  },
+
+  delAction: function () {
+    if (this.data.disabledEdit) return
+    api.request({
+      url: API_DEL_PURPOSE,
+      method: "POST",
+      header: {
+        WechatAccessToken: null
+      },
+      data: _this.data.purpose,
+      success: function (res) {
+      },
+      fail: function(e){
+
+      }
+    })
+  },
+
+  editAction: function() {
+    if (this.data.disabledEdit) return
+    this.setData({editFlag: true})
   },
 
   savePurpose: function (param) {
@@ -515,7 +558,12 @@ Page({
     })
   },
   takeInvoicePhoto() {
+    var _this = this
     console.log("click take pricture")
+    if (!_this.data.editFlag) {
+      console.log("Not in edit status")
+      return
+    }
     var _this = this
     wx.chooseImage({
       count: 1, // 默认9

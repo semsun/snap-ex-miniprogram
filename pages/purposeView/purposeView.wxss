@@ -1,6 +1,7 @@
 /* pages/purpose_view/pubposeView.wxss */
 @import '../components/weui-wxss/dist/style/weui.wxss';
 @import '../components/weui-wxss/dist/style/index.wxss';
+@import '../components/funjoin-wxss/fjui.wxss';
 
 .content_container {
   margin-left: 32rpx;
@@ -101,29 +102,13 @@
 }
 
 .btn_edit {
-  background: #DB0011;
   width: 332rpx;
   height: 90rpx;
-  border-radius: 0;
-
-  font-family: PingFangSC-Regular;
-  font-size: 32rpx;
-  color: #FFFFFF;
-  letter-spacing: 0;
-  text-align: center;
 }
 
 .btn_add {
-  background: #DB0011;
   width: 686rpx;
   height: 96rpx;
-  border-radius: 0;
-
-  font-family: PingFangSC-Regular;
-  font-size: 32rpx;
-  color: #FFFFFF;
-  letter-spacing: 0;
-  text-align: center;
 }
 
 .icon_place {
@@ -140,24 +125,13 @@
   margin-top: 18rpx;
 }
 
-.purpose_type_unsel {
-  width: 344rpx;
-  height: 200rpx;
-  background: #FFFFFF;
-  border: 2rpx solid #D7D8D6;
-}
-
-.purpose_type_sel {
-  width: 344rpx;
-  height: 190rpx;
-  background: #FFFFFF;
-  border: 2rpx solid #00847F;
-  border-bottom: 12rpx solid #00847F;
-}
-
 .view_align_middle_center {
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
+}
+
+.picker_bg {
+  width: 686rpx;
 }
