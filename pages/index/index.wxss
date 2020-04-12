@@ -1,5 +1,6 @@
 /* pages/dashboard/dashboard.wxss */
 @import '../components/weui-wxss/dist/style/weui.wxss';
+@import '../components/funjoin-wxss/fjui.wxss';
 
 .userinfo {
   /* display: flex; */
@@ -57,12 +58,14 @@
 .item-title {
   color: #404040;
   font-size: 16pt;
+  margin-bottom: 16rpx;
 }
 
 .item-amount {
   text-align: right;
   color: #404040;
   font-size: 16pt;
+  margin-bottom: 16rpx;
 }
 
 .item-desc {
@@ -71,9 +74,12 @@
 }
 
 .item-status-draft {
+  padding-top: 5rpx;
+  padding-bottom: 5rpx;
+  box-sizing: border-box;
   float: right;
   letter-spacing: 0.18px;
-  width: 160rpx;
+  width: 140rpx;
   color: #252525;
   font-size: 12pt;
   border-radius: 10px; /*设置圆角*/
@@ -83,9 +89,12 @@
 }
 
 .item-status-submitted {
+  padding-top: 5rpx;
+  padding-bottom: 5rpx;
+  box-sizing: border-box;
   float: right;
   letter-spacing: 0.18px;
-  width: 230rpx;
+  width: 220rpx;
   font-family: UniversNextforHSBC-Light;
   font-size: 12pt;
   color: #fff;
@@ -99,3 +108,4 @@
   position: fixed;
   bottom: 0;
 }
+

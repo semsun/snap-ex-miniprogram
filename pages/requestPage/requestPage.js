@@ -47,68 +47,11 @@ Page({
 
   },
 
-  addInvoice: function(e) {
+  addInvoice: function() {
     var that = this
     wx.navigateTo({
       url: '/pages/purpose/purpose?expenseId=' + that.data.expenseId,
     })
-  },
-
-  onBtnClick: function(e) {
-    var that = this
-    if (this.data.isAdd) {
-      this.setData({
-        btnIsLoading: true
-      })
-      wx.showLoading({
-        title: 'Loading',
-        mask: true
-      })
-      //新增request name
-      //call pao gor api,success then will change btn context to "Add"
-      api.request({
-        url: app.globalData.host + "/expense/savedraft",
-        method: "POST",
-        data: {
-          "description": that.data.inputRequestName,
-          "status": 0
-        },
-        header: {
-          WechatAccessToken: null
-        },
-        success(res) {
-          console.log(res.data)
-          if (res.data.code == 0) {
-            that.setData({
-              purposeStatus: 0,
-              expenseId: res.data.id,
-              isAdd: false,
-              btnContext: "Add purpose",
-              pageData: {
-                purposeDescription: that.data.inputRequestName,
-                totalAmount: "0.00",
-                item: []
-              },
-            })
-          } else {
-            that.onNetworkFail()
-          }
-        },
-        fail(res) {
-          that.onNetworkFail()
-          console.log(res)
-        },
-        complete(res) {
-          that.setData({
-            btnIsLoading: false
-          })
-          wx.hideLoading()
-        }
-      })
-    } else {
-      //新增invoice
-      this.addInvoice(e)
-    }
   },
 
   //获取purpose data
@@ -214,11 +157,14 @@ Page({
   },
 
   onItemClick: function(e) {
-    wx.navigateTo({
-      // url: '/pages/purpose/purpose?expenseId=test003&expenseDetailId=IeIErjVaGe',
-      url: '/pages/purpose/purpose?expenseId=' + e.mark.itemdata.expenseId +
-        '&expenseDetailId=' + e.mark.itemdata.expenseDetailId,
-    })
+    if (e.mark.itemdata.purposeId == -1) {
+      this.addInvoice()
+    } else {
+      wx.navigateTo({
+        url: '/pages/purpose/purpose?expenseId=' + e.mark.itemdata.expenseId +
+          '&expenseDetailId=' + e.mark.itemdata.expenseDetailId,
+      })
+    }
   },
 
   onPullDownRefresh(e) {

@@ -1,5 +1,6 @@
 /* pages/requestPage/requestPage.wxss */
 @import '../components/weui-wxss/dist/style/weui.wxss';
+@import '../components/funjoin-wxss/fjui.wxss';
 
 .request-overview {
   height: 100%;
@@ -54,12 +55,14 @@
 .item-title {
   font-size: 16pt;
   color: #404040;
+  margin-bottom: 16rpx;
 }
 
 .item-amount {
   float: right;
   font-size: 16pt;
   color: #404040;
+  margin-bottom: 16rpx;
 }
 
 .item-desc {
@@ -70,5 +73,7 @@
 .item-currency {
   font-size: 13pt;
   color: #404040;
-  float: right;
+  letter-spacing: 0.18px;
+  text-align: right;
+  line-height: 14px;
 }

@@ -1,0 +1,17 @@
+.btn-enable {
+  /* padding-top: 20rpx;
+  padding-bottom: 20rpx; */
+  padding-left: 48rpx;
+  padding-right: 48rpx;
+  width: 100%;
+  margin-top: 20rpx;
+  background-color: #db0011;
+  color: white;
+  border-radius: 0rpx;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  font-size: 16pt;
+  text-align: center;
+}

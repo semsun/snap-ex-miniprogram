@@ -13,31 +13,13 @@
         <view class="list-item-icon">
           <image class="icon_size" src="{{item.icon}}" />
         </view>
-
-        <!-- <view class="weui-media-box__bd weui-media-box__bd_in-appmsg">
-          <view class="weui-media-box__title">{{item.description}}</view>
-          <!-- <view class="weui-media-box__desc">{{isAdd}}</view> 
-          <view class="weui-media-box__desc">{{item.amount}}</view>
-        </view>
-        <view class="weui-media-box__title">></view>
-      </view> -->
-
-        <!-- <view class="weui-media-box__bd weui-media-box__bd_in-appmsg">
-          <view class=" item-title">{{item.purposeDesc}}</view>
-          <view class=" item-desc">{{item.description}}</view>
-        </view>
-        <view class="weui-media-box__bd">
-          <view class=" item-amount">{{item.amount}}</view>
-          <view wx:if="{{item.purposeId != -1}}" class="item-currency">CNY</view>
-        </view> -->
-
-              <view class="weui-media-box__bd weui-media-box__bd_in-appmsg">
+        <view class="weui-media-box__bd weui-media-box__bd_in-appmsg">
           <view class="weui-media-box__title item-title">{{item.purposeDesc}}</view>
           <view class="weui-media-box__desc item-desc">{{item.description}}</view>
         </view>
         <view class="weui-media-box__bd">
           <view class="weui-media-box__title item-amount">{{item.amount}}</view>
-          <view wx:if="{{item.purposeId != -1}}" class="item-status-submitted">CNY</view>
+          <view wx:if="{{item.purposeId != -1}}" class="item-status-submitted item-currency">CNY</view>
         </view>
       </view>
     </block>
@@ -49,7 +31,7 @@
   </view> -->
 
   <view class="btn-area btn-group">
-    <button type="primary" loading="{{btnSumitIsLoading}}" bindtap="submitPurpose" style="display:{{isShowSubmitBtn}}">Submit</button>
+    <button open-type='openSetting' class="btn-enable" loading="{{btnSumitIsLoading}}" bindtap="submitPurpose" style="display:{{isShowSubmitBtn}}">Submit</button>
   </view>
 
   <mp-dialog show="{{dialogShow}}" bindbuttontap="tapDialogButton" buttons="{{buttons}}" mask="true">
