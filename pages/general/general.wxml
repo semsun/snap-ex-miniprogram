@@ -17,6 +17,6 @@
   </view>
 
   <view class="btn-area" id="buttonContainer">
-    <button type="primary" disabled="{{disabledEdit}}" bindtap="saveAction">Save</button>
+    <button class="btn-enable" disabled="{{disabledEdit}}" bindtap="saveAction">Save</button>
   </view>
 </view>

@@ -43,6 +43,7 @@
 .disable-view {
   padding: 32rpx;
   box-sizing: border-box;
+  background-color: #fafafa
 }
 
 .disable-view-text {

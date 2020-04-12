@@ -1,3 +1,4 @@
 /* pages/general/general.wxss */
 @import '../components/weui-wxss/dist/style/weui.wxss';
 @import '../components/weui-wxss/dist/style/index.wxss';
+@import '../components/funjoin-wxss/fjui.wxss';
