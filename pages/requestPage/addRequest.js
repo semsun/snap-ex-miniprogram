@@ -16,6 +16,9 @@ Page({
   },
 
   addRequest(e) {
+    if (this.data.ctaDisable) {
+      return
+    }
     let _this = this
     this.setData({
       ctaIsLoading: true

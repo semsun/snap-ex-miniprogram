@@ -1,4 +1,5 @@
 /* pages/requestPage/addRequest.wxss */
+@import '../components/funjoin-wxss/fjui.wxss';
 
 .block-view {
   margin-top: 32rpx;

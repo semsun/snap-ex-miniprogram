@@ -31,7 +31,7 @@
   </view> -->
 
   <view class="btn-area btn-group">
-    <button open-type='openSetting' class="btn-enable" loading="{{btnSumitIsLoading}}" bindtap="submitPurpose" style="display:{{isShowSubmitBtn}}">Submit</button>
+    <button class="{{isReadySubmit?'btn-enable':'btn-disable'}}" hover-class="none" loading="{{btnSumitIsLoading}}" bindtap="submitPurpose" style="display:{{isShowSubmitBtn}}">Submit</button>
   </view>
 
   <mp-dialog show="{{dialogShow}}" bindbuttontap="tapDialogButton" buttons="{{buttons}}" mask="true">

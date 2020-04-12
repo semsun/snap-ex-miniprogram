@@ -14,6 +14,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    isReadySubmit: false,
     expenseId: "",
     btnSumitIsLoading: false,
     isShowListView: 'none',
@@ -73,12 +74,12 @@ Page({
 
         res.data = res.data.data
 
-        let isCanSubmit = res.data.status == 0
+        let isSubmitable = res.data.status == 0
         var tempPageData = {
           purposeDescription: res.data.description,
           totalAmount: util.formatAmountEasy(res.data.totalAmount)
         }
-        if (isCanSubmit) {
+        if (isSubmitable) {
           res.data.purposes.push(item_add)
         }
         tempPageData.item = res.data.purposes.map(function(value, index, array) {
@@ -124,7 +125,8 @@ Page({
         that.setData({
           pageData: tempPageData,
           isShowListView: 'display',
-          isShowSubmitBtn: isCanSubmit ? 'display' : 'none'
+          isShowSubmitBtn: isSubmitable ? 'display' : 'none',
+          isReadySubmit: res.data.totalAmount > 0 ? true : false
         })
       },
       fail(res) {
@@ -139,6 +141,9 @@ Page({
   },
 
   submitPurpose: function(that) {
+    if (!this.data.isReadySubmit) {
+      return
+    }
     this.setData({
       dialogShow: true
     })
