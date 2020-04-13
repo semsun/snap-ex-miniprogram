@@ -150,9 +150,10 @@ Page({
     if (!this.data.isReadySubmit) {
       return
     }
-    this.setData({
-      dialogShow: true
-    })
+    this.callSubmitRequest()
+    // this.setData({
+    //   dialogShow: true
+    // })
   },
 
   inputRequestName: function(e) {
