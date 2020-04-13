@@ -12,7 +12,7 @@
     <view class="content_txt">validation before continuing to use the services:</view>
     <view class="content_title">Step one</view>
     <view class="content_txt">On intranet network, access the link:</view>
-    <view class="content_txt"> class="content_txt"http://hkl20133364.hk.hsbc:8052</view>
+    <view class="content_txt">http://hkl20133364.hk.hsbc:8052</view>
     <view class="content_title">Step two</view>
     <view class="content_txt">Click the button above to scan the QR code provided in step one.</view>
   </view>
