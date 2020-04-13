@@ -32,6 +32,7 @@ Page({
       totalAmount: "",
       item: []
     },
+    ctaContent: "提交 Submit"
   },
 
   /**
@@ -90,35 +91,35 @@ Page({
         tempPageData.item = res.data.purposes.map(function(value, index, array) {
           switch (value.purposeId) {
             case -1:
-              value.icon = "/images/icons/teambuild_selected.png"
+              value.icon = "/images/icons/add.png"
               value.purposeDesc = '添加票据'
               break
-            case 0:
-              value.icon = "/images/icons/teambuild_selected.png"
-              value.purposeDesc = '团建 Team building'
-              break
             case 1:
-              value.icon = "/images/icons/bus_selected.png"
+              value.icon = "/images/icons/traffic-selected.png"
               value.purposeDesc = '交通 Travel ticket'
               break
-            case 2:
-              value.icon = "/images/icons/house_selected.png"
-              value.purposeDesc = '住宿 Hotel'
-              break
-            case 3:
-              value.icon = "/images/icons/meat_selected.png"
+            case 17:
+              value.icon = "/images/icons/dinner-selected.png"
               value.purposeDesc = '餐饮 Dinner'
               break
-            case 4:
-              value.icon = "/images/icons/training_selected.png"
-              value.purposeDesc = '医疗 Medical'
+            case 7:
+              value.icon = "/images/icons/training-selected.png"
+              value.purposeDesc = '培训 Training'
               break
-            case 5:
-              value.icon = "/images/icons/travel_selected.png"
-              value.purposeDesc = '医疗 Medical'
+            case 8:
+              value.icon = "/images/icons/teambuilding-selected.png"
+              value.purposeDesc = '团建 Team building'
+              break
+            case 11:
+              value.icon = "/images/icons/entertainment-selected.png"
+              value.purposeDesc = '娱乐 Entertainment'
+              break
+            case 13:
+              value.icon = "/images/icons/more-selected.png"
+              value.purposeDesc = '其它 Others'
               break
             default:
-              value.icon = "/images/icons/teambuild_selected.png"
+              value.icon = "/images/icons/more-selected.png"
               value.purposeDesc = ''
           }
           if (value.purposeId != -1) {
@@ -130,8 +131,8 @@ Page({
         that.setData({
           pageData: tempPageData,
           isShowListView: 'display',
-          isShowSubmitBtn: isSubmitable ? 'display' : 'none',
-          isReadySubmit: res.data.totalAmount > 0 ? true : false
+          ctaContent: isSubmitable ? '提交 Submit' : '已提交 Submitted',
+          isReadySubmit: isSubmitable && res.data.totalAmount > 0 ? true : false
         })
       },
       fail(res) {
