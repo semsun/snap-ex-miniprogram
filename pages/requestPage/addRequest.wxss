@@ -38,6 +38,7 @@
 .valid-view-item {
   display: flex;
   align-content: center;
+  align-items: center;
 }
 
 .valid-view-text {
