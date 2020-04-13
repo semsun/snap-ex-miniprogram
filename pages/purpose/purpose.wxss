@@ -103,11 +103,9 @@
   box-shadow: 0 -1px 10px 0 rgba(0,0,0,0.12);
 }
 
-.btn_del {
+.del_btn_enable {
   background: #FFFFFF;
   border: 2rpx solid #333333;
-  width: 332rpx;
-  height: 90rpx;
   border-radius: 0;
 
   font-family: PingFangSC-Regular;
@@ -115,6 +113,23 @@
   color: #333333;
   letter-spacing: 0;
   text-align: center;
+}
+
+.del_btn_disable {
+  background: #FFFFFF;
+  border: 2rpx solid #9e9e9e;
+  border-radius: 0;
+
+  font-family: PingFangSC-Regular;
+  font-size: 32rpx;
+  color: #9e9e9e;
+  letter-spacing: 0;
+  text-align: center;
+}
+
+.btn_del {
+  width: 332rpx;
+  height: 90rpx;
 }
 
 .btn_edit {

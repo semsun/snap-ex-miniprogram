@@ -11,7 +11,7 @@ const API_ADD_INVOICE = app.globalData.host + "/invoice/add"
 const API_QUERY_INVOICE = app.globalData.host + "/invoice/" + ID_PARAM
 const API_QUERY_INVOICE_IMG = app.globalData.host + "/invoice/" + ID_PARAM + "/image?accessKey=" + TOKEN
 const API_QUREY_PURPOSE = app.globalData.host + "/expense/purpose/" + ID_PARAM
-const API_DEL_PURPOSE = app.globalData.host + "/expense/purpose/del"
+const API_DEL_PURPOSE = app.globalData.host + "/expense/purpose/" + ID_PARAM + "/delete"
 
 Page({
 
@@ -324,7 +324,7 @@ Page({
         title: 'Amount Input Error',
         content: "Amount should be greater than 0",
         showCancel: false,
-        confirmText: "OK",
+        confirmText: "确定 OK",
         success: function (res) {
           _this.setData({
             ['purpose.amount']: 0,
@@ -337,7 +337,7 @@ Page({
         title: 'Amount Input Error',
         content: "Amount should be less than 9999999.99",
         showCancel: false,
-        confirmText: "OK",
+        confirmText: "确定 OK",
         success: function (res) {
           _this.setData({
             ['purpose.amount']: 9999999.99,
@@ -388,18 +388,50 @@ Page({
   },
 
   delAction: function () {
-    if (this.data.disabledEdit) return
-    api.request({
-      url: API_DEL_PURPOSE,
-      method: "POST",
-      header: {
-        WechatAccessToken: null
-      },
-      data: _this.data.purpose,
-      success: function (res) {
-      },
-      fail: function(e){
+    var _this = this
+    if (_this.data.disabledEdit) return
+    wx.showModal({
+      title: '确认删除 Confirm',
+      content: '确定要删除这张票据吗？\r\nAre you sure to delete this item?',
+      showCancel: true,
+      cancelText: "否 No",
+      cancelColor: "#333333",
+      confirmText: "是 Yes",
+      confirmColor: "#DB0011",
+      success: function(e) {
+        if(e.cancel) {
+          console.log("Click No")
+        }
+        if (e.confirm) {
+          console.log("Click Yes")
 
+          wx.showLoading({
+            title: 'Saving...',
+          })
+          setTimeout(function () {
+            wx.hideLoading()
+          }, 50000)
+
+          var del_url = API_DEL_PURPOSE.replace(ID_PARAM, _this.data.purpose.expenseDetailId)
+          api.request({
+            url: del_url,
+            method: "POST",
+            header: {
+              WechatAccessToken: null
+            },
+            success: function (res) {
+              wx.navigateBack()
+            },
+            fail: function (e) {
+              wx.showModal({
+                title: 'Error',
+                content: '删除失败！Delete Failed!',
+                showCancel: false,
+                confirmText: "确认 OK",
+              })
+            }
+          })
+        }
       }
     })
   },
@@ -437,7 +469,7 @@ Page({
             //   content: "Purpose saved successful!",
             //   showCancel: false,
             //   success: param.success,
-            //   confirmText: "OK"
+            //   confirmText: "确定 OK"
             // })
             wx.showToast({
               title: 'Saved',
@@ -451,7 +483,7 @@ Page({
             title: 'Save Error',
             content: res.data.msg,
             showCancel: false,
-            confirmText: "OK"
+            confirmText: "确定 OK"
           })
         }
       },
@@ -462,7 +494,7 @@ Page({
           title: 'Save Error',
           content: res.errMsg,
           showCancel: false,
-          confirmText: "OK"
+          confirmText: "确定 OK"
         })
       }
     })
@@ -510,7 +542,7 @@ Page({
             title: 'Save Error',
             content: "Purpose have saved, but invoice upload return failed!",
             showCancel: false,
-            confirmText: "OK"
+            confirmText: "确定 OK"
           })
         }
       },
@@ -552,7 +584,7 @@ Page({
           title: 'Upload Invoice Error',
           content: res.data.msg,
           showCancel: false,
-          confirmText: "OK"
+          confirmText: "确定 OK"
         })
       }
     })
@@ -607,7 +639,7 @@ Page({
             title: 'Get Image Error',
             content: res.data.msg,
             showCancel: false,
-            confirmText: "OK"
+            confirmText: "确定 OK"
           })
         }
       },
@@ -617,7 +649,7 @@ Page({
           title: 'Get Image Error',
           content: JSON.stringify(res),
           showCancel: false,
-          confirmText: "OK"
+          confirmText: "确定 OK"
         })
       }
     })

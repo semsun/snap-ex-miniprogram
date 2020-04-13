@@ -89,7 +89,7 @@
   <view class="btn_area_local" id="buttonContainer">
     <button wx:if="{{editFlag}}" bindtap="saveAction" class="btn-enable btn_add">添加票据 Add</button>
     <block wx:else>
-      <button class="btn_del" bindtap="delAction">删除 Delete</button>
+      <button class="{{disabledEdit?'del_btn_disable':'del_btn_enable'}} btn_del" bindtap="delAction">删除 Delete</button>
       <button class="{{disabledEdit?'btn-disable':'btn-enable'}} btn_edit" bindtap="editAction">编辑 Edit</button>
     </block>
   </view>
