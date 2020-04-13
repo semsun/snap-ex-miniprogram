@@ -1,5 +1,6 @@
 /* pages/requestPage/addRequest.wxss */
 @import '../components/funjoin-wxss/fjui.wxss';
+@import '../components/weui-wxss/dist/style/weui.wxss';
 
 .block-view {
   margin-top: 32rpx;
@@ -34,22 +35,35 @@
   box-sizing: border-box;
 }
 
+.valid-view-item {
+  display: flex;
+  align-content: center;
+}
+
 .valid-view-text {
   font-size: 16pt;
   color: #252525;
   letter-spacing: -0.32px;
+  width: 90%;
+}
+
+.radio-style {
+  width: 50rpx;
+  height: 50rpx;
+  float: right;
 }
 
 .disable-view {
   padding: 32rpx;
   box-sizing: border-box;
-  background-color: #fafafa
+  background-color: #fafafa;
 }
 
 .disable-view-text {
   font-size: 16pt;
   color: #999;
   letter-spacing: -0.32px;
+  width: 90%;
 }
 
 .disable-view-tips {

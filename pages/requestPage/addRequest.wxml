@@ -8,11 +8,16 @@
 
 <view class="">
   <view class="valid-view">
-    <view class="valid-view-text">非出差 Non-travel</view>
+    <view class="valid-view-item">
+      <view class="valid-view-text">非出差 Non-travel</view>
+      <image class="radio-style" src="/images/icons/selected_enabled.png" />
+    </view>
   </view>
   <view class="disable-view">
+   <view class="valid-view-item">
     <view class="disable-view-text">出差 Travel</view>
-  </view>
+       <image class="radio-style" src="/images/icons/unselected_disabled.png" />
+  </view>  </view>
 </view>
 
 <view class="disable-view-tips">出差目前暂时不支持，敬请期待！</view>
