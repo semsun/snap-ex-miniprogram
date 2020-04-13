@@ -17,7 +17,7 @@
 
 .userinfo-nickname {
   color: #252525;
-  font-size: 16pt;
+  font-size: 32rpx;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -28,7 +28,7 @@
 .list-title {
   margin: 32rpx;
   color: #252525;
-  font-size: 14pt;
+  font-size: 28rpx;
 }
 
 .listview {
@@ -57,20 +57,20 @@
 
 .item-title {
   color: #404040;
-  font-size: 16pt;
+  font-size: 32rpx;
   margin-bottom: 16rpx;
 }
 
 .item-amount {
   text-align: right;
   color: #404040;
-  font-size: 16pt;
+  font-size: 32rpx;
   margin-bottom: 16rpx;
 }
 
 .item-desc {
   color: #929292;
-  font-size: 13pt;
+  font-size: 26rpx;
 }
 
 .item-status-draft {
@@ -83,7 +83,7 @@
   letter-spacing: 0.18px;
   /* width: 140rpx; */
   color: #252525;
-  font-size: 12pt;
+  font-size: 24rpx;
   border-radius: 10px; /*设置圆角*/
   text-align: center;
   line-height: 14px;
@@ -100,7 +100,7 @@
   letter-spacing: 0.18px;
   /* width: 220rpx; */
   font-family: UniversNextforHSBC-Light;
-  font-size: 12pt;
+  font-size: 24rpx;
   color: #fff;
   border-radius: 10px; /*设置圆角*/
   text-align: center;

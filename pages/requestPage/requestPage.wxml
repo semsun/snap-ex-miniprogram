@@ -2,7 +2,7 @@
 <view class="">
   <!-- <view wx:if="{{!isAdd}}"> -->
   <view class="request-overview">
-    <view class="request-overview-text">{{pageData.purposeDescription}}</view>
+    <text class="request-overview-text">{{pageData.purposeDescription}}</text>
     <view class="request-overview-text" style="margin-top:32rpx">{{pageData.totalAmount}} CNY</view>
     <view class="request-overview-totalAmount">Total amount: {{pageData.totalAmount}} CNY</view>
   </view>
