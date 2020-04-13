@@ -69,6 +69,9 @@ function number_format(number, decimals, dec_point, thousands_sep, roundtag) {
 }
 
 function easy_number_format(number) {
+  if(typeof(number)== typeof(undefined)){
+    return '0.00'
+  }
   if (number.toString().includes(',')){
     return number
   }
