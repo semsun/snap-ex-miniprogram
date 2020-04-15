@@ -3,7 +3,7 @@
     <block wx:if="{{!editFlag}}">
     <view class="origin_position content_container  item">
       <view class="ctx_title">报销类型 Purpose</view>
-      <view class="ctx_content">{{currencyDisplayArray[currencyIndex]}}</view>
+      <view class="ctx_content">{{categorys[purpose_index].cn_name}} {{categorys[purpose_index].en_name}}</view>
     </view>
     <view class="content_container item">
       <view class="ctx_title">报销金额 Amount</view>

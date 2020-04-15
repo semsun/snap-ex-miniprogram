@@ -38,7 +38,7 @@ Page({
     purpose: {
       code: "12345",
       number: "98765",
-      purposeId: 0, /* 0: Team Build; 1: Taffic; 2: Room; 3: Food; 4:Training; 5: Travel */
+      purposeId: 1,
       companyName: "",
       occurDate: "",
       currency: "CNY",
@@ -107,20 +107,6 @@ Page({
     ],
     purpose_index: 0,
     sel_pho_btn_title: "Add Invoice",
-
-    showDialog: false,
-    groups: [
-      { text: '示例菜单', value: 1 },
-      { text: '示例菜单', value: 2 },
-      { text: '负向菜单', type: 'warn', value: 3 }
-    ]
-  },
-  bindPickerChange_purpose: function (e) {
-    console.log('picker send change, value:', e.detail.value);
-    this.setData({
-      purpose_index: e.detail.value,  //每次选择了下拉列表的内容同时修改下标然后修改显示的内容，显示的内容和选择的内容一致
-    })
-    console.log('cunstom value:', this.data.purpose_index);
   },
 
   /**
@@ -163,12 +149,14 @@ Page({
             _this.setData({ ["purpose.expenseId"]: expenseId })
             _this.setData({ displayAmount: util.formatAmountEasy(_this.data.purpose.amount) })
             var iCurrency = util.findIndexInArray(_this.data.currencyArray, _this.data.purpose.currency)
+            var iPurpose = util.findIndexInArray(_this.data.purposeIds, _this.data.purpose.purposeId)
             var dLen = 0;
             if (res.data.data.description) {
               dLen = res.data.data.description.length
             }
             _this.setData({
               currencyIndex: iCurrency,
+              purpose_index: iPurpose,
               note_count: dLen
             })
 
@@ -189,6 +177,7 @@ Page({
       console.log("New Purpose")
       _this.setData({ ['purpose.occurDate']: util.formatDate(new Date) })
       _this.setData({ ["purpose.expenseId"]: expenseId })
+      _this.setData({ ["purpose.purposeId"]: purposeIds[0]})
       _this.setData({ ["purpose.purposeName"]: _this.data.categorys[0].en_name })
       _this.setData({ ['purpose.amount']: util.formatAmountEasy(_this.data.purpose.amount) })
     }
@@ -661,21 +650,5 @@ Page({
     //     _this.setData({ ["purpose.image_path"]: imagePath })
     //   }
     // })
-  },
-
-  /* Pop message */
-  openDialog: function () {
-    this.setData({
-      showDialog: true
-    })
-  },
-  closeDialog: function () {
-    this.setData({
-      showDialog: false
-    })
-  },
-  btnClick(e) {
-    console.log(e)
-    this.closeDialog()
   }
 })
