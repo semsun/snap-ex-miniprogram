@@ -29,7 +29,7 @@ Page({
     camera_path: "/images/camera.png",
     arrow_path: "/images/arrow.png",
     note_count: 0,
-    note_max: 120,
+    note_max: 100,
 
     editFlag: false,
     disabledEdit: false,
@@ -308,10 +308,10 @@ Page({
   updateAmount: function (e) {
     var _this = this
     var amount = e.detail.value
-    if (amount < 0) {
+    if (amount <= 0) {
       wx.showModal({
-        title: 'Amount Input Error',
-        content: "Amount should be greater than 0",
+        title: '金额错误 Amount Error',
+        content: "金额应大于 0.00\r\nAmount should be greater than 0.00",
         showCancel: false,
         confirmText: "确定 OK",
         success: function (res) {
@@ -323,8 +323,8 @@ Page({
       })
     } else if (amount > 9999999.99) {
       wx.showModal({
-        title: 'Amount Input Error',
-        content: "Amount should be less than 9999999.99",
+        title: '金额错误 Amount Error',
+        content: "金额应小于 9999999.99\r\nAmount should be less than 9999999.99",
         showCancel: false,
         confirmText: "确定 OK",
         success: function (res) {
@@ -362,6 +362,17 @@ Page({
 
   saveAction: function () {
     var _this = this
+
+    if (_this.data.purpose.amount <= 0) {
+      wx.showModal({
+        title: '金额错误 Amount Error',
+        content: "金额应大于 0.00\r\nAmount should be greater than 0.00",
+        showCancel: false,
+        confirmText: "确定 OK"
+      })
+
+      return;
+    }
 
     wx.showLoading({
       title: 'Saving...',
