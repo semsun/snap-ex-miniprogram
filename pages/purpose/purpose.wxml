@@ -10,6 +10,10 @@
       <view class="ctx_content">{{displayAmount}} CNY</view>
     </view>
     <view class="content_container item">
+      <view class="ctx_title">票据时间 Date</view>
+      <view class="ctx_content">{{purpose.occurDate}}</view>
+    </view>
+    <view class="content_container item">
       <view class="ctx_title">备注 Note</view>
       <view class="ctx_content">{{purpose.description}}</view>
     </view>
@@ -65,6 +69,17 @@
       <view class="content_container">
         <view class="ctx_edit_title">报销金额 Amount</view>
         <input class="ctx_edit_content" type="digit" bindfocus="focusAmount" bindblur="updateAmount" name="input" placeholder="Input Amount" value="{{displayAmount}}" />
+      </view>
+    </view>
+    <view class="item_edit">
+      <view class="content_container row_style">
+        <view class="picker_bg">
+          <picker mode="date" value="{{purpose.occurDate}}" start="{{selBeginDate}}" end="{{selEndDate}}" bindchange="bindDateChange">
+            <view class="ctx_edit_title">票据时间 Date</view>
+            <view class="ctx_edit_content">{{purpose.occurDate}}</view>
+          </picker>
+        </view>
+        <image mode="aspectFit" class="arrow_size" src="{{arrow_path}}"></image>
       </view>
     </view>
     <view class="item_edit_nohigh_limited">
