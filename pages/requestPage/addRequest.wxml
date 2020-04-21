@@ -20,7 +20,7 @@
   </view>  </view>
 </view>
 
-<view class="disable-view-tips">出差目前暂时不支持，敬请期待！</view>
+<view class="disable-view-tips">出差目前暂时不支持，敬请期待！ Travel expense is coming soon.</view>
 
 <view class="btn-area btn-group">
   <button class="{{ctaDisable?'btn-disable':'btn-enable'}}" hover-class="none" loading="{{ctaIsLoading}}" bindtap="addRequest">下一步 Next</button>
