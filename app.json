@@ -27,20 +27,20 @@
   "sitemapLocation": "sitemap.json",
   "tabBar": {
     "color": "#7A7E83",
-    "selectedColor": "#3cc51f",
+    "selectedColor": "#DB0011",
     "borderStyle": "black",
     "backgroundColor": "#ffffff",
     "list": [
       {
         "pagePath": "pages/index/index",
-        "iconPath": "images/icon_cloud.png",
-        "selectedIconPath": "images/icon_cloud_HL.png",
+        "iconPath": "images/icons/Home-inactive.png",
+        "selectedIconPath": "images/icons/Home-active.png",
         "text": "Home"
       },
       {
         "pagePath": "pages/me/me",
-        "iconPath": "images/icon_component.png",
-        "selectedIconPath": "images/icon_component_HL.png",
+        "iconPath": "images/icons/Me-inactive.png",
+        "selectedIconPath": "images/icons/Me-active.png",
         "text": "Me"
       }
     ]
