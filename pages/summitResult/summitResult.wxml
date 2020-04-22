@@ -2,8 +2,10 @@
 <view class="page-body-wrapper">
   <image class="icon" src="/images/icons/success.png"></image>
   <view class="msg_title msg_title_to_icon">报销提交成功</view>
+    <view class="msg_title msg_title_to_icon">Submitted successfully.</view>
   <view class="msg_content msg_ctx_to_title">您的报销项已成功提交。</view>
   <view class="msg_content">审批环节和后续的状态在expense进行和查看</view>
+  <view class="msg_content">Please check the approval status in eExpense system.</view>
   <button bindtap="onBackBtnClick" class="back_btn btn_to_msg_ctx">返回 Back</button>
 </view>
 
