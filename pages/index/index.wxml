@@ -34,7 +34,7 @@
     </block>
   </view>
   <view class="btn-area btn-group">
-    <button class="btn-enable" bindtap="addInvoiceOrLogin">添加报销</button>
+    <button class="btn-enable" bindtap="addInvoiceOrLogin">添加报销 New request</button>
     <!-- <button type="warn" style="display:{{isShowExitBtn}}" bindtap="exitProfile">Exit</button> -->
   </view>
 
