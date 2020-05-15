@@ -1,7 +1,7 @@
 <!--pages/requestPage/addRequest.wxml-->
 <view class="block-view">
   <view class="request-title">报销标题 Title</view>
-  <input class="request-input" bindinput="inputRequestName" auto-focus placeholder="Please enter title" />
+  <input class="request-input" maxlength="100" bindinput="inputRequestName" auto-focus placeholder="Please enter title" />
 </view>
 
 <view class="claim-type-title">报销类型 Type</view>

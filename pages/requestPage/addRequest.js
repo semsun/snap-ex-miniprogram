@@ -76,7 +76,7 @@ Page({
 
   inputRequestName: function(e) {
     inputRequestName = e.detail.value
-    if (e.detail.value.length > 0) {
+    if ((e.detail.value).trim().length > 0) {
       this.setData({
         ctaDisable: false,
       })
