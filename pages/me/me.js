@@ -89,9 +89,29 @@ Page({
   },
 
   exitProfile(e) {
-    this.setData({
-      isShowExitDialog: true,
+    // this.setData({
+    //   isShowExitDialog: true,
+    // })
+    let _this = this
+    wx.showModal({
+      title: '确认解绑 Confirm',
+      content: '确定要解绑微信吗？\r\nAre you sure to unassociate?',
+      showCancel: true,
+      cancelText: "否 No",
+      cancelColor: "#333333",
+      confirmText: "是 Yes",
+      confirmColor: "#DB0011",
+      success: function(e) {
+        if (e.cancel) {
+          console.log("Click No")
+        }
+        if (e.confirm) {
+          console.log("Click Yes")
+          _this.exitAccount()
+        }
+      }
     })
+
   },
 
   tapExitDialogButton(e) {

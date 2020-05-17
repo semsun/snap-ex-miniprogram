@@ -16,12 +16,12 @@
   text-align: center;
 }
 
-.btn-disable{
+.btn-disable {
   padding-left: 48rpx;
   padding-right: 48rpx;
   width: 100%;
   margin-top: 20rpx;
-  background-color: #B2B2B2;
+  background-color: #b2b2b2;
   color: white;
   border-radius: 0rpx;
   display: flex;
@@ -30,4 +30,25 @@
   justify-content: center;
   font-size: 32rpx;
   text-align: center;
+}
+
+.btn-enable-second {
+  /* padding-top: 20rpx;
+  padding-bottom: 20rpx; */
+  padding-left: 48rpx;
+  padding-right: 48rpx;
+  width: 100%;
+  margin-top: 20rpx;
+  border-radius: 0rpx;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  font-size: 32rpx;
+  text-align: center;
+  background: #fff;
+  color: #333;
+  font-family: PingFangSC-Regular;
+  letter-spacing: 0;
+  border: 2rpx solid #333;
 }

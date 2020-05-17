@@ -1,23 +1,24 @@
 /* pages/me/me.wxss */
 @import '../components/weui-wxss/dist/style/weui.wxss';
+@import '../components/funjoin-wxss/fjui.wxss';
 
 .userinfo {
   display: flex;
   flex-direction: column;
   align-items: center;
-  background: white;
-  padding-bottom: 20rpx;
+  padding-bottom: 76rpx;
 }
 
 .userinfo-avatar {
-  width: 128rpx;
-  height: 128rpx;
+  width: 160rpx;
+  height: 160rpx;
   margin: 20rpx;
   border-radius: 50%;
 }
 
 .userinfo-nickname {
-  color: #aaa;
+  color: #252525;
+  font-size: 40rpx;
 }
 
 .bottom-area {
@@ -64,14 +65,22 @@
   background-color: #fff;
 }
 
-.function-item-text {
+.function-item-text-group {
   width: 95%;
+}
+
+.function-item-text {
   color: #333;
-  font-size: 30rpx;
+  font-size: 28rpx;
+}
+
+.function-item-text-en {
+  color: #999;
+  font-size: 32rpx;
 }
 
 .function-item-icon {
   font-size: 30rpx;
-  color: #999;
+  color: #333;
   text-align: right;
 }

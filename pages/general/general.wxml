@@ -1,5 +1,5 @@
-<view class="container">
-  <view class="page-body">
+<view>
+  <!-- <view class="page-body">
     <view class="page-section">
       <view class="weui-cells weui-cells_after-title">
         <view class="weui-cell weui-cell_input">
@@ -14,9 +14,21 @@
         </view>
       </view>
     </view>
+  </view> -->
+
+  <view class="config-item">
+    <view class="config-item-text-group">
+      <view class="config-item-text">当前所在地</view>
+      <view class="weui-cell__bd">
+        <picker bindchange="bindLocationChange" disabled="{{disabledEdit}}" value="{{locationIndex}}" range="{{locationData}}">
+          <view class="weui-input">{{locationData[locationIndex]}}</view>
+        </picker>
+      </view>
+    </view>
+    <view class="config-item-icon">></view>
   </view>
 
-  <view class="btn-area" id="buttonContainer">
-    <button class="btn-enable" disabled="{{disabledEdit}}" bindtap="saveAction">Save</button>
+  <view class="btn-area btn-group" id="buttonContainer">
+    <button class="btn-enable" disabled="{{disabledEdit}}" bindtap="saveAction">保存 Save</button>
   </view>
 </view>
