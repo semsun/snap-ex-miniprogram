@@ -225,3 +225,7 @@ textarea {
   height: 32rpx;
   margin-top: 42rpx;
 }
+
+.m_color {
+  color: #ff0000;
+}

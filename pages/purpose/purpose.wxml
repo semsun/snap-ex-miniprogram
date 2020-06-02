@@ -21,7 +21,7 @@
     <block wx:else>
     <view class="origin_position">
       <view class="content_container">
-        <view class="ctx_edit_title">报销类型 Purpose</view>
+        <view class="ctx_edit_title"><span class="m_color">*</span> 报销类型 Purpose</view>
         <view class="type_gap purpose_bg">
           <view class="row_style">
             <block wx:for="{{[0, 1, 2]}}" wx:key="unique" wx:for-item="i">
@@ -58,7 +58,7 @@
       <view class="content_container row_style">
         <view class="picker_bg">
           <picker bindchange="bindCurrencyChange" value="{{currencyIndex}}" range="{{currencyDisplayArray}}">
-            <view class="ctx_edit_title">报销货币 Currency</view>
+            <view class="ctx_edit_title"><span class="m_color">*</span> 报销货币 Currency</view>
             <view class="ctx_edit_content">{{currencyDisplayArray[currencyIndex]}}</view>
           </picker>
         </view>
@@ -67,7 +67,7 @@
     </view>
     <view class="item_edit">
       <view class="content_container">
-        <view class="ctx_edit_title">报销金额 Amount</view>
+        <view class="ctx_edit_title"><span class="m_color">*</span> 报销金额 Amount</view>
         <input class="ctx_edit_content" type="digit" bindfocus="focusAmount" bindblur="updateAmount" name="input" placeholder="Input Amount" value="{{displayAmount}}" />
       </view>
     </view>
@@ -75,7 +75,7 @@
       <view class="content_container row_style">
         <view class="picker_bg">
           <picker mode="date" value="{{purpose.occurDate}}" start="{{selBeginDate}}" end="{{selEndDate}}" bindchange="bindDateChange">
-            <view class="ctx_edit_title">票据时间 Date</view>
+            <view class="ctx_edit_title"><span class="m_color">*</span> 票据时间 Date</view>
             <view class="ctx_edit_content">{{purpose.occurDate}}</view>
           </picker>
         </view>
@@ -84,7 +84,7 @@
     </view>
     <view class="item_edit_nohigh_limited">
       <view class="content_container">
-        <view class="ctx_edit_title">备注 Note</view>
+        <view class="ctx_edit_title"><span class="m_color">*</span> 备注 Note</view>
         <textarea class="ctx_edit_content" bindinput="bindDescriptionChange" maxlength="{{note_max}}" placeholder="Input Description" auto-height value="{{purpose.description}}" />
         <view class="note_count">{{note_count}}/{{note_max}}</view>
       </view>
