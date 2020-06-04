@@ -374,6 +374,17 @@ Page({
       return;
     }
 
+    if (_this.data.purpose.description.trim().length <= 0) {
+      wx.showModal({
+        title: '备注错误 Description Error',
+        content: "备注不能为空！\r\nPlease provide description!",
+        showCancel: false,
+        confirmText: "确定 OK"
+      })
+
+      return;
+    }
+
     wx.showLoading({
       title: 'Saving...',
     })
