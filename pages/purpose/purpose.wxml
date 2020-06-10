@@ -90,6 +90,7 @@
       </view>
     </view>
     </block>
+    <!--
     <view>
       <view class="content_container">
         <view class="item_title">票据拍照 Invoice or evidence photo</view>
@@ -99,6 +100,7 @@
         <image wx:else bindtap="takeInvoicePhoto" mode="aspectFit" class="type_gap" src="{{purpose.image_path}}"></image>
       </view>
     </view>
+    -->
   </view>
 
   <view class="btn_area_local" id="buttonContainer">
