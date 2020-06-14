@@ -3,6 +3,9 @@ let app = getApp()
 let api = require('../../utils/authRequest.js')
 let util = require('../../utils/util.js')
 var inputRequestName = ""
+var inputCostCentreNum = ""
+var isInputTitleValid = false
+var isBillableValid = false
 
 Page({
 
@@ -12,7 +15,8 @@ Page({
    */
   data: {
     ctaDisable: true,
-    ctaIsLoading: false
+    ctaIsLoading: false,
+    isBillable: -1
   },
 
   addRequest(e) {
@@ -34,7 +38,9 @@ Page({
       method: "POST",
       data: {
         "description": inputRequestName,
-        "status": 0
+        "status": 0,
+        "billable": _this.data.isBillable,
+        "customerCostCentreNo": inputCostCentreNum
       },
       header: {
         WechatAccessToken: null
@@ -77,15 +83,46 @@ Page({
   inputRequestName: function(e) {
     inputRequestName = e.detail.value
     if ((e.detail.value).trim().length > 0) {
-      this.setData({
-        ctaDisable: false,
-      })
+      isInputTitleValid = true
+      this.isCtaVaild()
     } else {
-      this.setData({
-        ctaDisable: true,
-      })
+      isInputTitleValid = false
+      this.isCtaVaild()
     }
   },
+
+  inputCentreNum: function(e) {
+    inputCostCentreNum = e.detail.value
+    if ((e.detail.value).trim().length > 0) {
+      isBillableValid = true
+      this.isCtaVaild()
+    } else {
+      isBillableValid = false
+      this.isCtaVaild()
+    }
+  },
+
+  setBillableStatus: function(e) {
+    this.setData({
+      isBillable: 1,
+    })
+    this.isCtaVaild()
+  },
+
+  setUnbillableStatus: function(e) {
+    this.setData({
+      isBillable: 2,
+    })
+    this.isCtaVaild()
+  },
+
+  isCtaVaild: function() {
+    let _ctaDisable = !(isInputTitleValid & (this.data.isBillable > 0))
+    this.setData({
+      ctaDisable: _ctaDisable,
+    })
+  },
+
 
   onNetworkFail() {
     wx.showToast({

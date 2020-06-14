@@ -1,26 +1,49 @@
 <!--pages/requestPage/addRequest.wxml-->
-<view class="block-view">
-  <view class="request-title">报销标题 Title</view>
-  <input class="request-input" maxlength="100" bindinput="inputRequestName" auto-focus placeholder="Please enter title" />
-</view>
+<view class="page-view">
+  <view class="block-view">
+    <view class="request-title">报销标题 Title</view>
+    <input class="request-input" maxlength="100" bindinput="inputRequestName" auto-focus placeholder="Please enter title" />
+  </view>
 
-<view class="claim-type-title">报销类型 Type</view>
+  <view class="claim-type-title">报销类型 Type</view>
 
-<view class="">
-  <view class="valid-view">
-    <view class="valid-view-item">
-      <view class="valid-view-text">非出差 Non-travel</view>
-      <image class="radio-style" src="/images/icons/selected_enabled.png" />
+  <view class="">
+    <view class="valid-view">
+      <view class="valid-view-item">
+        <view class="valid-view-text">非出差 Non-travel</view>
+        <image class="radio-style" src="/images/icons/selected_enabled.png" />
+      </view>
+    </view>
+    <view class="disable-view">
+      <view class="valid-view-item">
+        <view class="disable-view-text">出差 Travel</view>
+        <image class="radio-style" src="/images/icons/unselected_disabled.png" />
+      </view>
     </view>
   </view>
-  <view class="disable-view">
-   <view class="valid-view-item">
-    <view class="disable-view-text">出差 Travel</view>
-       <image class="radio-style" src="/images/icons/unselected_disabled.png" />
-  </view>  </view>
-</view>
 
-<view class="disable-view-tips">出差目前暂时不支持，敬请期待！ Travel expense is coming soon.</view>
+  <view class="disable-view-tips">出差类目前暂时不支持，敬请期待！</view>
+  <view class="disable-view-tips">Travel expense is coming soon.</view>
+
+  <view class="claim-type-title">是否计费项 If billable</view>
+  <view class="">
+    <view class="valid-view valid-view-item" bindtap="setBillableStatus">
+      <view class="valid-view-text">计费 Billable</view>
+      <image class="radio-style" src="{{isBillable==1?'/images/icons/selected_enabled.png':'/images/icons/unselected_disabled.png'}}" />
+    </view>
+
+    <view class="valid-view valid-view-item" bindtap="setUnbillableStatus">
+      <view class="valid-view-text">非计费 Unbillable</view>
+      <image class="radio-style" src="{{isBillable==2?'/images/icons/selected_enabled.png':'/images/icons/unselected_disabled.png'}}" />
+    </view>
+  </view>
+
+  <view class="block-view">
+    <view class="request-title">成本中心编号 Cost Centre No. (optional)</view>
+    <input class="request-input" maxlength="30" bindinput="inputCentreNum" placeholder="Please enter target Cost Centre No." />
+  </view>
+
+</view>
 
 <view class="btn-area btn-group">
   <button class="{{ctaDisable?'btn-disable':'btn-enable'}}" hover-class="none" loading="{{ctaIsLoading}}" bindtap="addRequest">下一步 Next</button>
