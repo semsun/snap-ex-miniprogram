@@ -13,24 +13,32 @@
   <view class="list-title">报销列表 My reimbursement list</view>
 
   <view class='listview'>
-    <block wx:for="{{listdata}}" wx:key="index">
-      <view bindtap="toInvoice" mark:itemdata="{{item}}" class="weui-flex text-content item-view" hover-class="weui-cell_active">
+    <view wx:if="{{listdata.length>0}}">
+      <block wx:for="{{listdata}}" wx:key="index">
+        <view bindtap="toInvoice" mark:itemdata="{{item}}" class="weui-flex text-content item-view" hover-class="weui-cell_active">
 
-        <!-- <view class="list-item-icon">
+          <!-- <view class="list-item-icon">
           <icon wx:if="{{item.status != '0'}}" class="icon-small" type="success" size="23"></icon>
           <icon wx:else class="icon-small" type="info_circle" size="23"></icon>
         </view> -->
 
-        <view class="weui-media-box__bd weui-media-box__bd_in-appmsg">
-          <view class="weui-media-box__title item-title">{{item.title}}</view>
-          <view class="weui-media-box__desc item-desc">{{item.date}}</view>
+          <view class="weui-media-box__bd weui-media-box__bd_in-appmsg">
+            <view class="weui-media-box__title item-title">{{item.title}}</view>
+            <view class="weui-media-box__desc item-desc">{{item.date}}</view>
+          </view>
+          <view class="weui-media-box__bd">
+            <view class="weui-media-box__title item-amount">{{item.totalAmount}} CNY</view>
+            <view wx:if="{{item.status != '0'}}" class="item-status-submitted">SUBMITTED</view>
+            <view wx:else class="item-status-draft">DRAFT</view>
+          </view>
         </view>
-        <view class="weui-media-box__bd">
-          <view class="weui-media-box__title item-amount">{{item.totalAmount}} CNY</view>
-          <view wx:if="{{item.status != '0'}}" class="item-status-submitted">SUBMITTED</view>
-          <view wx:else class="item-status-draft">DRAFT</view>
-        </view>
-      </view>
+      </block>
+    </view>
+    <block wx:else>
+      <view class="empty-page-title empty-page-icon-margin">无报销项目</view>
+      <view class="empty-page-title">No reimbursement items</view>
+      <view class="empty-page-content empty-page-content-margin">您可以点击下面的红色添加按钮，开始您的第一个报销项目</view>
+      <view class="empty-page-content">you can start you first reimbursement item by clicking on the red add button below.</view>
     </block>
   </view>
   <view class="btn-area btn-group">

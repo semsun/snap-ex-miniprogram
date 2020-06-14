@@ -108,6 +108,33 @@
   background-color: #008580;
 }
 
+.empty-page-icon-margin {
+  margin-top: 166rpx;
+}
+
+.empty-page-title {
+  font-size: 32rpx;
+  color: #252525;
+  letter-spacing: -0.15px;
+  text-align: center;
+  margin-left: 10%;
+  margin-right: 10%;
+}
+
+.empty-page-content {
+  font-size: 22rpx;
+  color: #5c5c5c;
+  letter-spacing: -0.15px;
+  letter-spacing: 0;
+  text-align: center;
+  margin-left: 10%;
+  margin-right: 10%;
+}
+
+.empty-page-content-margin {
+  margin-top: 26rpx;
+}
+
 .btn-group {
   position: fixed;
   bottom: 0;
